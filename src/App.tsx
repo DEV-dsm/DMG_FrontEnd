@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -27,6 +27,14 @@ function App() {
       </RecoilRoot>
     </QueryClientProvider>
   );
+}
+
+export default App; */
+
+import React from "react";
+
+function App() {
+  return <div>App</div>;
 }
 
 export default App;
