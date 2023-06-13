@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => {
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
@@ -27,6 +27,6 @@ const App = () => {
       </RecoilRoot>
     </QueryClientProvider>
   );
-};
+}
 
 export default App;
