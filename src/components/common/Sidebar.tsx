@@ -46,7 +46,9 @@ const SideBar = () => {
             </MenuBarWrapper>
           );
         })}
-        <Logout />
+        <LogOutWrapper>
+          <Logout />
+        </LogOutWrapper>
       </SideBarContainer>
     </>
   );
@@ -62,12 +64,15 @@ const SideBarContainer = styled.div`
 
 const MenuBarWrapper = styled.div``;
 
+const LogOutWrapper = styled.div`
+  padding-left: 18px;
+`;
+
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   background: ${({ selected, hovered }) =>
     selected || hovered ? "#393939" : "transparent"};
   border-radius: 15px;
   width: 270px;
-
   cursor: pointer;
   display: flex;
   padding: 23px 20px;
