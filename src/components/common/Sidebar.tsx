@@ -24,6 +24,8 @@ const SideBar = () => {
         {menus.map((item: IMenuType, index: number) => {
           const isSelected = selectedMenu === item.name;
           const isHovered = hoveredMenu === item.name;
+          const IconColor =
+            isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
           return (
             <MenuBarWrapper key={index}>
               <SideBarBackColor
@@ -33,12 +35,7 @@ const SideBar = () => {
                 selected={isSelected}
                 hovered={isHovered}
               >
-                <IconStyle
-                  src={
-                    isSelected || isHovered ? item.whiteIcons : item.BlackIcons
-                  }
-                  alt="image"
-                />
+                <IconStyle src={IconColor} alt="image" />
                 <TextStyle selected={isSelected || isHovered}>
                   {item.name}
                 </TextStyle>
