@@ -1,9 +1,21 @@
-import React from 'react'
+import { styled } from "styled-components";
+import SubmitBtn from "./SubmitBtn";
 
-function Input() {
+function StudentInfo() {
   return (
-    <div>Input</div>
-  )
+    <Wrapper>
+      <SubmitBtn />
+    </Wrapper>
+  );
 }
 
-export default Input
+const Wrapper = styled.div`
+  border: 1px solid #393939;
+  width: 600px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 330px;
+`;
+
+export default StudentInfo;

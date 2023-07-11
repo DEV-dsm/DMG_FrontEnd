@@ -69,7 +69,7 @@ const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   background: ${({ selected, hovered }) =>
     selected || hovered ? "#393939" : "transparent"};
   border-radius: 15px;
-  width: 220px;
+  width: 230px;
   cursor: pointer;
   display: flex;
   align-items: center;

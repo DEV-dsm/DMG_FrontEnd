@@ -12,8 +12,8 @@ function SubmitBtn() {
 }
 
 const Button = styled.button`
-  width: 150px;
-  height: 30%;
+  width: 160px;
+  height: 40px;
   border-radius: 30px;
   background: #393939;
 `;
