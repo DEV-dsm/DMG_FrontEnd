@@ -7,7 +7,7 @@ const MainRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/mainpage" element={<MainPage />} />
+      <Route path="/main" element={<MainPage />} />
     </Routes>
   );
 };
