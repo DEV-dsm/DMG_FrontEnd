@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { menus } from "../contanse";
-import { IMenuType } from "../../types/MainPage";
+import { IMenuType } from "../../types/mypage";
 import styled from "styled-components";
 import Logout from "./Logout";
 

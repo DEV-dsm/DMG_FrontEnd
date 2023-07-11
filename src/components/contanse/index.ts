@@ -1,4 +1,4 @@
-import { IMenuType } from "../../types/MainPage/index";
+import { IMenuType } from "../../types/mypage";
 import {
   MyPageBlackIcons,
   SearchUserBlackIcons,

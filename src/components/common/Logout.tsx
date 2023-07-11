@@ -1,6 +1,6 @@
 import { LOGOUT } from "../contanse";
 import { styled } from "styled-components";
-import { IMenuType } from "../../types/MainPage";
+import { IMenuType } from "../../types/mypage";
 import { LogOutBlackIcons } from "../../assets/icons";
 
 function Logout() {
