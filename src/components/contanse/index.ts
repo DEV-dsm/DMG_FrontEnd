@@ -1,44 +1,33 @@
 import { IMenuType } from "../../types/mypage";
-import {
-  MyPageBlackIcons,
-  SearchUserBlackIcons,
-  MessageBlackIcons,
-  RequireBlackIcons,
-  MyPageWhiteIcons,
-  SearchWhiteIcons,
-  MessageWhiteIcons,
-  RequireWhiteIcons,
-  LogOutBlackIcons,
-  LogOutWhiteIcons,
-} from "../../assets/icons";
+import { Icons } from "../../assets/icons";
 
 export const menus: IMenuType[] = [
   {
     name: "My Page",
-    BlackIcons: MyPageBlackIcons,
-    whiteIcons: MyPageWhiteIcons,
+    BlackIcons: Icons.MyPageBlackIcons,
+    whiteIcons: Icons.MyPageWhiteIcons,
   },
   {
     name: "Search user",
-    BlackIcons: SearchUserBlackIcons,
-    whiteIcons: SearchWhiteIcons,
+    BlackIcons: Icons.SearchUserBlackIcons,
+    whiteIcons: Icons.SearchWhiteIcons,
   },
   {
     name: "Messages",
-    BlackIcons: MessageBlackIcons,
-    whiteIcons: MessageWhiteIcons,
+    BlackIcons: Icons.MessageBlackIcons,
+    whiteIcons: Icons.MessageWhiteIcons,
   },
   {
     name: "Inquire",
-    BlackIcons: RequireBlackIcons,
-    whiteIcons: RequireWhiteIcons,
+    BlackIcons: Icons.RequireBlackIcons,
+    whiteIcons: Icons.RequireWhiteIcons,
   },
 ];
 
 export const LOGOUT: IMenuType[] = [
   {
     name: "Log out",
-    BlackIcons: LogOutBlackIcons,
-    whiteIcons: LogOutWhiteIcons,
+    BlackIcons: Icons.LogOutBlackIcons,
+    whiteIcons: Icons.LogOutWhiteIcons,
   },
 ];

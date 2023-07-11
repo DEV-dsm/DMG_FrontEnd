@@ -1,7 +1,7 @@
 import { LOGOUT } from "../contanse";
 import { styled } from "styled-components";
 import { IMenuType } from "../../types/mypage";
-import { LogOutBlackIcons } from "../../assets/icons";
+import { Icons } from "../../assets/icons";
 
 function Logout() {
   return (
@@ -9,7 +9,7 @@ function Logout() {
       {LOGOUT.map((item: IMenuType, index: number) => {
         return (
           <LogoutMenuBarWrapper key={index}>
-            <IconStyle src={LogOutBlackIcons} alt="image" />
+            <IconStyle src={Icons.LogOutBlackIcons} alt="image" />
             <TextStyle>{item.name}</TextStyle>
           </LogoutMenuBarWrapper>
         );

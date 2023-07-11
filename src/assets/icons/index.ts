@@ -1,10 +1,23 @@
-export { default as MyPageBlackIcons } from "./beforeProfile.png";
-export { default as SearchUserBlackIcons } from "./beforeSearchUser.png";
-export { default as MessageBlackIcons } from "./beforeChatting.png";
-export { default as RequireBlackIcons } from "./beforeWarning.png";
-export { default as LogOutBlackIcons } from "./beforeLogOut.png";
-export { default as MyPageWhiteIcons } from "./afterProfile.png";
-export { default as SearchWhiteIcons } from "./afterSearchUser.png";
-export { default as MessageWhiteIcons } from "./afterChatting.svg";
-export { default as RequireWhiteIcons } from "./afterWarning.png";
-export { default as LogOutWhiteIcons } from "./afterLogOut.png";
+import MyPageBlackIcons from "./beforeProfile.png";
+import SearchUserBlackIcons from "./beforeSearchUser.png";
+import MessageBlackIcons from "./beforeChatting.png";
+import RequireBlackIcons from "./beforeWarning.png";
+import LogOutBlackIcons from "./beforeLogOut.png";
+import MyPageWhiteIcons from "./afterProfile.png";
+import SearchWhiteIcons from "./afterSearchUser.png";
+import MessageWhiteIcons from "./afterChatting.svg";
+import RequireWhiteIcons from "./afterWarning.png";
+import LogOutWhiteIcons from "./afterLogOut.png";
+
+export const Icons = {
+  MyPageBlackIcons,
+  SearchUserBlackIcons,
+  MessageBlackIcons,
+  RequireBlackIcons,
+  LogOutBlackIcons,
+  MyPageWhiteIcons,
+  SearchWhiteIcons,
+  MessageWhiteIcons,
+  RequireWhiteIcons,
+  LogOutWhiteIcons,
+};
