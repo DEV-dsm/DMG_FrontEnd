@@ -24,6 +24,8 @@ const SideBar = () => {
         {menus.map((item: IMenuType, index: number) => {
           const isSelected = selectedMenu === item.name;
           const isHovered = hoveredMenu === item.name;
+          const IconColor =
+            isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
           return (
             <MenuBarWrapper key={index}>
               <SideBarBackColor
@@ -33,12 +35,7 @@ const SideBar = () => {
                 selected={isSelected}
                 hovered={isHovered}
               >
-                <IconStyle
-                  src={
-                    isSelected || isHovered ? item.whiteIcons : item.BlackIcons
-                  }
-                  alt="image"
-                />
+                <IconStyle src={IconColor} alt="image" />
                 <TextStyle selected={isSelected || isHovered}>
                   {item.name}
                 </TextStyle>
@@ -72,16 +69,17 @@ const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   background: ${({ selected, hovered }) =>
     selected || hovered ? "#393939" : "transparent"};
   border-radius: 15px;
-  width: 270px;
+  width: 220px;
   cursor: pointer;
   display: flex;
+  align-items: center;
   padding: 23px 20px;
 `;
 
 const TextStyle = styled.span<{ selected: boolean }>`
   font-family: "Inter";
   color: ${(props) => (props.selected ? "#FFFFFF" : "#000000")};
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   vertical-align: middle;
   margin-left: 20px;

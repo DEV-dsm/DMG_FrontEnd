@@ -29,7 +29,7 @@ const LogoutMenuBarWrapper = styled(MenuBarWrapper)`
 
 const TextStyle = styled.span`
   font-family: "Inter";
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 24px;
   margin-left: 20px;
