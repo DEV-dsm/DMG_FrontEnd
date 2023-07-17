@@ -1,20 +1,12 @@
-import { LOGOUT } from "../contanse";
+import { LOGOUT } from "../../contanse";
 import { styled } from "styled-components";
-import { IMenuType } from "../../types/mypage";
-import { Icons } from "../../assets/icons";
 
 function Logout() {
   return (
-    <div>
-      {LOGOUT.map((item: IMenuType, index: number) => {
-        return (
-          <LogoutMenuBarWrapper key={index}>
-            <IconStyle src={Icons.LogOutBlackIcons} alt="image" />
-            <TextStyle>{item.name}</TextStyle>
-          </LogoutMenuBarWrapper>
-        );
-      })}
-    </div>
+    <LogoutMenuBarWrapper>
+      <IconStyle src={LOGOUT.BlackIcons} alt="image" />
+      <TextStyle>{LOGOUT.name}</TextStyle>
+    </LogoutMenuBarWrapper>
   );
 }
 
@@ -24,7 +16,7 @@ const MenuBarWrapper = styled.div`
 `;
 
 const LogoutMenuBarWrapper = styled(MenuBarWrapper)`
-  padding-top: 200px;
+  width: 220px;
 `;
 
 const TextStyle = styled.span`

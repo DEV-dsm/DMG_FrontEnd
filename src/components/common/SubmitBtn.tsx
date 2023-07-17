@@ -4,7 +4,7 @@ import styled from "styled-components";
 function SubmitBtn() {
   return (
     <div>
-      <Button>
+      <Button type="submit">
         <TextBtn>Submit</TextBtn>
       </Button>
     </div>

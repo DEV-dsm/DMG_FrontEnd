@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { menus } from "../contanse";
+import { menus } from "../../contanse";
 import { IMenuType } from "../../types/mypage";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Logout from "./Logout";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
-  const handleChangeClick = (name: string): void => {
+  const handleChangeClick = ({
+    name,
+    id,
+  }: {
+    name: string;
+    id?: string;
+  }): void => {
     setSelectedMenu(name);
+    navigate(`/${id}`);
   };
 
   const handleMouseEnter = (name: string): void => {
@@ -19,61 +28,74 @@ const SideBar = () => {
   const handleMouseLeave = (): void => setHoveredMenu(null);
 
   return (
-    <>
+    <div>
       <SideBarContainer>
-        {menus.map((item: IMenuType, index: number) => {
-          const isSelected = selectedMenu === item.name;
-          const isHovered = hoveredMenu === item.name;
-          const IconColor =
-            isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
-          return (
-            <MenuBarWrapper key={index}>
-              <SideBarBackColor
-                onMouseLeave={handleMouseLeave}
-                onMouseEnter={() => handleMouseEnter(item.name)}
-                onClick={() => handleChangeClick(item.name)}
-                selected={isSelected}
-                hovered={isHovered}
-              >
-                <IconStyle src={IconColor} alt="image" />
-                <TextStyle selected={isSelected || isHovered}>
-                  {item.name}
-                </TextStyle>
-              </SideBarBackColor>
-            </MenuBarWrapper>
-          );
-        })}
-        <LogOutWrapper>
-          <Logout />
-        </LogOutWrapper>
+        <SideBartabs>
+          {menus.map((item: IMenuType, index: number) => {
+            const isSelected = selectedMenu === item.name;
+            const isHovered = hoveredMenu === item.name;
+            const IconColor =
+              isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
+            return (
+              <div key={index}>
+                <SideBarBackColor
+                  onMouseLeave={handleMouseLeave}
+                  onMouseEnter={() => handleMouseEnter(item.name)}
+                  onClick={() =>
+                    handleChangeClick({ name: item.name, id: item.id })
+                  }
+                  selected={isSelected}
+                  hovered={isHovered}
+                >
+                  <IconStyle src={IconColor} alt="image" />
+                  <TextStyle selected={isSelected || isHovered}>
+                    {item.name}
+                  </TextStyle>
+                </SideBarBackColor>
+              </div>
+            );
+          })}
+        </SideBartabs>
+        <Logout />
       </SideBarContainer>
-    </>
+    </div>
   );
 };
 
 const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  margin: 100px 30px 0 30px;
+  height: 100vh;
+  width: 300px;
   gap: 20px;
+  align-items: center;
+  border-right: 1px solid #393939;
+  justify-content: space-between;
+  padding: 80px 0 50px 0;
 `;
 
-const MenuBarWrapper = styled.div``;
-
-const LogOutWrapper = styled.div`
-  padding-left: 18px;
+const SideBartabs = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
-  background: ${({ selected, hovered }) =>
-    selected || hovered ? "#393939" : "transparent"};
   border-radius: 15px;
-  width: 230px;
+  width: 250px;
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 23px 20px;
+  ${(props) =>
+    props.selected || props.hovered
+      ? css`
+          background-color: #393939;
+          box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
+        `
+      : css`
+          background-color: transparent;
+        `}
 `;
 
 const TextStyle = styled.span<{ selected: boolean }>`

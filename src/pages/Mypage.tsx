@@ -1,7 +1,12 @@
-import SideBar from "../components/common/Sidebar";
+import StudentInfo from "../components/common/StudentInfo";
+// import { styled } from "styled-components";
 
 const MyPage = () => {
-  return <SideBar />;
+  return (
+    <div>
+      <StudentInfo />
+    </div>
+  );
 };
 
 export default MyPage;
