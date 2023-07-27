@@ -1,29 +1,23 @@
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import MyPage from "../pages/Mypage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SideBar from "../components/common/Sidebar";
+import Inquire from "../pages/Inquire";
 import SearchUser from "../pages/SearchUser";
 import Messages from "../pages/Messages";
-import Inquire from "../pages/Inquire";
-import SideBar from "../components/common/Sidebar";
-import { styled } from "styled-components";
+import MyPage from "../pages/Mypage";
 
 const MainRouter = () => {
   return (
-    <Container>
-      <SideBar />
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/myPage" element={<MyPage />} />
-        <Route path="/searchUser" element={<SearchUser />} />
-        <Route path="/messages" element={<Messages />} />
-        <Route path="/inquire" element={<Inquire />} />
+        <Route element={<SideBar />}>
+          <Route path="/inquire" element={<Inquire />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/message" element={<Messages />} />
+          <Route path="/searchuser" element={<SearchUser />} />
+        </Route>
       </Routes>
-    </Container>
+    </BrowserRouter>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-`;
 
 export default MainRouter;
