@@ -1,14 +1,22 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import MainPage from "../pages/MainPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SideBar from "../components/common/Sidebar";
+import Inquire from "../pages/Inquire";
+import SearchUser from "../pages/SearchUser";
+import Messages from "../pages/Messages";
+import MyPage from "../pages/Mypage";
 
 const MainRouter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/main" element={<MainPage />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<SideBar />}>
+          <Route path="/inquire" element={<Inquire />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/message" element={<Messages />} />
+          <Route path="/searchuser" element={<SearchUser />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
