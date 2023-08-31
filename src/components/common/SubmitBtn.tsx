@@ -1,24 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
-function SubmitBtn() {
-  return (
-    <div>
-      <Button type="submit">
-        <TextBtn>Submit</TextBtn>
-      </Button>
-    </div>
-  );
-}
+const SubmitBtn = ({ text, onClick }: { text: string; onClick?: () => void }) => {
+  return <Button onClick={onClick}>{text}</Button>;
+};
 
 const Button = styled.button`
   width: 160px;
   height: 40px;
   border-radius: 30px;
   background: #393939;
-`;
-
-const TextBtn = styled.div`
+  outline: none;
+  border: none;
   color: #ffffff;
   text-align: center;
   font-family: Noto Sans;

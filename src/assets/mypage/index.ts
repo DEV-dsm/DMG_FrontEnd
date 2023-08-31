@@ -1,12 +1,14 @@
-import blackBeforeCheck from "./blackBeforeCheck 1.svg";
-import blackCloseLock from "./blackCloseLock 2.svg";
-import blackOpenLock from "./blackOpenLock 2.svg";
-import GreenCheck from "./check 2.svg";
-import BlockImg from "./Rectangle 671.png";
-import defaultOrofile from "./defaultProfile 3.svg";
-import dustBin from "./dustBin 1.png";
-import blackPencil from "./pencil2 1.svg";
-import whitePencil from "./whitepencil.png";
+import blackBeforeCheck from './blackBeforeCheck 1.svg';
+import blackCloseLock from './blackCloseLock 2.svg';
+import blackOpenLock from './blackOpenLock 2.svg';
+import GreenCheck from './check 2.svg';
+import BlockImg from './Rectangle 671.png';
+import defaultProfile from './defaultProfile 3.svg';
+import dustBin from './Group 373.svg';
+import BackblackPencil from './Group 372.svg';
+import whitePencil from './pencil2 11.svg';
+import WhiteCheck from './WhiteCheck.svg';
+import GrrenCheck from './GreenCheck.png';
 
 export const Images = {
   blackBeforeCheck,
@@ -14,8 +16,10 @@ export const Images = {
   blackOpenLock,
   GreenCheck,
   BlockImg,
-  defaultOrofile,
+  defaultProfile,
   dustBin,
-  blackPencil,
+  BackblackPencil,
   whitePencil,
+  WhiteCheck,
+  GrrenCheck,
 };
