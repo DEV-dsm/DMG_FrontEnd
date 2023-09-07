@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import { menus } from '../../contanse';
 import { IMenuType } from '../../types/mypage';
 import Logout from './Logout';
@@ -30,24 +31,22 @@ const SideBar = () => {
             const isHovered = hoveredMenu === item.name;
             const IconColor = isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
             return (
-              <div key={index}>
-                <SideBarBackColor
-                  onMouseLeave={handleMouseLeave}
-                  onMouseEnter={() => handleMouseEnter(item.name)}
-                  onClick={() => handleChangeClick({ name: item.name, id: item.id })}
-                  selected={isSelected}
-                  hovered={isHovered}
-                >
-                  <IconStyle src={IconColor} alt="image" />
-                  <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
-                </SideBarBackColor>
-              </div>
+              <SideBarBackColor
+                key={index}
+                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => handleMouseEnter(item.name)}
+                onClick={() => handleChangeClick({ name: item.name, id: item.id })}
+                selected={isSelected}
+                hovered={isHovered}
+              >
+                <IconStyle src={IconColor} />
+                <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
+              </SideBarBackColor>
             );
           })}
         </SideBartabs>
         <Logout />
       </SideBarContainer>
-
       <Outlet />
     </FlexContainer>
   );
@@ -55,21 +54,23 @@ const SideBar = () => {
 
 const FlexContainer = styled.div`
   display: flex;
+  width: 100vw;
 `;
 
 const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 290px;
+  width: 20vw;
   gap: 20px;
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
-  padding: 100px 30px 50px 30px;
+  padding: 100px 25px 50px 25px;
 `;
 
 const SideBartabs = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -77,11 +78,10 @@ const SideBartabs = styled.div`
 
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   border-radius: 20px;
-  width: 250px;
   cursor: pointer;
-  display: inline-flex;
   align-items: center;
-  padding: 24px 30px 24px 20px;
+  padding: 20px 26px 20px 18px;
+  display: flex;
   ${(props) =>
     props.selected || props.hovered
       ? css`
@@ -93,20 +93,17 @@ const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
         `}
 `;
 
-const TextStyle = styled.span<{ selected: boolean }>`
+const TextStyle = styled.span<{ selected?: boolean }>`
   font-family: 'Inter';
   color: ${(props) => (props.selected ? '#FFFFFF' : '#000000')};
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
-  vertical-align: middle;
-  margin-left: 20px;
-  align-items: center;
+  margin-left: 17px;
 `;
 
 const IconStyle = styled.img`
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
+  width: 26px;
+  height: 26px;
 `;
 
 export default SideBar;

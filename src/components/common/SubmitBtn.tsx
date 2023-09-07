@@ -5,7 +5,7 @@ const SubmitBtn = ({ text, onClick }: { text: string; onClick?: () => void }) =>
 };
 
 const Button = styled.button`
-  width: 160px;
+  width: 50%;
   height: 40px;
   border-radius: 30px;
   background: #393939;
