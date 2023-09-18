@@ -39,8 +39,10 @@ const SideBar = () => {
                 selected={isSelected}
                 hovered={isHovered}
               >
-                <IconStyle src={IconColor} />
-                <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
+                <TabBarWrapper>
+                  <IconStyle src={IconColor} />
+                  <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
+                </TabBarWrapper>
               </SideBarBackColor>
             );
           })}
@@ -52,6 +54,12 @@ const SideBar = () => {
   );
 };
 
+const TabBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
 const FlexContainer = styled.div`
   display: flex;
   width: 100vw;
@@ -62,25 +70,33 @@ const SideBarContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 20vw;
-  gap: 20px;
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
-  padding: 100px 25px 50px 25px;
+  padding: 100px 30px 50px 30px;
+  @media screen and (max-width: 1050px) {
+    span {
+      display: none;
+    }
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
 `;
 
 const SideBartabs = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 `;
 
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   border-radius: 20px;
   cursor: pointer;
   align-items: center;
-  padding: 20px 26px 20px 18px;
+  padding: 24px 30px 24px 20px;
   display: flex;
   ${(props) =>
     props.selected || props.hovered
@@ -98,12 +114,11 @@ const TextStyle = styled.span<{ selected?: boolean }>`
   color: ${(props) => (props.selected ? '#FFFFFF' : '#000000')};
   font-size: 17px;
   font-weight: 600;
-  margin-left: 17px;
 `;
 
 const IconStyle = styled.img`
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
 `;
 
 export default SideBar;
