@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from '../common/Button';
 import { Images } from '../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
 import { useFileInput } from '../hooks/useFileInput';
@@ -10,7 +10,7 @@ const StudentInfo = () => {
   const { image: backgroundImage, onUpload: setBackgroundImage } = useFileInput(Images.BlockImg);
   const {
     backImage: defaultProfileImg,
-    onUpload2: setDefaultProfileImage,
+    onUpload: setDefaultProfileImage,
     resetImage: resetDefaultProfileImage,
   } = useFileInput(Images.defaultProfile);
 
@@ -22,24 +22,23 @@ const StudentInfo = () => {
       <ImageContainer>
         <BlockImg src={backgroundImage} />
         <FileChangeImg src={Images.whitePencil} onClick={() => imgRef.current?.click()} />
-      </ImageContainer>
-      <input
-        type="file"
-        id="fileInput"
-        accept="image/*"
-        ref={imgRef}
-        style={{ display: 'none' }}
-        onChange={(e) => setBackgroundImage(e)}
-      />
-      <ProfileContainer>
-        <ProfileImg src={defaultProfileImg} alt="" />
         <input
           type="file"
-          id="fileInputs"
+          accept="image/*"
+          ref={imgRef}
+          style={{ display: 'none' }}
+          onChange={(e) => setBackgroundImage(e)}
+        />
+      </ImageContainer>
+
+      <ProfileContainer>
+        <ProfileImg src={defaultProfileImg} />
+        <input
+          type="file"
           accept="image/*"
           ref={ProfileImgRef}
           style={{ display: 'none' }}
-          onChange={(e) => setDefaultProfileImage(e)}
+          onChange={(e) => setDefaultProfileImage(e, true)}
         />
         <CorrectProfile>
           <ProfileChangeImg
@@ -48,10 +47,8 @@ const StudentInfo = () => {
           />
           <ProfileChangeImg src={Images.dustBin} onClick={resetDefaultProfileImage} />
         </CorrectProfile>
-        <FormContainer>
-          <UserInfoInput />
-          <SubmitBtn text="submit" />
-        </FormContainer>
+        <UserInfoInput />
+        <SubmitBtn text="submit" />
       </ProfileContainer>
     </Wrapper>
   );
@@ -61,16 +58,17 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 40%;
-  align-items: center;
+  width: 30vw;
+  align-items: flex-start;
   overflow-y: scroll;
   border-right: 1px solid #393939;
-  padding: 50px 60px 85px 60px;
+  padding: 50px 70px 95px 70px;
+  gap: 10px;
 `;
 
 const CorrectProfile = styled.div`
   display: flex;
-  margin-top: 50px;
+  padding-top: 20px;
   gap: 10px;
   > img {
     width: 27px;
@@ -86,24 +84,13 @@ const FileChangeImg = styled.img`
   margin: 12px;
 `;
 
-const FormContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-`;
-
 const ImageContainer = styled.div`
   position: relative;
-  max-width: 500px;
 `;
 
 const BlockImg = styled.img`
   width: 100%;
-  object-fit: contain;
-  margin: auto;
-  max-width: 500px;
+  border-radius: 4px;
 `;
 
 const ProfileContainer = styled.div`
@@ -114,13 +101,14 @@ const ProfileContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 50px;
+  height: auto;
 `;
 
 const ProfileImg = styled.img`
   position: absolute;
   top: 0%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -85%);
   width: 30%;
 `;
 
