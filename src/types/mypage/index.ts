@@ -8,8 +8,8 @@ export interface IMenuType {
 export interface IUserInfoDetailType {
   name: string;
   id: number;
-  placeholder: string;
-  placeholder1?: string;
+  placeholder?: string;
+  otherplaceholder?: string;
   hasIcon: boolean;
 }
 

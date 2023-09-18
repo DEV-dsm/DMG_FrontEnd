@@ -17,8 +17,8 @@ export const menus: IMenuType[] = [
   {
     name: 'Messages',
     id: 'message',
-    BlackIcons: Icons.MessageBlackIcons,
-    whiteIcons: Icons.MessageWhiteIcons,
+    BlackIcons: Icons.MessageWhiteIcons,
+    whiteIcons: Icons.MessageBlackIcons,
   },
   {
     name: 'Inquire',
@@ -60,21 +60,21 @@ export const UserInfoDetail: IUserInfoDetailType[] = [
     name: 'Password',
     id: 4,
     placeholder: 'password',
-    placeholder1: 'Check Password',
+    otherplaceholder: 'Check Password',
     hasIcon: true,
   },
   {
     name: 'email',
     id: 5,
     placeholder: 'email@dsm.hs.kr',
-    placeholder1: 'Auth Number',
+    otherplaceholder: 'Auth Number',
     hasIcon: true,
   },
   {
     name: 'Other',
     id: 6,
     placeholder: 'Major',
-    placeholder1: 'Github Username',
+    otherplaceholder: 'Github Username',
     hasIcon: false,
   },
 ];
