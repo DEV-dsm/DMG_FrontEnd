@@ -3,8 +3,7 @@ import { useState, ChangeEvent } from 'react';
 interface IUseImageUploadType {
   image: string;
   backImage: string;
-  onUpload: (e: ChangeEvent<HTMLInputElement>) => void;
-  onUpload2: (e: ChangeEvent<HTMLInputElement>) => void;
+  onUpload: (e: ChangeEvent<HTMLInputElement>, isBackground?: boolean) => void;
   resetImage: () => void;
 }
 
@@ -12,33 +11,23 @@ export const useFileInput = (initialImage: string): IUseImageUploadType => {
   const [image, setImage] = useState<string>(initialImage);
   const [backImage, setBackImage] = useState<string>(initialImage);
 
-  const onUpload = (e: ChangeEvent<HTMLInputElement>): void => {
+  const onUpload = (e: ChangeEvent<HTMLInputElement>, isBackground?: boolean): void => {
     if (e.target.files?.[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onloadend = () => {
-        setImage(reader.result as string);
+        if (isBackground) {
+          setBackImage(reader.result as string);
+        } else {
+          setImage(reader.result as string);
+        }
       };
-    } else {
-      return;
-    }
-  };
-
-  const onUpload2 = (e?: ChangeEvent<HTMLInputElement>): void => {
-    if (e?.target.files?.[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onloadend = () => {
-        setBackImage(reader.result as string);
-      };
-    } else {
+    } else if (isBackground) {
       setBackImage(initialImage);
     }
   };
 
-  const resetImage = () => {
-    setBackImage(initialImage);
-  };
+  const resetImage = () => setBackImage(initialImage);
 
-  return { image, backImage, onUpload, onUpload2, resetImage };
+  return { image, backImage, onUpload, resetImage };
 };
