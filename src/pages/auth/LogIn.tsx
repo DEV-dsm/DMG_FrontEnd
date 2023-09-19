@@ -38,7 +38,11 @@ const LogIn = () => {
         }
     };
     // 2. Password
+<<<<<<< HEAD
     const errorPassword = (): void  => {
+=======
+    const errorPassword = (): void => {
+>>>>>>> main
         // 비밀번호 입력 안 했을 때
         if (password === '') {
             toast.error('비밀번호를 입력해 주세요.', {
