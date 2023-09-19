@@ -1,50 +1,80 @@
-import { IMenuType, IUserInfoType } from "../types/mypage";
-import { Icons } from "../assets/icons";
+import { IMenuType, IUserInfoDetailType } from '../types/mypage';
+import { Icons } from '../assets/icons';
 
 export const menus: IMenuType[] = [
   {
-    name: "My Page",
-    id: "myPage",
+    name: 'My Page',
+    id: 'mypage',
     BlackIcons: Icons.MyPageBlackIcons,
     whiteIcons: Icons.MyPageWhiteIcons,
   },
   {
-    name: "Search user",
-    id: "searchUser",
+    name: 'Search user',
+    id: 'searchuser',
     BlackIcons: Icons.SearchUserBlackIcons,
     whiteIcons: Icons.SearchWhiteIcons,
   },
   {
-    name: "Messages",
-    id: "messages",
-    BlackIcons: Icons.MessageBlackIcons,
-    whiteIcons: Icons.MessageWhiteIcons,
+    name: 'Messages',
+    id: 'message',
+    BlackIcons: Icons.MessageWhiteIcons,
+    whiteIcons: Icons.MessageBlackIcons,
   },
   {
-    name: "Inquire",
-    id: "inquire",
+    name: 'Inquire',
+    id: 'inquire',
     BlackIcons: Icons.RequireBlackIcons,
     whiteIcons: Icons.RequireWhiteIcons,
   },
 ];
 
 export const LOGOUT: IMenuType = {
-  name: "Log out",
+  name: 'Log out',
   BlackIcons: Icons.LogOutBlackIcons,
   whiteIcons: Icons.LogOutWhiteIcons,
 };
 
-export const UserInfo: IUserInfoType[] = [
+export const UserInfo: IUserInfoDetailType[] = [
   {
-    name: "Identity",
+    placeholder: 'Identity',
     id: 1,
+    name: 'Identity',
+    hasIcon: false,
   },
   {
-    name: "Name",
+    placeholder: 'Name',
     id: 2,
+    name: 'Name',
+    hasIcon: false,
   },
   {
-    name: "Number",
+    placeholder: 'Number',
     id: 3,
+    name: 'Number',
+    hasIcon: false,
+  },
+];
+
+export const UserInfoDetail: IUserInfoDetailType[] = [
+  {
+    name: 'Password',
+    id: 4,
+    placeholder: 'password',
+    otherplaceholder: 'Check Password',
+    hasIcon: true,
+  },
+  {
+    name: 'email',
+    id: 5,
+    placeholder: 'email@dsm.hs.kr',
+    otherplaceholder: 'Auth Number',
+    hasIcon: true,
+  },
+  {
+    name: 'Other',
+    id: 6,
+    placeholder: 'Major',
+    otherplaceholder: 'Github Username',
+    hasIcon: false,
   },
 ];

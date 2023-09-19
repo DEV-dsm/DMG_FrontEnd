@@ -1,35 +1,32 @@
-import { LOGOUT } from "../../contanse";
-import { styled } from "styled-components";
+import { LOGOUT } from '../../contanse';
+import { styled } from 'styled-components';
 
-function Logout() {
+const Logout = () => {
   return (
-    <LogoutMenuBarWrapper>
-      <IconStyle src={LOGOUT.BlackIcons} alt="image" />
+    <MenuBarWrapper>
+      <IconStyle src={LOGOUT.BlackIcons} />
       <TextStyle>{LOGOUT.name}</TextStyle>
-    </LogoutMenuBarWrapper>
+    </MenuBarWrapper>
   );
-}
+};
 
 const MenuBarWrapper = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
-`;
-
-const LogoutMenuBarWrapper = styled(MenuBarWrapper)`
-  width: 220px;
+  padding-left: 18px;
 `;
 
 const TextStyle = styled.span`
-  font-family: "Inter";
-  font-size: 18px;
+  font-family: 'Inter';
+  font-size: 17px;
   font-weight: 600;
   line-height: 24px;
-  margin-left: 20px;
+  margin-left: 17px;
 `;
 
 const IconStyle = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 27px;
+  height: 27px;
   vertical-align: middle;
 `;
 

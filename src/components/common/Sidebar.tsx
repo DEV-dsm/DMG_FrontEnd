@@ -1,22 +1,17 @@
-import { useState } from "react";
-import { menus } from "../../contanse";
-import { IMenuType } from "../../types/mypage";
-import styled, { css } from "styled-components";
-import Logout from "./Logout";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import { menus } from '../../contanse';
+import { IMenuType } from '../../types/mypage';
+import Logout from './Logout';
 
 const SideBar = () => {
   const navigate = useNavigate();
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
-  const handleChangeClick = ({
-    name,
-    id,
-  }: {
-    name: string;
-    id?: string;
-  }): void => {
+  const handleChangeClick = ({ name, id }: { name: string; id?: string }): void => {
     setSelectedMenu(name);
     navigate(`/${id}`);
   };
@@ -28,65 +23,81 @@ const SideBar = () => {
   const handleMouseLeave = (): void => setHoveredMenu(null);
 
   return (
-    <div>
+    <FlexContainer>
       <SideBarContainer>
         <SideBartabs>
           {menus.map((item: IMenuType, index: number) => {
             const isSelected = selectedMenu === item.name;
             const isHovered = hoveredMenu === item.name;
-            const IconColor =
-              isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
+            const IconColor = isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
             return (
-              <div key={index}>
-                <SideBarBackColor
-                  onMouseLeave={handleMouseLeave}
-                  onMouseEnter={() => handleMouseEnter(item.name)}
-                  onClick={() =>
-                    handleChangeClick({ name: item.name, id: item.id })
-                  }
-                  selected={isSelected}
-                  hovered={isHovered}
-                >
-                  <IconStyle src={IconColor} alt="image" />
-                  <TextStyle selected={isSelected || isHovered}>
-                    {item.name}
-                  </TextStyle>
-                </SideBarBackColor>
-              </div>
+              <SideBarBackColor
+                key={index}
+                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => handleMouseEnter(item.name)}
+                onClick={() => handleChangeClick({ name: item.name, id: item.id })}
+                selected={isSelected}
+                hovered={isHovered}
+              >
+                <TabBarWrapper>
+                  <IconStyle src={IconColor} />
+                  <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
+                </TabBarWrapper>
+              </SideBarBackColor>
             );
           })}
         </SideBartabs>
         <Logout />
       </SideBarContainer>
-    </div>
+      <Outlet />
+    </FlexContainer>
   );
 };
+
+const TabBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  width: 100vw;
+`;
 
 const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 300px;
-  gap: 20px;
+  width: 20vw;
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
-  padding: 80px 0 50px 0;
+  padding: 100px 30px 50px 30px;
+  @media screen and (max-width: 1050px) {
+    span {
+      display: none;
+    }
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
 `;
 
 const SideBartabs = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 `;
 
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
-  border-radius: 15px;
-  width: 250px;
+  border-radius: 20px;
   cursor: pointer;
-  display: flex;
   align-items: center;
-  padding: 23px 20px;
+  padding: 24px 30px 24px 20px;
+  display: flex;
   ${(props) =>
     props.selected || props.hovered
       ? css`
@@ -98,20 +109,16 @@ const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
         `}
 `;
 
-const TextStyle = styled.span<{ selected: boolean }>`
-  font-family: "Inter";
-  color: ${(props) => (props.selected ? "#FFFFFF" : "#000000")};
-  font-size: 18px;
+const TextStyle = styled.span<{ selected?: boolean }>`
+  font-family: 'Inter';
+  color: ${(props) => (props.selected ? '#FFFFFF' : '#000000')};
+  font-size: 17px;
   font-weight: 600;
-  vertical-align: middle;
-  margin-left: 20px;
-  align-items: center;
 `;
 
 const IconStyle = styled.img`
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
+  width: 25px;
+  height: 25px;
 `;
 
 export default SideBar;

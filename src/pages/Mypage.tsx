@@ -1,12 +1,18 @@
-import StudentInfo from "../components/common/StudentInfo";
-// import { styled } from "styled-components";
+import { styled } from 'styled-components';
+import StudentInfo from '../components/mypage/StudentInfo';
+// import UserDetailInfo from '../components/mypage/UserDetailInfo';
 
 const MyPage = () => {
   return (
-    <div>
+    <Container>
       <StudentInfo />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  width: 80vw;
+`;
 
 export default MyPage;
