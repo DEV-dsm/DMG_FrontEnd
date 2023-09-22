@@ -1,4 +1,4 @@
-import { LOGOUT } from '../../contanse';
+import { LOGOUT } from '../../constants';
 import { styled } from 'styled-components';
 
 const Logout = () => {

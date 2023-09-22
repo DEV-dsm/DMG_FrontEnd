@@ -1,6 +1,6 @@
-import { RecoilRoot } from "recoil";
-import { GlobalStyle } from "./styles/GlobalStyle";
-import MainRouter from "./router/MainRouter";
+import { RecoilRoot } from 'recoil';
+import GlobalStyle from './styles/GlobalStyle';
+import MainRouter from './router/MainRouter';
 
 const App = () => {
   return (

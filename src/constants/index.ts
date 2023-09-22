@@ -1,4 +1,4 @@
-import { IMenuType, IUserInfoDetailType } from '../types/mypage';
+import { IMenuType, IUserInfoDetailType } from '../models/Mypage';
 import { Icons } from '../assets/icons';
 
 export const menus: IMenuType[] = [
