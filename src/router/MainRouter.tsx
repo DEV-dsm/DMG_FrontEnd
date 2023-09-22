@@ -4,13 +4,13 @@ import Inquire from '../pages/Inquire';
 import SearchUser from '../pages/SearchUser';
 import Messages from '../pages/Messages';
 import MyPage from '../pages/Mypage';
-import LogIn from '../pages/auth/LogIn';
+import LoginPage from '../pages/auth/LoginPage';
 
 const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LogIn />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route element={<SideBar />}>
           <Route path="/inquire" element={<Inquire />} />
           <Route path="/mypage" element={<MyPage />} />
