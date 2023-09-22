@@ -1,14 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SideBar from "../components/common/Sidebar";
-import Inquire from "../pages/Inquire";
-import SearchUser from "../pages/SearchUser";
-import Messages from "../pages/Messages";
-import MyPage from "../pages/Mypage";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SideBar from '../components/common/Sidebar';
+import Inquire from '../pages/Inquire';
+import SearchUser from '../pages/SearchUser';
+import Messages from '../pages/Messages';
+import MyPage from '../pages/Mypage';
+import LogIn from '../pages/auth/LogIn';
 
 const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LogIn />} />
         <Route element={<SideBar />}>
           <Route path="/inquire" element={<Inquire />} />
           <Route path="/mypage" element={<MyPage />} />
