@@ -30,36 +30,6 @@ export const Title = styled.p`
   color: #ffffff;
 `;
 
-// components
-export const Input = styled.input`
-  padding: 10px 0;
-  width: 340px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-
-  font-size: 20px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 600;
-  color: #ffffff;
-
-  &::placeholder {
-    color: #c4c4c4;
-  }
-`;
-
-// components
-export const Btn = styled.button`
-  padding: 14px 64px;
-  display: flex;
-  gap: 5px;
-  border-radius: 32px;
-  background: #ffffff;
-`;
 export const Text = styled.p`
   font-size: 16px;
   font-family: Noto Sans;
