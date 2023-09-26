@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import { menus } from '../../contanse';
-import { IMenuType } from '../../types/mypage';
+import { menus } from '../../constants';
+import { IMenuType } from '../../models/Mypage';
 import Logout from './Logout';
 
 const SideBar = () => {

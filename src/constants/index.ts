@@ -1,5 +1,6 @@
-import { IMenuType, IUserInfoDetailType } from '../types/mypage';
+import { IMenuType, IUserInfoDetailType } from '../models/Mypage';
 import { Icons } from '../assets/icons';
+import { LoginInputType, LoginInputDataType } from '../models/Login';
 
 export const menus: IMenuType[] = [
   {
@@ -76,5 +77,16 @@ export const UserInfoDetail: IUserInfoDetailType[] = [
     placeholder: 'Major',
     otherplaceholder: 'Github Username',
     hasIcon: false,
+  },
+];
+
+export const AuthLogin: LoginInputDataType[] = [
+  {
+    name: 'Identify',
+    placeholder: 'Identify',
+  },
+  {
+    name: 'Password',
+    placeholder: 'Password',
   },
 ];
