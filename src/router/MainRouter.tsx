@@ -4,7 +4,7 @@ import Inquire from '../pages/Inquire';
 import SearchUser from '../pages/SearchUser';
 import Messages from '../pages/Messages';
 import MyPage from '../pages/Mypage';
-import LoginPage from '../pages/auth/LoginPage';
+import LoginPage from '../pages/LoginPage';
 
 const MainRouter = () => {
   return (
