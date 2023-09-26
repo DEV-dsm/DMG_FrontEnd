@@ -16,10 +16,12 @@ const Button = styled.button`
   background: #ffffff;
   outline: none;
   border: none;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: Noto Sans;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   gap: 10px;
   padding: 14px 64px;
 `;
