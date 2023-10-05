@@ -28,7 +28,7 @@ const InputContainer = styled.input`
   font-weight: 600;
   color: #ffffff;
 
-  &::placeholder {
+  ::placeholder {
     color: #c4c4c4;
   }
 `;
