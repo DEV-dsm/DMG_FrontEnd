@@ -1,8 +1,7 @@
 import { atom } from 'recoil';
-import { LoginInputType } from '../models/Login';
 
-export const LoginInputAtom = atom<LoginInputType>({
-  key: 'LoginInputAtom',
+export const loginInputsAtom = atom({
+  key: 'LoginInputsAtom',
   default: {
     identify: '',
     password: '',
