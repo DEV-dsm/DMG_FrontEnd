@@ -82,11 +82,11 @@ export const UserInfoDetail: IUserInfoDetailType[] = [
 
 export const AuthLogin: LoginInputDataType[] = [
   {
-    name: 'Identify',
+    name: 'identify',
     placeholder: 'Identify',
   },
   {
-    name: 'Password',
+    name: 'password',
     placeholder: 'Password',
   },
 ];

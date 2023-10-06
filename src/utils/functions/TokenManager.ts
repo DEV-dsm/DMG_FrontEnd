@@ -1,23 +1,16 @@
-import cookies from "react-cookies";
-
 export const setToken = (accessToken: string, refreshToken: string) => {
-  cookies.save("accessToken", accessToken, {
-    path: "/",
-    httpOnly: false,
-  });
-
-  cookies.save("refreshToken", refreshToken, {
-    path: "/",
-    httpOnly: false,
-  });
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
 };
 
 export const removeToken = () => {
-  cookies.remove("accessToken");
-  cookies.remove("refreshToken");
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
 };
 
 export const getToken = () => {
-  const { accessToken, refreshToken } = cookies.select();
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+
   return { accessToken, refreshToken };
 };

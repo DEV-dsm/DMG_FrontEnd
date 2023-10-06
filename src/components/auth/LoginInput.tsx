@@ -1,27 +1,25 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import 'react-toastify/dist/ReactToastify.css';
-import { ChangeEvent } from 'react';
-
-import { LoginInputAtom } from '../../atom/authAtom';
+import { loginInputsAtom } from '../../atom/authAtom';
 import { LoginInputDataType, LoginInputType } from '../../models/Login';
 import { AuthLogin } from '../../constants';
 import AuthInput from '../../components/common/AuthInput';
 
 const LoginInput = () => {
-  const [inputs, setInputs] = useRecoilState<LoginInputType>(LoginInputAtom);
+  const [inputs, setInputs] = useRecoilState<LoginInputType>(loginInputsAtom);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputs({
       ...inputs,
       [name]: value,
     });
   };
+
   return (
     <InputContainer>
-      {AuthLogin.map((item: LoginInputDataType) => (
-        <div key={item.name}>
+      {AuthLogin.map((item: LoginInputDataType, index: number) => (
+        <div key={index}>
           <AuthInput
             type="text"
             name={item.name}
