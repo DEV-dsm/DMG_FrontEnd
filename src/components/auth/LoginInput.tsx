@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { loginInputsAtom } from '../../atom/authAtom';
-import { LoginInputDataType, LoginInputType } from '../../models/Login';
+import { LoginInputDataType, LoginInputType } from '../../models/auth';
 import { AuthLogin } from '../../constants';
 import AuthInput from '../../components/common/AuthInput';
 
