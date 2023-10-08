@@ -2,15 +2,24 @@ import styled from 'styled-components';
 
 interface AuthButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
+  width?: string;
 }
 
-const AuthButton = ({ text, onClick }: AuthButtonProps) => {
-  return <Button onClick={onClick}>{text}</Button>;
+interface ButtonProps {
+  width?: string;
+}
+
+const AuthButton = ({ text, onClick, width }: AuthButtonProps) => {
+  return (
+    <Button onClick={onClick} width={width}>
+      {text}
+    </Button>
+  );
 };
 
-const Button = styled.button`
-  width: 100%;
+const Button = styled.button<ButtonProps>`
+  width: ${(props) => props.width || '100%'};
   height: 40px;
   border-radius: 32px;
   background: #ffffff;
@@ -23,7 +32,7 @@ const Button = styled.button`
   font-size: 16px;
   font-weight: 700;
   gap: 10px;
-  padding: 14px 64px;
+  padding: 14px64 px;
 `;
 
 export default AuthButton;

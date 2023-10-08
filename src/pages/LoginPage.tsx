@@ -11,17 +11,24 @@ import { useLogin } from '../components/hooks/useLogin';
 const LoginPage = () => {
   const navigate = useNavigate();
   const inputsData = useRecoilValue(loginInputsAtom);
-  const { mutate } = useLogin(inputsData);
+  const loginMutation = useLogin(inputsData);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    loginMutation.mutate();
+  };
 
   return (
     <S.Wrapper>
       <S.Container>
         <S.Title>LOG IN</S.Title>
-        <LoginInput />
-        <ButtonContainer>
-          <AuthButton text="LOG IN" onClick={() => mutate()} />
-          <CheckImg src={CheckImgs} />
-        </ButtonContainer>
+        <form onSubmit={handleSubmit}>
+          <LoginInput />
+          <ButtonContainer>
+            <AuthButton text="LOG IN" width="50%" />
+            <CheckImg src={CheckImgs} />
+          </ButtonContainer>
+        </form>
         <S.Link onClick={() => navigate('/findpassword')}>Forgot Password?</S.Link>
       </S.Container>
     </S.Wrapper>
@@ -31,12 +38,15 @@ const LoginPage = () => {
 const CheckImg = styled.img`
   width: 14px;
   position: absolute;
-  right: 45px;
-  top: 13px;
+  right: 125px;
+  top: 62px;
 `;
 
 const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
+  padding-top: 50px;
 `;
 
 export default LoginPage;
