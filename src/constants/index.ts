@@ -29,11 +29,14 @@ export const menus: IMenuType[] = [
   },
 ];
 
-export const LOGOUT: IMenuType = {
-  name: 'Log out',
-  BlackIcons: Icons.LogOutBlackIcons,
-  whiteIcons: Icons.LogOutWhiteIcons,
-};
+export const Logout: IMenuType[] = [
+  {
+    name: 'Log out',
+    id: 'logout',
+    BlackIcons: Icons.LogOutBlackIcons,
+    whiteIcons: Icons.LogOutWhiteIcons,
+  },
+];
 
 export const UserInfo: IUserInfoDetailType[] = [
   {

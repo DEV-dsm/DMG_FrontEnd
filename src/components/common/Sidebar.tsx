@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { toast } from 'react-hot-toast';
 
 import { menus } from '../../constants';
 import { IMenuType } from '../../models/Mypage';
-import Logout from './Logout';
+import { Logout } from '../../constants';
+import { loginInputsAtom } from '../../atom/authAtom';
+import { removeToken } from '../../utils/functions/TokenManager';
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const setInput = useSetRecoilState(loginInputsAtom);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
@@ -21,6 +26,16 @@ const SideBar = () => {
   };
 
   const handleMouseLeave = (): void => setHoveredMenu(null);
+
+  const onLogoutClick = (): void => {
+    navigate('/');
+    removeToken();
+    setInput({
+      identify: '',
+      password: '',
+    });
+    toast.success(`로그아웃 되었습니다.`, { duration: 1500 });
+  };
 
   return (
     <FlexContainer>
@@ -47,7 +62,28 @@ const SideBar = () => {
             );
           })}
         </SideBartabs>
-        <Logout />
+        <LogoutWrapper onClick={onLogoutClick}>
+          {Logout.map((item, index) => {
+            const isSelected = selectedMenu === item.name;
+            const isHovered = hoveredMenu === item.name;
+            const iconColor = isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
+            return (
+              <SideBarBackColor
+                key={index}
+                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => handleMouseEnter(item.name)}
+                onClick={() => handleChangeClick({ name: item.name, id: item.id })}
+                selected={isSelected}
+                hovered={isHovered}
+              >
+                <TabBarWrapper>
+                  <IconStyle src={iconColor} />
+                  <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
+                </TabBarWrapper>
+              </SideBarBackColor>
+            );
+          })}
+        </LogoutWrapper>
       </SideBarContainer>
       <Outlet />
     </FlexContainer>
@@ -69,7 +105,6 @@ const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 20vw;
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
@@ -82,7 +117,7 @@ const SideBarContainer = styled.div`
 `;
 
 const SideBartabs = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -115,6 +150,12 @@ const TextStyle = styled.span<{ selected?: boolean }>`
 const IconStyle = styled.img`
   width: 25px;
   height: 25px;
+`;
+
+const LogoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export default SideBar;
