@@ -29,7 +29,7 @@ const LoginPage = () => {
             <CheckImg src={CheckImgs} />
           </ButtonContainer>
         </form>
-        <S.Link onClick={() => navigate('/findpassword')}>Forgot Password?</S.Link>
+        <S.Link onClick={() => navigate('/findFW')}>Forgot Password?</S.Link>
       </S.Container>
     </S.Wrapper>
   );

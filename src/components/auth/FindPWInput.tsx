@@ -1,12 +1,12 @@
-import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { loginInputsAtom } from '../../atom/authAtom';
-import { LoginInputDataType, LoginInputType } from '../../models/auth';
-import { AuthLogin } from '../../constants';
-import AuthInput from '../../components/common/AuthInput';
+import styled from 'styled-components';
+import { findPwInputsAtom } from '../../atom/authAtom';
+import { FindPW } from '../../constants';
+import { LoginInputDataType } from '../../models/auth';
+import AuthInput from '../common/AuthInput';
 
-const LoginInput = () => {
-  const [inputs, setInputs] = useRecoilState<LoginInputType>(loginInputsAtom);
+const FindPWInput = () => {
+  const [inputs, setInputs] = useRecoilState(findPwInputsAtom);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,7 +18,7 @@ const LoginInput = () => {
 
   return (
     <InputContainer>
-      {AuthLogin.map((item: LoginInputDataType, index: number) => (
+      {FindPW.map((item: LoginInputDataType, index: number) => (
         <div key={index}>
           <AuthInput
             type="text"
@@ -39,4 +39,4 @@ const InputContainer = styled.div`
   gap: 40px;
 `;
 
-export default LoginInput;
+export default FindPWInput;

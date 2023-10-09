@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { toast } from 'react-hot-toast';
 import { setToken } from '../../utils/functions/TokenManager';
-import { LoginInputType } from '../../models/Login';
+import { LoginInputType } from '../../models/auth';
 import { userLogin } from '../../utils/api/auth';
 
 export const useLogin = (inputData: LoginInputType) => {

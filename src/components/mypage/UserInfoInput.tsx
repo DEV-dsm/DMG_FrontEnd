@@ -57,7 +57,7 @@ const UserInfoInput = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   gap: 20px;
 `;
 

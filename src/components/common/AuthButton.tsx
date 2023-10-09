@@ -32,7 +32,7 @@ const Button = styled.button<ButtonProps>`
   font-size: 16px;
   font-weight: 700;
   gap: 10px;
-  padding: 14px64 px;
+  padding: 14px 32px;
 `;
 
 export default AuthButton;

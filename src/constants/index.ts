@@ -1,6 +1,6 @@
 import { IMenuType, IUserInfoDetailType } from '../models/Mypage';
 import { Icons } from '../assets/icons';
-import { LoginInputType, LoginInputDataType } from '../models/Login';
+import { LoginInputDataType } from '../models/auth';
 
 export const menus: IMenuType[] = [
   {
@@ -29,11 +29,14 @@ export const menus: IMenuType[] = [
   },
 ];
 
-export const LOGOUT: IMenuType = {
-  name: 'Log out',
-  BlackIcons: Icons.LogOutBlackIcons,
-  whiteIcons: Icons.LogOutWhiteIcons,
-};
+export const Logout: IMenuType[] = [
+  {
+    name: 'Log out',
+    id: 'logout',
+    BlackIcons: Icons.LogOutBlackIcons,
+    whiteIcons: Icons.LogOutWhiteIcons,
+  },
+];
 
 export const UserInfo: IUserInfoDetailType[] = [
   {
@@ -88,5 +91,16 @@ export const AuthLogin: LoginInputDataType[] = [
   {
     name: 'password',
     placeholder: 'Password',
+  },
+];
+
+export const FindPW: LoginInputDataType[] = [
+  {
+    name: 'email',
+    placeholder: 'Email',
+  },
+  {
+    name: 'authnumber',
+    placeholder: 'Auth Number',
   },
 ];

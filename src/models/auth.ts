@@ -7,3 +7,8 @@ export interface LoginInputType {
   identify: string;
   password: string;
 }
+
+export interface findPWInputType {
+  email: string;
+  authnumber: number;
+}

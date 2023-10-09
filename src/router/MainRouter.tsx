@@ -5,11 +5,13 @@ import SearchUser from '../pages/SearchUser';
 import Messages from '../pages/Messages';
 import MyPage from '../pages/Mypage';
 import LoginPage from '../pages/LoginPage';
+import FindPWPage from '../pages/FindPWPage';
 
 const MainRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
+      <Route path="/findFW" element={<FindPWPage />} />
       <Route element={<SideBar />}>
         <Route path="/inquire" element={<Inquire />} />
         <Route path="/mypage" element={<MyPage />} />
