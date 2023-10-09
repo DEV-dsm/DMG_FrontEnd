@@ -16,3 +16,17 @@ export const findPwInputsAtom = atom<findPWInputType>({
     authnumber: 0,
   },
 });
+
+export const sendEmailAtom = atom({
+  key: 'sendEmailAtom',
+  default: {
+    email: '',
+  },
+});
+
+export const AuthverifyAtom = atom({
+  key: 'AuthverifyAtom',
+  default: {
+    authcode: 0,
+  },
+});
