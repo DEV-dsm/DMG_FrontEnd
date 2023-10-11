@@ -63,7 +63,7 @@ const SideBar = () => {
           })}
         </SideBartabs>
         <LogoutWrapper onClick={onLogoutClick}>
-          {Logout.map((item, index) => {
+          {Logout.map((item, index: number) => {
             const isSelected = selectedMenu === item.name;
             const isHovered = hoveredMenu === item.name;
             const iconColor = isSelected || isHovered ? item.whiteIcons : item.BlackIcons;
@@ -76,10 +76,10 @@ const SideBar = () => {
                 selected={isSelected}
                 hovered={isHovered}
               >
-                <TabBarWrapper>
+                <LogoutTabBar>
                   <IconStyle src={iconColor} />
                   <TextStyle selected={isSelected || isHovered}>{item.name}</TextStyle>
-                </TabBarWrapper>
+                </LogoutTabBar>
               </SideBarBackColor>
             );
           })}
@@ -90,21 +90,22 @@ const SideBar = () => {
   );
 };
 
-const TabBarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
 const FlexContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
+`;
+
+const SideBartabs = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 20vw;
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
@@ -116,11 +117,19 @@ const SideBarContainer = styled.div`
   }
 `;
 
-const SideBartabs = styled.div`
-  width: 100%;
+const TabBarWrapperStyle = `
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 17px;
+`;
+
+const TabBarWrapper = styled.div`
+  ${TabBarWrapperStyle}
+`;
+
+const LogoutTabBar = styled.div`
+  ${TabBarWrapperStyle}
+  padding-right: 20px;
 `;
 
 const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
@@ -128,7 +137,6 @@ const SideBarBackColor = styled.div<{ selected: boolean; hovered: boolean }>`
   cursor: pointer;
   align-items: center;
   padding: 24px 30px 24px 20px;
-  display: flex;
   ${(props) =>
     props.selected || props.hovered
       ? css`
@@ -155,7 +163,6 @@ const IconStyle = styled.img`
 const LogoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 export default SideBar;

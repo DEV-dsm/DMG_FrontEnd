@@ -18,7 +18,7 @@ const StudentInfo = () => {
   const ProfileImgRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Wrapper>
+    <UserInfoWrapper>
       <ImageContainer>
         <BlockImg src={backgroundImage} />
         <FileChangeImg src={Images.whitePencil} onClick={() => imgRef.current?.click()} />
@@ -44,24 +44,22 @@ const StudentInfo = () => {
           onChange={(e) => setDefaultProfileImage(e)}
         />
 
-        <CorrectProfile>
+        <ProfileSetIcons>
           <ProfileChangeImg
             src={Images.BackblackPencil}
             onClick={() => ProfileImgRef.current?.click()}
           />
           <ProfileChangeImg src={Images.dustBin} onClick={resetDefaultProfileImage} />
-        </CorrectProfile>
+        </ProfileSetIcons>
 
-        <FormContainer>
-          <UserInfoInput />
-          <SubmitBtn text="submit" />
-        </FormContainer>
+        <UserInfoInput />
+        <SubmitBtn text="submit" width="50%" />
       </ProfileContainer>
-    </Wrapper>
+    </UserInfoWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -72,12 +70,11 @@ const Wrapper = styled.div`
   padding: 50px 60px 85px 60px;
 `;
 
-const CorrectProfile = styled.div`
+const ProfileSetIcons = styled.div`
   display: flex;
-  gap: 10px;
-  > img {
-    width: 27px;
-  }
+  align-items: flex-start;
+  gap: 7px;
+  padding-top: 30px;
 `;
 
 const FileChangeImg = styled.img`
@@ -88,24 +85,12 @@ const FileChangeImg = styled.img`
   right: 5px;
 `;
 
-const FormContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
-`;
-
 const ImageContainer = styled.div`
   position: relative;
-  max-width: 500px;
 `;
 
 const BlockImg = styled.img`
   width: 100%;
-  object-fit: contain;
-  margin: auto;
-  max-width: 500px;
 `;
 
 const ProfileContainer = styled.div`
@@ -122,10 +107,12 @@ const ProfileImg = styled.img`
   position: absolute;
   top: 0%;
   left: 50%;
-  transform: translate(-50%, -70%);
-  width: 30%;
+  transform: translate(-50%, -75%);
+  width: 33%;
 `;
 
-const ProfileChangeImg = styled.img``;
+const ProfileChangeImg = styled.img`
+  width: 25px;
+`;
 
 export default StudentInfo;
