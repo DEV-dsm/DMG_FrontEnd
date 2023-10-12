@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface AuthButtonProps {
   text: string;
-  onClick?: () => void;
+  onClick?: any;
   width?: string;
 }
 

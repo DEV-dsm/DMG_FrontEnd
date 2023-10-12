@@ -98,6 +98,7 @@ export const FindPW: LoginInputDataType[] = [
   {
     name: 'email',
     placeholder: 'Email',
+    buttonCheck: true,
   },
   {
     name: 'authnumber',
