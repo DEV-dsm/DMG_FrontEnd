@@ -22,9 +22,9 @@ const UserInfoInput = () => {
   return (
     <Container>
       {UserInfo.map((item: IUserInfoDetailType, index: number) => (
-        <Inputwrapper key={index}>
+        <div key={index}>
           <Input type="text" name={item.name} placeholder={item.placeholder} />
-        </Inputwrapper>
+        </div>
       ))}
       {UserInfoDetail.map((item: IUserInfoDetailType) => (
         <DetailInputWrapper key={item.id}>
@@ -59,11 +59,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 20px;
-`;
-
-const Inputwrapper = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const DetailInputWrapper = styled.div`

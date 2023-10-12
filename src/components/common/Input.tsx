@@ -17,13 +17,13 @@ const InputContainer = styled.input`
   border: none;
   outline: none;
   padding: 10px 20px;
-  gap: 20px;
+
   &::placeholder {
     color: #c4c4c4;
     font-family: Noto Sans;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
   }
 `;
 

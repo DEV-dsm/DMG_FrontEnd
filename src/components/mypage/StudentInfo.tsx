@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import SubmitBtn from '../common/InfoButton';
 import { Images } from '../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
 import { useFileInput } from '../hooks/useFileInput';
+import SubmitBtn from '../common/InfoButton';
 
 const StudentInfo = () => {
   const { image: backgroundImage, onUpload: setBackgroundImage } = useFileInput(Images.BlockImg);
@@ -18,70 +18,71 @@ const StudentInfo = () => {
   const ProfileImgRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Wrapper>
+    <UserInfoWrapper>
       <ImageContainer>
         <BlockImg src={backgroundImage} />
         <FileChangeImg src={Images.whitePencil} onClick={() => imgRef.current?.click()} />
-        <input
-          type="file"
-          accept="image/*"
-          ref={imgRef}
-          style={{ display: 'none' }}
-          onChange={(e) => setBackgroundImage(e)}
-        />
       </ImageContainer>
 
+      <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+        ref={imgRef}
+        style={{ display: 'none' }}
+        onChange={(e) => setBackgroundImage(e)}
+      />
+
       <ProfileContainer>
-        <ProfileImg src={defaultProfileImg} />
+        <ProfileImg src={defaultProfileImg} alt="" />
         <input
           type="file"
+          id="fileInputs"
           accept="image/*"
           ref={ProfileImgRef}
           style={{ display: 'none' }}
-          onChange={(e) => setDefaultProfileImage(e, true)}
+          onChange={(e) => setDefaultProfileImage(e)}
         />
-        <CorrectProfile>
+
+        <ProfileSetIcons>
           <ProfileChangeImg
             src={Images.BackblackPencil}
             onClick={() => ProfileImgRef.current?.click()}
           />
           <ProfileChangeImg src={Images.dustBin} onClick={resetDefaultProfileImage} />
-        </CorrectProfile>
+        </ProfileSetIcons>
+
         <UserInfoInput />
-        <SubmitBtn text="submit" />
+        <SubmitBtn text="submit" width="50%" />
       </ProfileContainer>
-    </Wrapper>
+    </UserInfoWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 30vw;
-  align-items: flex-start;
+  width: 100%;
+  align-items: center;
   overflow-y: scroll;
   border-right: 1px solid #393939;
-  padding: 50px 70px 95px 70px;
-  gap: 10px;
+  padding: 50px 60px 85px 60px;
 `;
 
-const CorrectProfile = styled.div`
+const ProfileSetIcons = styled.div`
   display: flex;
-  padding-top: 20px;
-  gap: 10px;
-  > img {
-    width: 27px;
-  }
+  align-items: flex-start;
+  gap: 7px;
+  padding-top: 30px;
 `;
 
 const FileChangeImg = styled.img`
   position: absolute;
-  width: 25px;
-  height: 25px;
-  bottom: 0;
-  right: 0;
-  margin: 12px;
+  width: 23px;
+  height: 23px;
+  bottom: 7px;
+  right: 5px;
 `;
 
 const ImageContainer = styled.div`
@@ -90,7 +91,6 @@ const ImageContainer = styled.div`
 
 const BlockImg = styled.img`
   width: 100%;
-  border-radius: 4px;
 `;
 
 const ProfileContainer = styled.div`
@@ -101,17 +101,18 @@ const ProfileContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 50px;
-  height: auto;
 `;
 
 const ProfileImg = styled.img`
   position: absolute;
   top: 0%;
   left: 50%;
-  transform: translate(-50%, -85%);
-  width: 30%;
+  transform: translate(-50%, -75%);
+  width: 33%;
 `;
 
-const ProfileChangeImg = styled.img``;
+const ProfileChangeImg = styled.img`
+  width: 25px;
+`;
 
 export default StudentInfo;
