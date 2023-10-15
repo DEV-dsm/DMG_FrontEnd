@@ -94,7 +94,7 @@ export const AuthLogin: LoginInputDataType[] = [
   },
 ];
 
-export const FindPW: LoginInputDataType[] = [
+export const FindPWInputs: LoginInputDataType[] = [
   {
     name: 'email',
     placeholder: 'Email',
@@ -103,5 +103,16 @@ export const FindPW: LoginInputDataType[] = [
   {
     name: 'authnumber',
     placeholder: 'Auth Number',
+  },
+];
+
+export const ChangePWInputs: LoginInputDataType[] = [
+  {
+    name: 'password',
+    placeholder: 'Password',
+  },
+  {
+    name: 'passwordCheck',
+    placeholder: 'Password Check',
   },
 ];
