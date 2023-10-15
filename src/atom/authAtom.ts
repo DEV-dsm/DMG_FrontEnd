@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { findPWInputType } from '../models/auth';
+import { ChangePWInputType } from '../models/auth';
 
 export const loginInputsAtom = atom({
   key: 'LoginInputsAtom',
@@ -9,11 +9,19 @@ export const loginInputsAtom = atom({
   },
 });
 
-export const findPwInputsAtom = atom<findPWInputType>({
+export const findPwInputsAtom = atom({
   key: 'findPwInputsAtom',
   default: {
     email: '',
     authnumber: 0,
+  },
+});
+
+export const ChangePWInputsAtom = atom<ChangePWInputType>({
+  key: 'ChangePWInputsAtom',
+  default: {
+    password: '',
+    passwordCheck: '',
   },
 });
 
