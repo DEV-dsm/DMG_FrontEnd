@@ -1,4 +1,4 @@
-import sadFace from './sadFace.png';
+import sadFace from './sadFace.svg';
 
 export const Images = {
   sadFace,
