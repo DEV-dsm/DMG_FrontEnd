@@ -14,6 +14,11 @@ export interface findPWInputType {
   authnumber: number;
 }
 
+export interface ChangePWInputType {
+  password: string;
+  passwordCheck: string;
+}
+
 export interface SendEmailRequestType {
   email: string;
 }
