@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from '../components/hooks/useForm';
-import { Input } from '../components/common/InquireInput';
+import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 
 const Inquire = () => {
@@ -23,6 +23,7 @@ const Inquire = () => {
             </Title>
 
             <Input
+              type="text"
               name="title"
               value={title}
               placeholder="문의 제목을 입력해 주세요."
@@ -36,6 +37,7 @@ const Inquire = () => {
             </Title>
 
             <Input
+              type="text"
               name="content"
               value={content}
               placeholder="문의 내용을 입력해 주세요."

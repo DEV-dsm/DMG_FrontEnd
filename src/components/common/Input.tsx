@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 interface IPropsInputType {
   type: string;
   name?: string;
+  value?: string;
   placeholder?: string;
   onChange?: any;
 }
