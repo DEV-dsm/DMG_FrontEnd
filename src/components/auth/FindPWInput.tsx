@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { findPwInputsAtom } from '../../atom/authAtom';
-import { FindPW } from '../../constants';
+import { FindPWInputs } from '../../constants';
 import { LoginInputDataType, findPWInputType } from '../../models/auth';
 import AuthInput from '../common/AuthInput';
 import { useEmail } from '../hooks/useEmail';
@@ -31,7 +31,7 @@ const FindPWInput = () => {
 
   return (
     <InputContainer>
-      {FindPW.map((item: LoginInputDataType, index: number) => (
+      {FindPWInputs.map((item: LoginInputDataType, index: number) => (
         <div key={index}>
           <AuthInput
             type="text"

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { toast } from 'react-hot-toast';
 
 import { menus } from '../../constants';
@@ -13,6 +13,7 @@ import { removeToken } from '../../utils/functions/TokenManager';
 const SideBar = () => {
   const navigate = useNavigate();
   const setInput = useSetRecoilState(loginInputsAtom);
+
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
 
