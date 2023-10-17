@@ -4,21 +4,27 @@ import Inquire from '../pages/Inquire';
 import SearchUser from '../pages/SearchUser';
 import Messages from '../pages/Messages';
 import MyPage from '../pages/Mypage';
-import LoginPage from '../pages/auth/LoginPage';
-import FindPWPage from '../pages/auth/FindPWPage';
+import LoginPage from '../pages/LoginPage';
+import FindPWPage from '../pages/FindPWPage';
+import Error from '../pages/ErrorPage';
+import ProtectedRoute from './ProctedRoute';
 import ChangePWPage from '../pages/auth/ChangePWpage';
 
 const MainRouter = () => {
   return (
     <Routes>
+      <Route path="*" element={<Error />} />
       <Route path="/" element={<LoginPage />} />
       <Route path="/findFW" element={<FindPWPage />} />
-      <Route path="/ChangePW" element={<ChangePWPage />} />
-      <Route element={<SideBar />}>
-        <Route path="/inquire" element={<Inquire />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/message" element={<Messages />} />
-        <Route path="/searchuser" element={<SearchUser />} />
+      <Route path="ChangePW" element={<ChangePWPage />} />
+      {/* 유저 전용 */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<SideBar />}>
+          <Route path="/inquire" element={<Inquire />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/message" element={<Messages />} />
+          <Route path="/searchuser" element={<SearchUser />} />
+        </Route>
       </Route>
     </Routes>
   );
