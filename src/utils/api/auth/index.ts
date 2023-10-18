@@ -4,7 +4,7 @@ import {
   LoginInputType,
   SendEmailRequestType,
   findPWInputType,
-} from '../../../models/auth';
+} from '@/models/auth';
 
 export const userLogin = async (inputsData: LoginInputType) => {
   const response = await instance.post('/user/login', {

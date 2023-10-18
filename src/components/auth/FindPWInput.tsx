@@ -1,8 +1,8 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { findPwInputsAtom } from '../../atom/authAtom';
-import { FindPWInputs } from '../../constants';
-import { LoginInputDataType, findPWInputType } from '../../models/auth';
+import { findPwInputsAtom } from '@/atom/authAtom';
+import { FindPWInputs } from '@/constants';
+import { LoginInputDataType, findPWInputType } from '@/models/auth';
 import AuthInput from '../common/AuthInput';
 import { useEmail } from '../hooks/apis/useEmail';
 import { toast } from 'react-hot-toast';

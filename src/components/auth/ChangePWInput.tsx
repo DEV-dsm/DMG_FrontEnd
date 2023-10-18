@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { ChangePWInputs } from '../../constants';
+import { ChangePWInputs } from '@/constants';
 import AuthInput from '../common/AuthInput';
 import { useRecoilState } from 'recoil';
 import { useState } from 'react';
-import { ChangePWInputType } from '../../models/auth';
-import { ChangePWInputsAtom } from '../../atom/authAtom';
+import { ChangePWInputType } from '@/models/auth';
+import { ChangePWInputsAtom } from '@/atom/authAtom';
 import Eye from './Eye';
 
 const ChangePWInput = () => {

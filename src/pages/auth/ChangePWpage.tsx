@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import * as S from '../../components/auth/style';
-import ChangePWInput from '../../components/auth/ChangePWInput';
-import AuthButton from '../../components/common/AuthButton';
+import * as S from '@/components/auth/style';
+import ChangePWInput from '@/components/auth/ChangePWInput';
+import AuthButton from '@/components/common/AuthButton';
 import { useNavigate } from 'react-router-dom';
-import CheckImgs from '../../assets/auth/clickCheck.png';
+import CheckImgs from '@/assets/auth/clickCheck.png';
 import { useRecoilValue } from 'recoil';
-import { ChangePWInputsAtom } from '../../atom/authAtom';
-import { useChangePW } from '../../components/hooks/apis/useChangePW';
+import { ChangePWInputsAtom } from '@/atom/authAtom';
+import { useChangePW } from '@/components/hooks/apis/useChangePW';
 
 const ChangePWPage = () => {
   const navigate = useNavigate();

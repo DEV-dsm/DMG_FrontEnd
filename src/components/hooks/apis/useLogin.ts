@@ -2,11 +2,11 @@ import { useMutation } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { toast } from 'react-hot-toast';
-import { setToken } from '../../../utils/functions/TokenManager';
-import { LoginInputType } from '../../../models/auth';
-import { userLogin } from '../../../utils/api/auth';
+import { setToken } from '@/utils/functions/TokenManager';
+import { LoginInputType } from '@/models/auth';
+import { userLogin } from '@/utils/api/auth';
 import { useSetRecoilState } from 'recoil';
-import { TokenAtom } from '../../../atom/authAtom';
+import { TokenAtom } from '@/atom/authAtom';
 
 export const useLogin = (inputData: LoginInputType) => {
   const location = useLocation();
