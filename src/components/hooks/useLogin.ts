@@ -1,19 +1,25 @@
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { toast } from 'react-hot-toast';
 import { setToken } from '../../utils/functions/TokenManager';
 import { LoginInputType } from '../../models/auth';
 import { userLogin } from '../../utils/api/auth';
+import { useSetRecoilState } from 'recoil';
+import { TokenAtom } from '../../atom/authAtom';
 
 export const useLogin = (inputData: LoginInputType) => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const setAccessToken = useSetRecoilState(TokenAtom);
+  const from = location?.state?.redirectedFrom?.pathname || '/mypage';
 
   return useMutation(() => userLogin(inputData), {
-    onSuccess: ({ data }) => {
+    onSuccess: ({ response }: any) => {
       toast.success(`로그인에 성공했습니다.`, { duration: 1500 });
-      setToken(data.data.access, data.data.refresh);
-      navigate('/mypage');
+      setToken(response.data.access, response.data.refresh);
+      setAccessToken(response.data.access);
+      navigate(from);
     },
     onError: (error: AxiosError) => {
       switch (error.response?.status) {

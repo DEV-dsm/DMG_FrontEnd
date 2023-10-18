@@ -109,7 +109,7 @@ export const FindPWInputs: LoginInputDataType[] = [
 export const ChangePWInputs: LoginInputDataType[] = [
   {
     name: 'password',
-    placeholder: 'Password',
+    placeholder: 'New Password',
   },
   {
     name: 'passwordCheck',

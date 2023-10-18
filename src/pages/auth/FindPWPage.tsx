@@ -28,7 +28,7 @@ const FindPWPage = () => {
         <S.Title>Find Password</S.Title>
         <FindPWInput />
         <ButtonContainer>
-          <AuthButton text="FIND" width="50%" onClick={() => onAuthClick()} />
+          <AuthButton text="certification" width="50%" onClick={() => onAuthClick()} />
           <CheckImg src={CheckImgs} />
         </ButtonContainer>
         <S.Link onClick={() => navigate('/')}>Go Login</S.Link>
@@ -47,8 +47,8 @@ const ButtonContainer = styled.div`
 const CheckImg = styled.img`
   width: 14px;
   position: absolute;
-  right: 133px;
-  top: 12px;
+  right: 107px;
+  top: 13px;
 `;
 
 export default FindPWPage;
