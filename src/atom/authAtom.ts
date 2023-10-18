@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { ChangePWInputType } from '@/models/auth';
+import { ChangePWInputType } from '../models/auth';
 
 export const loginInputsAtom = atom({
   key: 'LoginInputsAtom',
