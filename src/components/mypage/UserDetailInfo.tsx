@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Images } from '../../assets/mypage';
+import { Images } from '@/assets/mypage';
 
 const UserDetailInfo = () => {
   return (

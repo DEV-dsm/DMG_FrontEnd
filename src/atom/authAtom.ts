@@ -1,5 +1,5 @@
-import { atom } from 'recoil';
-import { ChangePWInputType } from '../models/auth';
+import { atom, selector } from 'recoil';
+import { ChangePWInputType } from '@/models/auth';
 
 export const loginInputsAtom = atom({
   key: 'LoginInputsAtom',
@@ -25,16 +25,31 @@ export const ChangePWInputsAtom = atom<ChangePWInputType>({
   },
 });
 
-export const sendEmailAtom = atom({
-  key: 'sendEmailAtom',
-  default: {
-    email: '',
-  },
-});
-
 export const AuthverifyAtom = atom({
   key: 'AuthverifyAtom',
   default: {
     authcode: 0,
   },
+});
+
+export const sendEmailAtom = atom<string | null>({
+  key: 'sendEmailAtom',
+  default: null,
+});
+
+export const userIdAtom = atom<string | null>({
+  key: 'userIdAtom',
+  default: null,
+});
+
+// Token selector
+
+export const TokenAtom = atom({
+  key: 'TokenAtom',
+  default: undefined,
+});
+
+export const isLoginSelector = selector({
+  key: 'isLoginSelector',
+  get: ({ get }) => !!get(TokenAtom),
 });

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { toast } from 'react-hot-toast';
 
-import { menus } from '../../constants';
-import { IMenuType } from '../../models/Mypage';
-import { Logout } from '../../constants';
-import { loginInputsAtom } from '../../atom/authAtom';
-import { removeToken } from '../../utils/functions/TokenManager';
+import { menus } from '@/constants';
+import { IMenuType } from '@/models/Mypage';
+import { Logout } from '@/constants';
+import { loginInputsAtom } from '@/atom/authAtom';
+import { removeToken } from '@/utils/functions/TokenManager';
 
 const SideBar = () => {
   const navigate = useNavigate();

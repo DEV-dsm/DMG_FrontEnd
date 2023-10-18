@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
-import { findPWInputType } from '../../models/auth';
-import { userAuthcode } from '../../utils/api/auth';
+import { findPWInputType } from '@/models/auth';
+import { userAuthcode } from '@/utils/api/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuthCode = (inputsData: findPWInputType) => {

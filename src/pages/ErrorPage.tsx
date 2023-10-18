@@ -1,8 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
-import sadFace from '../assets/sadFace.png';
+import { Images } from '../assets';
+import AuthButton from '../components/common/AuthButton';
 
-const Error = () => {
+const ErrorPage = () => {
   return (
     <>
       <Container>
@@ -12,7 +12,7 @@ const Error = () => {
             <Text style={{ fontSize: '36px', fontWeight: 600 }}>PAGE NOT FOUND</Text>
           </Header>
 
-          <Img src={sadFace} />
+          <Img src={Images.sadFace} />
 
           <TextWrapper>
             <Text style={{ fontSize: '32px', fontWeight: 400 }}>
@@ -22,6 +22,7 @@ const Error = () => {
               Unable to find pages you reaurested.
             </Text>
           </TextWrapper>
+          <AuthButton text="뒤로가기" width="50%" />
         </Wrapper>
       </Container>
     </>
@@ -70,4 +71,4 @@ const TextWrapper = styled.div`
   align-items: center;
 `;
 
-export default Error;
+export default ErrorPage;
