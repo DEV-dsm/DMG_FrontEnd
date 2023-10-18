@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Input from '../common/Input';
-import { UserInfo, UserInfoDetail } from '../../constants';
-import { IUserInfoDetailType } from '../../models/Mypage';
-import { Images } from '../../assets/mypage';
+import { UserInfo, UserInfoDetail } from '@/constants';
+import { IUserInfoDetailType } from '@/models/Mypage';
+import { Images } from '@/assets/mypage';
 
 const regexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 

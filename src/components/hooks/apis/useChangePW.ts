@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
-import { ChangePWInputType } from '../../../models/auth';
+import { ChangePWInputType } from '@/models/auth';
 import { userChangePassword } from '../../../utils/api/auth';
 import toast from 'react-hot-toast';
 

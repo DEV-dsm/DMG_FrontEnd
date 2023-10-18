@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import { Images } from '../../assets/mypage';
+import { Images } from '@/assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
 import { useFileInput } from '../hooks/useFileInput';
 import SubmitBtn from '../common/InfoButton';
