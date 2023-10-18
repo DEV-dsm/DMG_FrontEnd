@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import toast from 'react-hot-toast';
 import { findPwInputsAtom } from '../../atom/authAtom';
-import { useAuthCode } from '../../components/hooks/useAuthcode';
+import { useAuthCode } from '../../components/hooks/apis/useAuthcode';
 import * as S from '../../components/auth/style';
 import CheckImgs from '../../assets/auth/clickCheck.png';
 import FindPWInput from '../../components/auth/FindPWInput';

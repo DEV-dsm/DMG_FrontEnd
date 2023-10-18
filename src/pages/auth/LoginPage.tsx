@@ -6,7 +6,7 @@ import AuthButton from '../../components/common/AuthButton';
 import CheckImgs from '../../assets/auth/clickCheck.png';
 import { useRecoilValue } from 'recoil';
 import { loginInputsAtom } from '../../atom/authAtom';
-import { useLogin } from '../../components/hooks/useLogin';
+import { useLogin } from '../../components/hooks/apis/useLogin';
 
 const LoginPage = () => {
   const navigate = useNavigate();

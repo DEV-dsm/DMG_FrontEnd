@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import CheckImgs from '../../assets/auth/clickCheck.png';
 import { useRecoilValue } from 'recoil';
 import { ChangePWInputsAtom } from '../../atom/authAtom';
-import { useChangePW } from '../../components/hooks/useChangePW';
+import { useChangePW } from '../../components/hooks/apis/useChangePW';
 
 const ChangePWPage = () => {
   const navigate = useNavigate();
