@@ -25,6 +25,7 @@ const LoginInput = () => {
             name={item.name}
             placeholder={item.placeholder}
             onChange={(e) => onChange(e)}
+            required
           />
         </div>
       ))}
