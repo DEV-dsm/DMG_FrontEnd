@@ -38,6 +38,7 @@ const FindPWInput = () => {
             name={item.name}
             placeholder={item.placeholder}
             onChange={(e) => onChange(e)}
+            required
           />
           {item.buttonCheck && <Button onClick={() => handleButtonClick()}>Send</Button>}
         </div>

@@ -39,6 +39,7 @@ const ChangePWInput = () => {
             name={item.name}
             placeholder={item.placeholder}
             onChange={(e) => onChange(e)}
+            required
           />
           {item.name === 'passwordCheck' && (
             <Eye

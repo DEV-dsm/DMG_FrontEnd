@@ -12,13 +12,13 @@ export const useLogin = (inputData: LoginInputType) => {
   const location = useLocation();
   const navigate = useNavigate();
   const setAccessToken = useSetRecoilState(TokenAtom);
-  const from = location?.state?.redirectedFrom?.pathname || '/mypage';
+  const from = location?.state?.redirectedFrom || '/mypage';
 
   return useMutation(() => userLogin(inputData), {
-    onSuccess: ({ response }: any) => {
+    onSuccess: ({ data }) => {
       toast.success(`로그인에 성공했습니다.`, { duration: 1500 });
-      setToken(response.data.access, response.data.refresh);
-      setAccessToken(response.data.access);
+      setToken(data.data.access, data.data.refresh);
+      setAccessToken(data.data.access);
       navigate(from);
     },
     onError: (error: AxiosError) => {

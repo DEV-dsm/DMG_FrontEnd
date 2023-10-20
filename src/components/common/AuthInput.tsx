@@ -6,6 +6,7 @@ interface AuthInputProps {
   name: string;
   type: string;
   placeholder: string;
+  required: boolean;
 }
 
 const AuthInput = ({ ...props }: AuthInputProps) => {
