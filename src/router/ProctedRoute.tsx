@@ -8,9 +8,9 @@ const ProtectedRoute = () => {
   const isLogin = useRecoilValue(isLoginSelector);
   const currentLocation = useLocation();
   const isLoginRef = useRef<boolean | null>(null);
-  const isLogined = isLoginRef.current !== null && !isLoginRef.current && !isLogin;
 
   useEffect(() => {
+    const isLogined = isLoginRef.current !== null && !isLoginRef.current && !isLogin;
     if (isLogined) {
       toast.error('로그인이 필요합니다.', { duration: 2000 });
     }
