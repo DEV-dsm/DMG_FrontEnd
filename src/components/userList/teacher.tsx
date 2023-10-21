@@ -26,23 +26,16 @@ const TeacherList = () => {
     },
   ];
 
-  // const teacher: teacherListType = {
-  //   userId: '',
-  //   userName: '',
-  //   subject: '',
-  //   profile: '',
-  // };
-
   return (
     <Container>
-      {data.map((v, i) => (
-        <Wrapper key={i}>
+      {data.map((value, index) => (
+        <Wrapper key={index}>
           <LeftWrapper>
             <Img src={Images.defaultProfile} />
 
             <div>
-              <UserName>{v.name}</UserName>
-              <Number>{v.subject}</Number>
+              <UserName>{value.name}</UserName>
+              <Number>{value.subject}</Number>
             </div>
           </LeftWrapper>
 
