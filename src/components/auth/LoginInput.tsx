@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { loginInputsAtom } from '../../atom/authAtom';
-import { LoginInputDataType, LoginInputType } from '../../models/auth';
+import { ILoginInputDataType, LoginInputType } from '../../models/auth';
 import { AuthLogin } from '../../constants';
 import AuthInput from '../../components/common/AuthInput';
 
@@ -18,7 +18,7 @@ const LoginInput = () => {
 
   return (
     <InputContainer>
-      {AuthLogin.map((item: LoginInputDataType, index: number) => (
+      {AuthLogin.map((item: ILoginInputDataType, index: number) => (
         <div key={index}>
           <AuthInput
             type="text"
