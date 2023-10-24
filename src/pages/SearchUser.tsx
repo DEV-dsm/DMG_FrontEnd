@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import StudentList from '../components/userList/StudentList';
 
-function SearchUser() {
-  return <div>SearchUser</div>;
-}
+const SearchUser = () => {
+  return (
+    <div>
+      <StudentList />
+    </div>
+  );
+};
 
 export default SearchUser;
