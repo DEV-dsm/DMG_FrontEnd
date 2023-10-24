@@ -1,6 +1,6 @@
 import { IMenuType, IUserInfoDetailType } from '../models/Mypage';
 import { Icons } from '../assets/icons';
-import { LoginInputDataType } from '../models/auth';
+import { ILoginInputDataType } from '../models/auth';
 
 export const menus: IMenuType[] = [
   {
@@ -83,7 +83,7 @@ export const UserInfoDetail: IUserInfoDetailType[] = [
   },
 ];
 
-export const AuthLogin: LoginInputDataType[] = [
+export const AuthLogin: ILoginInputDataType[] = [
   {
     name: 'identify',
     placeholder: 'Identify',
@@ -94,7 +94,7 @@ export const AuthLogin: LoginInputDataType[] = [
   },
 ];
 
-export const FindPWInputs: LoginInputDataType[] = [
+export const FindPWInputs: ILoginInputDataType[] = [
   {
     name: 'email',
     placeholder: 'Email',
@@ -106,7 +106,7 @@ export const FindPWInputs: LoginInputDataType[] = [
   },
 ];
 
-export const ChangePWInputs: LoginInputDataType[] = [
+export const ChangePWInputs: ILoginInputDataType[] = [
   {
     name: 'password',
     placeholder: 'New Password',
