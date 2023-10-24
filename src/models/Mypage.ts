@@ -13,7 +13,7 @@ export interface IUserInfoDetailType {
   hasIcon: boolean;
 }
 
-export interface UserInfoInputType {
+export interface IUserInfoInputType {
   Identity: number;
   Name: string;
   Number: number;
@@ -23,10 +23,4 @@ export interface UserInfoInputType {
   AuthNum?: number;
   Major?: string;
   GitHubName?: string;
-}
-
-export interface UserInfoDetailInputType {
-  Password: string;
-  Email: string;
-  Other: string;
 }

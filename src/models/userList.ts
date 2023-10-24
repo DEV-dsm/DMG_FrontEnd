@@ -1,13 +1,13 @@
-export interface studentListType {
-    userId: string;
-    userName: string;
-    number: string;
-    profile: string;
+interface ListType {
+  userId: string;
+  userName: string;
+  profile: string;
 }
 
-export interface teacherListType {
-    userId: string;
-    userName: string;
-    subject: string;
-    profile: string;
+export interface IStudentListType extends ListType {
+  number: number;
+}
+
+export interface ITeacherListType extends ListType {
+  subject: string;
 }

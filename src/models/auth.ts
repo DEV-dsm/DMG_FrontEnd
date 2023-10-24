@@ -1,28 +1,26 @@
-export interface LoginInputDataType {
+type AuthBaseType = {
+  name: string;
+  identify: string;
+  password: string;
+  email: string;
+  authnumber: number;
+};
+
+export interface ILoginInputDataType {
   name: string;
   placeholder: string;
   buttonCheck?: boolean;
 }
 
-export interface LoginInputType {
-  identify: string;
-  password: string;
-}
-
-export interface findPWInputType {
-  email: string;
-  authnumber: number;
-}
-
-export interface ChangePWInputType {
+export interface IChangePWInputType {
   password: string;
   passwordCheck: string;
 }
 
-export interface SendEmailRequestType {
-  email: string;
-}
+export type LoginInputType = Pick<AuthBaseType, 'identify' | 'password'>;
 
-export interface EmailverifyRequestType {
-  authcode: number;
-}
+export type findPWInputType = Pick<AuthBaseType, 'email' | 'authnumber'>;
+
+export type SendEmailRequestType = Pick<AuthBaseType, 'email'>;
+
+export type EmailverifyRequestType = Pick<AuthBaseType, 'authnumber'>;
