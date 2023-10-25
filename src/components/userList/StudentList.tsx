@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
-import { studentListType } from '../../models/userList';
 import { Images } from '../../assets/mypage/index';
 import { CommonImages } from '../../assets/common';
 
 const StudentList = () => {
-  const data = [ // 임시 데이터
+  const data = [
+    // 임시 데이터
     {
       userID: 1,
       name: '가나다',
@@ -71,15 +70,18 @@ const LeftWrapper = styled.div`
   align-items: center;
   gap: 20px;
 `;
+
 const Img = styled.img`
   width: 50px;
 `;
+
 const UserName = styled.div`
   margin-bottom: 5px;
   font-family: Noto Sans;
   font-size: 20px;
   font-weight: 600;
 `;
+
 const Number = styled.div`
   font-family: Inter;
   font-size: 18px;

@@ -3,12 +3,12 @@ import { ChangePWInputs } from '../../constants';
 import AuthInput from '../common/AuthInput';
 import { useRecoilState } from 'recoil';
 import { useState } from 'react';
-import { ChangePWInputType } from '../../models/auth';
+import { IChangePWInputType } from '../../models/auth';
 import { ChangePWInputsAtom } from '../../atom/authAtom';
 import Eye from './Eye';
 
 const ChangePWInput = () => {
-  const [inputs, setInputs] = useRecoilState<ChangePWInputType>(ChangePWInputsAtom);
+  const [inputs, setInputs] = useRecoilState<IChangePWInputType>(ChangePWInputsAtom);
   const [isCheckShowPassword, setIsCheckShowPassword] = useState<boolean>(false);
 
   const checkPasswordType = isCheckShowPassword ? 'text' : 'password';

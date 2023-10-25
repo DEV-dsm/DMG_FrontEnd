@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { findPwInputsAtom } from '../../atom/authAtom';
 import { FindPWInputs } from '../../constants';
-import { LoginInputDataType, findPWInputType } from '../../models/auth';
+import { ILoginInputDataType, findPWInputType } from '../../models/auth';
 import AuthInput from '../common/AuthInput';
 import { useEmail } from '../hooks/apis/useEmail';
 import { toast } from 'react-hot-toast';
@@ -31,7 +31,7 @@ const FindPWInput = () => {
 
   return (
     <InputContainer>
-      {FindPWInputs.map((item: LoginInputDataType, index: number) => (
+      {FindPWInputs.map((item: ILoginInputDataType, index: number) => (
         <div key={index}>
           <AuthInput
             type="text"

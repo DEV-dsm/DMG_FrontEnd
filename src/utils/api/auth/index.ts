@@ -1,6 +1,6 @@
 import instance from '../../axios';
 import {
-  ChangePWInputType,
+  IChangePWInputType,
   LoginInputType,
   SendEmailRequestType,
   findPWInputType,
@@ -29,7 +29,7 @@ export const userAuthcode = async (inputsData: findPWInputType) => {
   return response;
 };
 
-export const userChangePassword = async (inputsData: ChangePWInputType) => {
+export const userChangePassword = async (inputsData: IChangePWInputType) => {
   const response = await instance.patch('user/findPW', {
     newPassword: inputsData.passwordCheck,
   });

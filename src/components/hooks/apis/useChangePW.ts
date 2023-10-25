@@ -1,10 +1,10 @@
 import { useMutation } from 'react-query';
 import { AxiosError } from 'axios';
-import { ChangePWInputType } from '../../../models/auth';
+import { IChangePWInputType } from '../../../models/auth';
 import { userChangePassword } from '../../../utils/api/auth';
 import toast from 'react-hot-toast';
 
-export const useChangePW = (inputData: ChangePWInputType) => {
+export const useChangePW = (inputData: IChangePWInputType) => {
   return useMutation(() => userChangePassword(inputData), {
     onSuccess: () => {
       toast.success('비밀번호가 수정되었습니다.', { duration: 1500 });
