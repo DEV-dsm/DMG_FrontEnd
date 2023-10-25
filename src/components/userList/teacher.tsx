@@ -5,7 +5,8 @@ import { Images } from '../../assets/mypage/index';
 import { CommonImages } from '../../assets/common';
 
 const TeacherList = () => {
-  const data = [ // 임시 데이터
+  const data = [
+    // 임시 데이터
     {
       userID: 1,
       name: '가나다',
@@ -49,7 +50,8 @@ const TeacherList = () => {
 };
 
 const Container = styled.div`
-  width: 605px;
+  padding-left: 30px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
