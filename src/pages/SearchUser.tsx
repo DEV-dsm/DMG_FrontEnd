@@ -19,8 +19,8 @@ const SearchUser = () => {
     onChange(index, newValue);
   };
 
-  const showStudent = () => {}; // 학생 버튼을 누르면 학생 리스트 컴포넌트 display: block (기본값: block)
-  const showTeacher = () => {}; // 교사 버튼을 누르면 교사 리스트 컴포넌트 display: block (기본값: none)
+  const showStudent = () => {}; // 학생 버튼을 누르면 학생 리스트 컴포넌트 display: block (기본 값: block)
+  const showTeacher = () => {}; // 교사 버튼을 누르면 교사 리스트 컴포넌트 display: block (기본 값: none)
 
   return (
     <>
