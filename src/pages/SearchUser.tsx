@@ -27,14 +27,7 @@ const SearchUser = () => {
       <Wrapper>
         <UserListWrapper>
           <HeaderWrapper>
-            <div
-              style={{
-                display: 'inline-flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '10px',
-              }}
-            >
+            <InnerWrapper>
               <Title>Profiles</Title>
 
               <InputWrapper>
@@ -61,7 +54,7 @@ const SearchUser = () => {
                   </Btn>
                 </div>
               </InputWrapper>
-            </div>
+            </InnerWrapper>
           </HeaderWrapper>
 
           <StudentList />
@@ -90,6 +83,13 @@ const HeaderWrapper = styled.div`
   margin: 108px 0 50px;
   display: flex;
   justify-content: center;
+`;
+
+const InnerWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 `;
 const Title = styled.div`
   font-family: Noto Sans;
