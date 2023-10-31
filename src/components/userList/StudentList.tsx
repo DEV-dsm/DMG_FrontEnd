@@ -48,7 +48,8 @@ const StudentList = () => {
 };
 
 const Container = styled.div`
-  width: 605px;
+  padding-left: 30px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
