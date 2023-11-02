@@ -17,6 +17,11 @@ export interface IChangePWInputType {
   passwordCheck: string;
 }
 
+export interface IQuestionInputDataType {
+  title: string;
+  content: string;
+}
+
 export type LoginInputType = Pick<AuthBaseType, 'identify' | 'password'>;
 
 export type findPWInputType = Pick<AuthBaseType, 'email' | 'authnumber'>;

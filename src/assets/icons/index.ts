@@ -8,6 +8,8 @@ import SearchWhiteIcons from './afterSearchUser.png';
 import MessageBlackIcons from './afterChatting.svg';
 import RequireWhiteIcons from './afterWarning.png';
 import LogOutWhiteIcons from './afterLogOut.png';
+import addChatWhiteIcons from './addChatBlack.svg';
+import addChatBlickIcons from './addChatWhite.svg';
 
 export const Icons = {
   MyPageBlackIcons,
@@ -20,4 +22,6 @@ export const Icons = {
   MessageWhiteIcons,
   RequireWhiteIcons,
   LogOutWhiteIcons,
+  addChatWhiteIcons,
+  addChatBlickIcons,
 };

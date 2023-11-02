@@ -25,7 +25,7 @@ const ChangePWPage = () => {
   return (
     <S.Wrapper>
       <S.Container>
-        <S.Title>Modify Password</S.Title>5
+        <S.Title>Modify Password</S.Title>
         <ChangePWInput />
         <ButtonContainer>
           <AuthButton text="Change" width="50%" onClick={() => ChangePWClick()} />

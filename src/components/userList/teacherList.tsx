@@ -49,7 +49,7 @@ const TeacherList = () => {
 
 const Container = styled.div`
   padding-left: 30px;
-  width: 100%;
+  width: 80vw;
   display: flex;
   flex-direction: column;
 `;

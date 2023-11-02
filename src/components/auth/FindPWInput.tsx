@@ -73,6 +73,9 @@ const Button = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  &:hover {
+    background-color: #beb7b7;
+  }
 `;
 
 export default FindPWInput;

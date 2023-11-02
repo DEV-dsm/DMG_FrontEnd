@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { Images } from '../assets';
 import AuthButton from '../components/common/AuthButton';
+import { useNavigate } from 'react-router-dom';
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Container>
@@ -22,7 +25,7 @@ const ErrorPage = () => {
               Unable to find pages you reaurested.
             </Text>
           </TextWrapper>
-          <AuthButton text="뒤로가기" width="50%" />
+          <AuthButton text="뒤로가기" width="50%" onClick={() => navigate(-1)} />
         </Wrapper>
       </Container>
     </>

@@ -1,11 +1,12 @@
 import { styled } from 'styled-components';
+import { ChangeEvent } from 'react';
 
 interface IPropsInputType {
   type: string;
   name?: string;
   value?: string;
   placeholder?: string;
-  onChange?: any;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({ ...props }: IPropsInputType) => {

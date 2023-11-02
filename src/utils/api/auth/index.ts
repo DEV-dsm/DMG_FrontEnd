@@ -31,7 +31,7 @@ export const userAuthcode = async (inputsData: findPWInputType) => {
 
 export const userChangePassword = async (inputsData: IChangePWInputType) => {
   const response = await instance.patch('user/findPW', {
-    newPassword: inputsData.passwordCheck,
+    newPassword: inputsData.password,
   });
   return response;
 };

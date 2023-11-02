@@ -22,6 +22,12 @@ export const menus: IMenuType[] = [
     whiteIcons: Icons.MessageBlackIcons,
   },
   {
+    name: 'Add chat',
+    id: 'addchat',
+    BlackIcons: Icons.addChatBlickIcons,
+    whiteIcons: Icons.addChatWhiteIcons,
+  },
+  {
     name: 'Inquire',
     id: 'inquire',
     BlackIcons: Icons.RequireBlackIcons,

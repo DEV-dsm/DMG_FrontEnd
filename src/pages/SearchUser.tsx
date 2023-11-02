@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import StudentList from '../components/userList/studentList';
+import StudentList from '../components/userList/StudentList';
 import styled from 'styled-components';
 import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';

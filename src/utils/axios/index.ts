@@ -13,7 +13,7 @@ instance.interceptors.request.use(
     const { accessToken } = getToken();
 
     if (accessToken) {
-      config.headers['Authorization'] = `${accessToken}`;
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
     }
     return config;
   },
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
     if (status === 401 && error.response.data.message === 'TokenExpiredError') {
       const originalRequest = config;
       const refreshToken = await getToken().refreshToken;
-      const { data } = await axios.get(`${BASE_URL}/user/token`, {
+      const { data } = await instance.get(`${BASE_URL}/user/token`, {
         headers: { Authorization: `Bearer ${refreshToken}` },
       });
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = data;
