@@ -1,4 +1,4 @@
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { EyeIcon1, EyeIcon2 } from '../../assets/auth';
 import styled from 'styled-components';
 
 interface EyeProps {
@@ -9,9 +9,7 @@ interface EyeProps {
 const Eye = ({ isShowPassword, onClick }: EyeProps) => {
   return (
     <EyeWrapper>
-      <EyeContainer onClick={onClick}>
-        {isShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-      </EyeContainer>
+      <EyeContainer onClick={onClick}>{isShowPassword ? <EyeIcon1 /> : <EyeIcon2 />}</EyeContainer>
     </EyeWrapper>
   );
 };
@@ -19,9 +17,8 @@ const Eye = ({ isShowPassword, onClick }: EyeProps) => {
 const EyeContainer = styled.div`
   position: absolute;
   top: -30px;
-  right: 20px;
+  right: 10px;
   cursor: pointer;
-  background-color: white;
 `;
 
 const EyeWrapper = styled.div`
