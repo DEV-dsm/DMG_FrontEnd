@@ -7,20 +7,26 @@ const StudentList = () => {
     // 임시 데이터
     {
       userID: 1,
-      name: '가나다',
-      number: '학번',
+      name: '강명석',
+      number: '2301',
       profile: '프로필사진 파일 경로',
     },
     {
       userID: 2,
-      name: '이름',
-      number: '학번',
+      name: '강용수',
+      number: '2302',
       profile: '프로필사진 파일 경로',
     },
     {
       userID: 3,
-      name: '이름',
-      number: '학번',
+      name: '김민승',
+      number: '2303',
+      profile: '프로필사진 파일 경로',
+    },
+    {
+      userID: 4,
+      name: '김승현',
+      number: '2304',
       profile: '프로필사진 파일 경로',
     },
   ];
@@ -57,7 +63,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
-  padding: 15px 30px 15px 20px;
+  padding: 15px 25px 10px 15px;
   align-items: center;
 
   &:hover {
@@ -79,7 +85,7 @@ const Img = styled.img`
 const UserName = styled.div`
   margin-bottom: 5px;
   font-family: Noto Sans;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 `;
 
