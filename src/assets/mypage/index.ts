@@ -9,6 +9,7 @@ import BackblackPencil from './Group 372.svg';
 import whitePencil from './pencil2 11.svg';
 import WhiteCheck from './WhiteCheck.svg';
 import GrrenCheck from './GreenCheck.png';
+import Background from './Background.svg';
 
 export const Images = {
   blackBeforeCheck,
@@ -22,4 +23,5 @@ export const Images = {
   whitePencil,
   WhiteCheck,
   GrrenCheck,
+  Background,
 };
