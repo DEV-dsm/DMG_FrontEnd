@@ -75,7 +75,7 @@ export default SearchUser;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100vw;
+  width: 30vw;
 `;
 
 const UserListWrapper = styled.div`

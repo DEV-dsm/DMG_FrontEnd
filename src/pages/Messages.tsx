@@ -25,7 +25,7 @@ function Messages() {
                 onChange={signFormChange}
               />
 
-              <Img src={Icons.searchIcon} />
+              <Img src={Icons.SearchWhiteIcons} />
             </InputWrapper>
           </Header>
 
@@ -40,13 +40,13 @@ export default Messages;
 
 const Container = styled.div`
   display: flex;
-  width: 100vw;
+  width: 30vw;
   background-color: #f5f5f7;
 `;
 
 const Wrapper = styled.div`
   padding-top: 100px;
-  width: 30vw;
+  width: 100%;
   border-right: 1px;
   border-style: solid;
   border-color: #393939;
