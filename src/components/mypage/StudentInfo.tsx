@@ -1,56 +1,63 @@
-import React, { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Images } from '../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
-import { useFileInput } from '../hooks/useFileInput';
 import SubmitBtn from '../common/InfoButton';
 
 const StudentInfo = () => {
-  const { image: backgroundImage, onUpload: setBackgroundImage } = useFileInput(Images.BlockImg);
-  const {
-    backImage: defaultProfileImg,
-    onUpload: setDefaultProfileImage,
-    resetImage: resetDefaultProfileImage,
-  } = useFileInput(Images.defaultProfile);
-
-  const imgRef = useRef<HTMLInputElement>(null);
+  const [imgFile, setImgFile] = useState<string | ArrayBuffer | null>('');
+  const BackGroundImgRef = useRef<HTMLInputElement>(null);
   const ProfileImgRef = useRef<HTMLInputElement>(null);
+
+  const saveImgFile = () => {
+    const file = ProfileImgRef.current?.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImgFile(reader.result);
+      };
+    }
+  };
 
   return (
     <UserInfoWrapper>
       <ImageContainer>
-        <BlockImg src={backgroundImage} />
-        <FileChangeImg src={Images.whitePencil} onClick={() => imgRef.current?.click()} />
+        <BlockImg src={Images.Background} />
+        <FileChangeImg src={Images.whitePencil} onClick={() => BackGroundImgRef.current?.click()} />
       </ImageContainer>
 
       <input
         type="file"
         id="fileInput"
         accept="image/*"
-        ref={imgRef}
+        ref={BackGroundImgRef}
         style={{ display: 'none' }}
-        onChange={(e) => setBackgroundImage(e)}
       />
 
       <ProfileContainer>
-        <ProfileImg src={defaultProfileImg} alt="" />
-        <input
-          type="file"
-          id="fileInputs"
-          accept="image/*"
-          ref={ProfileImgRef}
-          style={{ display: 'none' }}
-          onChange={(e) => setDefaultProfileImage(e)}
-        />
+        <div>
+          <ProfileImg src={imgFile ? imgFile.toString() : `${Images.defaultProfile}`} />
 
-        <ProfileSetIcons>
-          <ProfileChangeImg
-            src={Images.BackblackPencil}
-            onClick={() => ProfileImgRef.current?.click()}
+          <input
+            type="file"
+            id="profileImg"
+            accept="image/*"
+            ref={ProfileImgRef}
+            style={{ display: 'none' }}
+            onChange={saveImgFile}
           />
-          <ProfileChangeImg src={Images.dustBin} onClick={resetDefaultProfileImage} />
-        </ProfileSetIcons>
+
+          <ProfileSetIcons>
+            <ProfileChangeImg
+              src={`${Images.BackblackPencil}`}
+              onClick={() => ProfileImgRef.current?.click()}
+            />
+            <ProfileChangeImg src={Images.dustBin} />
+          </ProfileSetIcons>
+        </div>
 
         <UserInfoInput />
         <SubmitBtn text="submit" width="50%" />
@@ -66,7 +73,7 @@ const UserInfoWrapper = styled.div`
   width: 100%;
   align-items: center;
   border-right: 1px solid #393939;
-  padding: 50px 60px 85px 60px;
+  padding: 60px 70px 95px 70px;
 `;
 
 const ProfileSetIcons = styled.div`
@@ -107,7 +114,7 @@ const ProfileImg = styled.img`
   top: 0%;
   left: 50%;
   transform: translate(-50%, -75%);
-  width: 33%;
+  width: 30%;
 `;
 
 const ProfileChangeImg = styled.img`
