@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useForm } from '../components/hooks/useForm';
 import MessageInput from '../components/message/input';
 import MessageList from '../components/message/MessageList';
-import { Icons } from '../assets/icons';
+import { CommonImages } from '../assets/common';
 
 function Messages() {
   const { form: signForm, handleChange: signFormChange } = useForm({
@@ -25,7 +25,7 @@ function Messages() {
                 onChange={signFormChange}
               />
 
-              <Img src={Icons.searchIcon} />
+              <Img src={CommonImages.searchIcon} alt="" />
             </InputWrapper>
           </Header>
 
@@ -40,7 +40,7 @@ export default Messages;
 
 const Container = styled.div`
   display: flex;
-  width: 100vw;
+  width: 30%;
   background-color: #f5f5f7;
 `;
 
