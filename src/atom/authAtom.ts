@@ -1,5 +1,8 @@
 import { atom, selector } from 'recoil';
 import { IChangePWInputType } from '../models/auth';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const loginInputsAtom = atom({
   key: 'LoginInputsAtom',
@@ -7,6 +10,7 @@ export const loginInputsAtom = atom({
     identify: '',
     password: '',
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const findPwInputsAtom = atom({
@@ -47,6 +51,7 @@ export const userIdAtom = atom<string | null>({
 export const TokenAtom = atom({
   key: 'TokenAtom',
   default: undefined,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const isLoginSelector = selector({

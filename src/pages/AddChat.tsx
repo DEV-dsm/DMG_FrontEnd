@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';
 import { useForm } from '../components/hooks/useForm';
-import TeacherList from '../components/userList/teacherList';
 
 const SearchUser = () => {
   const { form: signForm, handleChange: signFormChange } = useForm({

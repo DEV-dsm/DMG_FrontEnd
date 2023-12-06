@@ -30,6 +30,11 @@ const Button = styled.button<StyledButtonProps>`
   font-family: Noto Sans;
   font-size: 16px;
   font-weight: 600;
+  display: flex;
+  padding: 12.5px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 `;
 
 export default InfoButton;

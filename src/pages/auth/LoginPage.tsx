@@ -13,7 +13,7 @@ const LoginPage = () => {
   const inputsData = useRecoilValue(loginInputsAtom);
   const loginMutation = useLogin(inputsData);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     loginMutation.mutate();
   };

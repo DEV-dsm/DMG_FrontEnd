@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { getToken, setToken } from '../functions/TokenManager';
+import { getToken } from '../functions/TokenManager';
 
 const BASE_URL = process.env.REACT_APP_PUBLIC_DMG_BASE_URL;
 
@@ -34,12 +34,15 @@ instance.interceptors.response.use(
 
     if (status === 401 && error.response.data.message === 'TokenExpiredError') {
       const originalRequest = config;
-      const refreshToken = await getToken().refreshToken;
+      const refreshToken = localStorage.getItem('refreshToken');
+
       const { data } = await instance.get(`${BASE_URL}/user/token`, {
         headers: { Authorization: `Bearer ${refreshToken}` },
       });
+
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = data;
-      setToken(newAccessToken, newRefreshToken);
+      localStorage.setItem('accessToken', newAccessToken);
+      localStorage.setItem('refreshToken', newRefreshToken);
       axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
       originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
       return axios(originalRequest);
