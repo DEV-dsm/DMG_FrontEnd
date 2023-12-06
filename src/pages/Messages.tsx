@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from '../components/hooks/useForm';
-import MessageInput from '../components/message/input';
-import MessageList from '../components/message/MessageList';
+import MessageInput from '../components/pages/message/input';
+import MessageList from '../components/pages/message/MessageList';
 import { CommonImages } from '../assets/common';
 
 function Messages() {
