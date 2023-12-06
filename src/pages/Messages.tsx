@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useForm } from '../components/hooks/useForm';
 import MessageInput from '../components/message/input';
 import MessageList from '../components/message/MessageList';
-import { Icons } from '../assets/icons';
+import { CommonImages } from '../assets/common';
 
 function Messages() {
   const { form: signForm, handleChange: signFormChange } = useForm({
@@ -24,8 +24,7 @@ function Messages() {
                 placeholder="Search"
                 onChange={signFormChange}
               />
-
-              <Img src={Icons.SearchWhiteIcons} />
+              <Img src={CommonImages.searchIcon} alt="" />
             </InputWrapper>
           </Header>
 
