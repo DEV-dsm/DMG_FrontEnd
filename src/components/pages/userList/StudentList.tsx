@@ -1,39 +1,48 @@
 import styled from 'styled-components';
-import { Images } from '../../assets/mypage/index';
-import { CommonImages } from '../../assets/common';
+import { Images } from '../../../assets/mypage/index';
+import { CommonImages } from '../../../assets/common';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
+import instance from '../../../utils/axios';
 
 const StudentList = () => {
+  // const [userList, setUserList] = useState([]);
+
+  // const { data, isError, isLoading } = useQuery(['getUserList'], async () => {
+  //   const response = await instance.get('/profile/student');
+  //   return response;
+  // });
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>error!</div>;
+
+  // console.log(data?.data);
+
   const data = [
     // 임시 데이터
     {
       userID: 1,
-      name: '강명석',
-      number: '2301',
+      name: '가나다',
+      number: '학번',
       profile: '프로필사진 파일 경로',
     },
     {
       userID: 2,
-      name: '강용수',
-      number: '2302',
+      name: '이름',
+      number: '학번',
       profile: '프로필사진 파일 경로',
     },
     {
       userID: 3,
-      name: '김민승',
-      number: '2303',
-      profile: '프로필사진 파일 경로',
-    },
-    {
-      userID: 4,
-      name: '김승현',
-      number: '2304',
+      name: '이름',
+      number: '학번',
       profile: '프로필사진 파일 경로',
     },
   ];
 
   return (
     <Container>
-      {data.map((value, index) => (
+      {data?.map((value: any, index: number) => (
         <Wrapper key={index}>
           <LeftWrapper>
             <Img src={Images.defaultProfile} />

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Images } from '../../assets/mypage';
-import { ChattingImages } from '../../assets/chatting';
-import { useForm } from '../hooks/useForm';
-import { CommonImages } from '../../assets/common';
+import { Images } from '../../../assets/mypage';
+import { ChattingImages } from '../../../assets/chatting';
+import { useForm } from '../../hooks/useForm';
+import { CommonImages } from '../../../assets/common';
 
 const Header = () => {
   const { form: signForm, handleChange: signFormChange } = useForm({

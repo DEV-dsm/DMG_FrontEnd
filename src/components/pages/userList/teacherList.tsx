@@ -1,24 +1,27 @@
-import styled from 'styled-components';
-import { Images } from '../../assets/mypage/index';
-import { CommonImages } from '../../assets/common';
+import { styled } from 'styled-components';
+import { Images } from '../../../assets/mypage/index';
+import { CommonImages } from '../../../assets/common';
 
-const MessageList = () => {
+const TeacherList = () => {
   const data = [
     // 임시 데이터
     {
       userID: 1,
       name: '가나다',
-      body: '안녕하세요.안녕하세요.안녕하세요.',
+      subject: '담당 과목',
+      profile: '프로필사진 파일 경로',
     },
     {
       userID: 2,
       name: '이름',
-      body: '안녕하세요.안녕하세요.안녕하세요.',
+      subject: '담당 과목',
+      profile: '프로필사진 파일 경로',
     },
     {
       userID: 3,
       name: '이름',
-      body: '안녕하세요.안녕하세요.안녕하세요.',
+      subject: '담당 과목',
+      profile: '프로필사진 파일 경로',
     },
   ];
 
@@ -27,13 +30,17 @@ const MessageList = () => {
       {data.map((value, index) => (
         <Wrapper key={index}>
           <LeftWrapper>
-            <Img src={CommonImages.logo1} />
+            <Img src={Images.defaultProfile} />
 
             <div>
               <UserName>{value.name}</UserName>
-              <Body>{value.body}</Body>
+              <Number>{value.subject}</Number>
             </div>
           </LeftWrapper>
+
+          <Btn>
+            <Img src={CommonImages.logo1} style={{ width: '40px' }} />
+          </Btn>
         </Wrapper>
       ))}
     </Container>
@@ -42,7 +49,7 @@ const MessageList = () => {
 
 const Container = styled.div`
   padding-left: 30px;
-  width: 100%;
+  width: 80vw;
   display: flex;
   flex-direction: column;
 `;
@@ -55,7 +62,7 @@ const Wrapper = styled.div`
 
   &:hover {
     border-radius: 20px 0px 0px 20px;
-    background: #ffffff;
+    background: #ececef;
   }
 `;
 
@@ -76,11 +83,15 @@ const UserName = styled.div`
   font-weight: 600;
 `;
 
-const Body = styled.div`
+const Number = styled.div`
   font-family: Inter;
   font-size: 18px;
   font-weight: 400;
   color: #393939;
 `;
 
-export default MessageList;
+const Btn = styled.button`
+  background-color: transparent;
+`;
+
+export default TeacherList;

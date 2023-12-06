@@ -1,27 +1,24 @@
-import { styled } from 'styled-components';
-import { Images } from '../../assets/mypage/index';
-import { CommonImages } from '../../assets/common';
+import styled from 'styled-components';
+import { Images } from '../../../assets/mypage/index';
+import { CommonImages } from '../../../assets/common';
 
-const TeacherList = () => {
+const MessageList = () => {
   const data = [
     // 임시 데이터
     {
       userID: 1,
       name: '가나다',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
+      body: '안녕하세요.안녕하세요.안녕하세요.',
     },
     {
       userID: 2,
       name: '이름',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
+      body: '안녕하세요.안녕하세요.안녕하세요.',
     },
     {
       userID: 3,
       name: '이름',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
+      body: '안녕하세요.안녕하세요.안녕하세요.',
     },
   ];
 
@@ -30,17 +27,13 @@ const TeacherList = () => {
       {data.map((value, index) => (
         <Wrapper key={index}>
           <LeftWrapper>
-            <Img src={Images.defaultProfile} />
+            <Img src={CommonImages.logo1} />
 
             <div>
               <UserName>{value.name}</UserName>
-              <Number>{value.subject}</Number>
+              <Body>{value.body}</Body>
             </div>
           </LeftWrapper>
-
-          <Btn>
-            <Img src={CommonImages.logo1} style={{ width: '40px' }} />
-          </Btn>
         </Wrapper>
       ))}
     </Container>
@@ -49,7 +42,7 @@ const TeacherList = () => {
 
 const Container = styled.div`
   padding-left: 30px;
-  width: 80vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -62,7 +55,7 @@ const Wrapper = styled.div`
 
   &:hover {
     border-radius: 20px 0px 0px 20px;
-    background: #ececef;
+    background: #ffffff;
   }
 `;
 
@@ -83,15 +76,11 @@ const UserName = styled.div`
   font-weight: 600;
 `;
 
-const Number = styled.div`
+const Body = styled.div`
   font-family: Inter;
   font-size: 18px;
   font-weight: 400;
   color: #393939;
 `;
 
-const Btn = styled.button`
-  background-color: transparent;
-`;
-
-export default TeacherList;
+export default MessageList;
