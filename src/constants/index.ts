@@ -23,7 +23,7 @@ export const menus: IMenuType[] = [
   },
   {
     name: 'Add chat',
-    id: 'addchat',
+    id: 'addChat',
     BlackIcons: Icons.addChatBlickIcons,
     whiteIcons: Icons.addChatWhiteIcons,
   },
