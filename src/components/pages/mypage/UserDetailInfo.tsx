@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Images } from '../../assets/mypage';
-import Img from '../../assets/mypage/Background.svg';
+import { Images } from '../../../assets/mypage';
+import Img from '../../../assets/mypage/Background.svg';
 
 const UserDetailInfo = () => {
   return (
@@ -8,11 +8,10 @@ const UserDetailInfo = () => {
       <ImageContainer style={{ backgroundImage: `url(${Img})` }}>
         <ProfileImage src={Images.defaultProfile} alt="" />
       </ImageContainer>
-
       <ProfleInfos>
         <Title>Student</Title>
         <Group>
-          <p>서유정</p>
+          <p>이름이름</p>
           <div>onLine</div>
         </Group>
         <Email>juwon2298@dsm.hs.kr</Email>

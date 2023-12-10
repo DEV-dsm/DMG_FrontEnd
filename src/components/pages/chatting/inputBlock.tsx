@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ChattingImages } from '../../assets/chatting';
-import { useForm } from '../hooks/useForm';
+import { ChattingImages } from '../../../assets/chatting';
+import { useForm } from '../../hooks/useForm';
 
 const InputBlock = () => {
   const { form: signForm, handleChange: signFormChange } = useForm({

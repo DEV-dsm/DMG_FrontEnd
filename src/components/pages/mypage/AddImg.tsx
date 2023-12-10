@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-const AddImgButton = () => {
+const AddImg = () => {
   const [imgFile, setImgFile] = useState<string | ArrayBuffer | null>('');
   const imgRef = useRef<HTMLInputElement>(null);
 
@@ -24,4 +24,4 @@ const AddImgButton = () => {
   );
 };
 
-export default AddImgButton;
+export default AddImg;

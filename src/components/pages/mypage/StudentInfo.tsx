@@ -1,12 +1,23 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
-
-import { Images } from '../../assets/mypage';
+import { Images } from '../../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
-import SubmitBtn from '../common/InfoButton';
+import SubmitBtn from '../../common/InfoButton';
+import { IUserInfoRequestType } from '../../../models/Mypage';
 
 const StudentInfo = () => {
   const [imgFile, setImgFile] = useState<string | ArrayBuffer | null>('');
+  const [inputs, setInputs] = useState<IUserInfoRequestType>({
+    identify: '',
+    email: '',
+    name: '',
+    major: '',
+    github: '',
+    number: 0,
+    profile: '',
+    background: '',
+  });
+
   const BackGroundImgRef = useRef<HTMLInputElement>(null);
   const ProfileImgRef = useRef<HTMLInputElement>(null);
 
@@ -17,7 +28,7 @@ const StudentInfo = () => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        setImgFile(reader.result);
+        console.log(reader.result);
       };
     }
   };
@@ -40,7 +51,6 @@ const StudentInfo = () => {
       <ProfileContainer>
         <div>
           <ProfileImg src={imgFile ? imgFile.toString() : `${Images.defaultProfile}`} />
-
           <input
             type="file"
             id="profileImg"
@@ -84,6 +94,7 @@ const ProfileSetIcons = styled.div`
 `;
 
 const FileChangeImg = styled.img`
+  cursor: pointer;
   position: absolute;
   width: 23px;
   height: 23px;
@@ -114,10 +125,13 @@ const ProfileImg = styled.img`
   top: 0%;
   left: 50%;
   transform: translate(-50%, -75%);
-  width: 30%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 `;
 
 const ProfileChangeImg = styled.img`
+  cursor: pointer;
   width: 25px;
 `;
 
