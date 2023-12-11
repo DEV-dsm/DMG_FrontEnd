@@ -10,6 +10,7 @@ import Error from '../pages/ErrorPage';
 import ProtectedRoute from './ProctedRoute';
 import ChangePWPage from '../pages/auth/ChangePWpage';
 import ChattingPage from '../pages/ChattingPage';
+import AddChat from '../pages/AddChatPage';
 
 const MainRouter = () => {
   return (
@@ -20,15 +21,16 @@ const MainRouter = () => {
       <Route path="ChangePW" element={<ChangePWPage />} />
 
       {/* 유저 전용 */}
-      <Route element={<ProtectedRoute />}>
-        <Route element={<SideBar />}>
-          <Route path="/inquire" element={<Inquire />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/message" element={<Messages />} />
-          <Route path="/searchuser" element={<SearchUser />} />
-          <Route path="/chatting" element={<ChattingPage />} />
-        </Route>
+      {/* <Route element={<ProtectedRoute />}> */}
+      <Route element={<SideBar />}>
+        <Route path="/inquire" element={<Inquire />} />
+        <Route path="/mypage" element={<MyPage />} />
+        {/* <Route path="/message" element={<Messages />} /> */}
+        <Route path="/searchuser" element={<SearchUser />} />
+        <Route path="/message" element={<ChattingPage />} />
+        <Route path="/addChat" element={<AddChat />} />
       </Route>
+      {/* </Route> */}
     </Routes>
   );
 };

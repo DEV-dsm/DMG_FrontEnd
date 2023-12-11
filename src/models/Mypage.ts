@@ -13,14 +13,27 @@ export interface IUserInfoDetailType {
   hasIcon: boolean;
 }
 
+// input type
 export interface IUserInfoInputType {
-  Identity: number;
-  Name: string;
-  Number: number;
+  Identity?: string;
+  Name?: string;
+  Number?: number;
   Password?: string;
   PasswordCheck?: string;
   Email?: string;
   AuthNum?: number;
   Major?: string;
   GitHubName?: string;
+}
+
+// user api명세대로
+export interface IUserInfoRequestType {
+  identify: string;
+  email: string;
+  name: string;
+  major: string;
+  github: string;
+  number: number;
+  profile: string;
+  background: string;
 }
