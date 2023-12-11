@@ -4,9 +4,20 @@ import { Images } from '../../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
 import SubmitBtn from '../../common/InfoButton';
 import { IUserInfoRequestType } from '../../../models/Mypage';
+import instance from '../../../utils/axios';
 
 const StudentInfo = () => {
-  const [imgFile, setImgFile] = useState<string | ArrayBuffer | null>('');
+  const fileInputRef = useRef<any>(null);
+  const BackGroundFileInputRef = useRef<any>(null);
+
+  const [previewImg, setPreviewImg] = useState<any>(); // 미리보기
+  const [uploadImg, setUploadImg] = useState<File>(); // uproad
+  const [responseImg, setResponseImg] = useState<string>(); // uproad후 서버로받은 이미지
+
+  const [backGroundpreviewImg, setBackGroundPreviewImg] = useState<any>();
+  const [backGrounduploadImg, setBackGroundUploadImg] = useState<File>();
+  const [backGroundresponseImg, setBackGroundResponseImg] = useState<string>();
+
   const [inputs, setInputs] = useState<IUserInfoRequestType>({
     identify: '',
     email: '',
@@ -18,61 +29,103 @@ const StudentInfo = () => {
     background: '',
   });
 
-  const BackGroundImgRef = useRef<HTMLInputElement>(null);
-  const ProfileImgRef = useRef<HTMLInputElement>(null);
+  const onClickHandler = () => fileInputRef.current.click();
+  const backGroundonClickHandler = () => BackGroundFileInputRef.current.click();
+  const clearImage = () => setPreviewImg(null);
 
-  const saveImgFile = () => {
-    const file = ProfileImgRef.current?.files?.[0];
+  const proFileImgChange = async (e: any) => {
+    const seletectedImage = e.target.files[0];
 
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        console.log(reader.result);
+    if (seletectedImage) {
+      setUploadImg(seletectedImage);
+
+      const reader: FileReader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setPreviewImg(reader.result);
+        }
       };
+      reader.readAsDataURL(seletectedImage);
+      try {
+        const formData = new FormData();
+        formData.append('file', seletectedImage);
+        const response = await instance.post('/upload', formData);
+        setResponseImg(response?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const BackGroundImgChange = async (e: any) => {
+    const seletectedImage = e.target.files[0];
+
+    if (seletectedImage) {
+      setBackGroundUploadImg(seletectedImage);
+
+      const reader: FileReader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setBackGroundPreviewImg(reader.result);
+        }
+      };
+      reader.readAsDataURL(seletectedImage);
+      try {
+        const formData = new FormData();
+        formData.append('file', seletectedImage);
+        const response = await instance.post('/upload', formData);
+        setBackGroundResponseImg(response?.data);
+        console.log(response?.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
-    <UserInfoWrapper>
-      <ImageContainer>
-        <BlockImg src={Images.Background} />
-        <FileChangeImg src={Images.whitePencil} onClick={() => BackGroundImgRef.current?.click()} />
-      </ImageContainer>
+    <>
+      <UserInfoWrapper>
+        {/* 배경 이미지 변경 */}
+        <ImageContainer>
+          {backGroundpreviewImg && (
+            <BlockImg onClick={backGroundonClickHandler} src={backGroundpreviewImg} />
+          )}
+          {!backGroundpreviewImg && <BlockImg src={Images.Background} />}
+          <FileChangeImg onClick={backGroundonClickHandler} src={Images.whitePencil} />
+        </ImageContainer>
 
-      <input
-        type="file"
-        id="fileInput"
-        accept="image/*"
-        ref={BackGroundImgRef}
-        style={{ display: 'none' }}
-      />
+        <input
+          onChange={BackGroundImgChange}
+          type="file"
+          ref={BackGroundFileInputRef}
+          accept="image/*"
+          style={{ display: 'none' }}
+        />
 
-      <ProfileContainer>
-        <div>
-          <ProfileImg src={imgFile ? imgFile.toString() : `${Images.defaultProfile}`} />
-          <input
-            type="file"
-            id="profileImg"
-            accept="image/*"
-            ref={ProfileImgRef}
-            style={{ display: 'none' }}
-            onChange={saveImgFile}
-          />
-
-          <ProfileSetIcons>
-            <ProfileChangeImg
-              src={`${Images.BackblackPencil}`}
-              onClick={() => ProfileImgRef.current?.click()}
+        {/* 배경 이미지 변경 */}
+        {/* 프로필 변경  */}
+        <ProfileContainer>
+          <div>
+            {previewImg && <ProfileImg onClick={onClickHandler} src={previewImg} />}
+            {!previewImg && <ProfileImg src={Images.defaultProfile} />}
+            <ProfileSetIcons>
+              <ProfileChangeImg onClick={onClickHandler} src={Images.BackblackPencil} />
+              <ProfileChangeImg onClick={clearImage} src={Images.dustBin} />
+            </ProfileSetIcons>
+            <input
+              onChange={proFileImgChange}
+              type="file"
+              ref={fileInputRef}
+              accept="image/*"
+              style={{ display: 'none' }}
             />
-            <ProfileChangeImg src={Images.dustBin} />
-          </ProfileSetIcons>
-        </div>
-
-        <UserInfoInput />
-        <SubmitBtn text="submit" width="50%" />
-      </ProfileContainer>
-    </UserInfoWrapper>
+          </div>
+          {/* 프로필 변경  */}
+          <UserInfoInput />
+          <SubmitBtn text="submit" width="50%" />
+        </ProfileContainer>
+      </UserInfoWrapper>
+    </>
   );
 };
 
@@ -90,7 +143,7 @@ const ProfileSetIcons = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 7px;
-  padding-top: 30px;
+  padding-top: 35px;
 `;
 
 const FileChangeImg = styled.img`
@@ -98,8 +151,8 @@ const FileChangeImg = styled.img`
   position: absolute;
   width: 23px;
   height: 23px;
-  bottom: 7px;
-  right: 5px;
+  bottom: 15px;
+  right: 8px;
 `;
 
 const ImageContainer = styled.div`
@@ -107,7 +160,8 @@ const ImageContainer = styled.div`
 `;
 
 const BlockImg = styled.img`
-  width: 100%;
+  width: 330px;
+  height: 170px;
 `;
 
 const ProfileContainer = styled.div`
