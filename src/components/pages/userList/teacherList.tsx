@@ -1,33 +1,31 @@
 import { styled } from 'styled-components';
 import { Images } from '../../../assets/mypage/index';
 import { CommonImages } from '../../../assets/common';
+import { useQuery } from 'react-query';
+import instance from '../../../utils/axios';
+import { TeacherListType } from '../../../models/userList';
 
 const TeacherList = () => {
-  const data = [
-    // 임시 데이터
-    {
-      userID: 1,
-      name: '가나다',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
-    },
-    {
-      userID: 2,
-      name: '이름',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
-    },
-    {
-      userID: 3,
-      name: '이름',
-      subject: '담당 과목',
-      profile: '프로필사진 파일 경로',
-    },
-  ];
+  const {
+    data: teacherUserLists,
+    isError,
+    isLoading,
+  } = useQuery(['getTeacherUserLists'], async () => {
+    const response = await instance.get('/profile/teacher');
+    return response.data.data;
+  });
+
+  if (isLoading) {
+    return <div>isLoading...</div>;
+  }
+
+  if (isError) {
+    return <h3>오류가 발생했습니다.</h3>;
+  }
 
   return (
     <Container>
-      {data.map((value, index) => (
+      {teacherUserLists.map((value: TeacherListType, index: number) => (
         <Wrapper key={index}>
           <LeftWrapper>
             <Img src={Images.defaultProfile} />
@@ -49,7 +47,7 @@ const TeacherList = () => {
 
 const Container = styled.div`
   padding-left: 30px;
-  width: 80vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -57,7 +55,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
-  padding: 15px 30px 15px 20px;
+  padding: 15px 25px 10px 15px;
   align-items: center;
 
   &:hover {
@@ -79,7 +77,7 @@ const Img = styled.img`
 const UserName = styled.div`
   margin-bottom: 5px;
   font-family: Noto Sans;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 `;
 
