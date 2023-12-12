@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';
 import { useForm } from '../components/hooks/useForm';
+import { useState } from 'react';
 
 const SearchUser = () => {
+  const [activeButton, setActiveButton] = useState<string>('');
   const { form: signForm, handleChange: signFormChange } = useForm({
     search: '',
   });
@@ -17,8 +19,13 @@ const SearchUser = () => {
     onChange(index, newValue);
   };
 
-  const showStudent = () => {}; // 학생 버튼을 누르면 학생 리스트 컴포넌트 display: block (기본 값: block)
-  const showTeacher = () => {}; // 교사 버튼을 누르면 교사 리스트 컴포넌트 display: block (기본 값: none)
+  const showStudent = () => {
+    setActiveButton('student');
+  }; // 학생 버튼을 누르면 학생 리스트 컴포넌트
+
+  const showTeacher = () => {
+    setActiveButton('teacher');
+  }; // 교사 버튼을 누르면 교사 리스트 컴포넌트
 
   return (
     <>
@@ -43,11 +50,10 @@ const SearchUser = () => {
                 />
 
                 <ButtonWrapper>
-                  <Btn onClick={showTeacher}>교사</Btn>
-                  <Btn
-                    onClick={showStudent}
-                    style={{ backgroundColor: '#393939', color: '#ffffff' }}
-                  >
+                  <Btn onClick={showTeacher} active={activeButton === 'teacher'}>
+                    교사
+                  </Btn>
+                  <Btn onClick={showStudent} active={activeButton === 'student'}>
                     학생
                   </Btn>
                 </ButtonWrapper>
@@ -121,16 +127,16 @@ const Select = styled.select`
   font-weight: 400;
 `;
 
-const Btn = styled.button`
+const Btn = styled.button<{ active: boolean }>`
   width: 52px;
   height: 100%;
   flex-shrink: 0;
   border-radius: 15px;
   border: 1px solid #393939;
-  background: #f5f5f7;
-
-  color: #393939;
+  background: ${(props) => (props.active ? '#393939' : '#ffffff')};
+  color: ${(props) => (props.active ? '#ffffff' : '#393939')};
   font-family: Noto Sans;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 `;
