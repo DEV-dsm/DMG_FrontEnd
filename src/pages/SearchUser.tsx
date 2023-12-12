@@ -1,10 +1,10 @@
 import StudentList from '../components/pages/userList/StudentList';
+import TeacherList from '../components/pages/userList/TeacherList';
 import styled from 'styled-components';
 import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';
 import { useForm } from '../components/hooks/useForm';
 import { useState } from 'react';
-import TeacherList from '../components/pages/userList/TeacherList';
 
 const SearchUser = () => {
   const [activeButton, setActiveButton] = useState<string>('student');
