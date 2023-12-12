@@ -136,6 +136,7 @@ const UserInfoWrapper = styled.div`
   width: 100%;
   align-items: center;
   border-right: 1px solid #393939;
+  overflow: auto;
   padding: 60px 70px 95px 70px;
 `;
 
