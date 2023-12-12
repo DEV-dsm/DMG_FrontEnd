@@ -6,43 +6,28 @@ import { useQuery } from 'react-query';
 import instance from '../../../utils/axios';
 
 const StudentList = () => {
-  // const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState([]);
 
-  // const { data, isError, isLoading } = useQuery(['getUserList'], async () => {
-  //   const response = await instance.get('/profile/student');
-  //   return response;
-  // });
+  const {
+    data: userLists,
+    isLoading,
+    isError,
+  } = useQuery(['getStduentUserLists'], async () => {
+    const response = await instance.get('/profile/student');
+    return response.data.data;
+  });
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isError) return <div>error!</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  // console.log(data?.data);
-
-  const data = [
-    // 임시 데이터
-    {
-      userID: 1,
-      name: '가나다',
-      number: '학번',
-      profile: '프로필사진 파일 경로',
-    },
-    {
-      userID: 2,
-      name: '이름',
-      number: '학번',
-      profile: '프로필사진 파일 경로',
-    },
-    {
-      userID: 3,
-      name: '이름',
-      number: '학번',
-      profile: '프로필사진 파일 경로',
-    },
-  ];
+  if (isError) {
+    return <div>Error...</div>;
+  }
 
   return (
     <Container>
-      {data?.map((value: any, index: number) => (
+      {userLists?.map((value: any, index: number) => (
         <Wrapper key={index}>
           <LeftWrapper>
             <Img src={Images.defaultProfile} />
