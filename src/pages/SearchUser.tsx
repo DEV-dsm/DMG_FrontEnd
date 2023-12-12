@@ -4,9 +4,10 @@ import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';
 import { useForm } from '../components/hooks/useForm';
 import { useState } from 'react';
+import TeacherList from '../components/pages/userList/TeacherList';
 
 const SearchUser = () => {
-  const [activeButton, setActiveButton] = useState<string>('');
+  const [activeButton, setActiveButton] = useState<string>('student');
   const { form: signForm, handleChange: signFormChange } = useForm({
     search: '',
   });
@@ -21,11 +22,11 @@ const SearchUser = () => {
 
   const showStudent = () => {
     setActiveButton('student');
-  }; // 학생 버튼을 누르면 학생 리스트 컴포넌트
+  };
 
   const showTeacher = () => {
     setActiveButton('teacher');
-  }; // 교사 버튼을 누르면 교사 리스트 컴포넌트
+  };
 
   return (
     <>
@@ -60,9 +61,8 @@ const SearchUser = () => {
               </InputWrapper>
             </Container>
           </HeaderWrapper>
-
-          <StudentList />
-          {/* <TeacherList /> */}
+          {activeButton === 'student' && <StudentList />}
+          {activeButton === 'teacher' && <TeacherList />}
         </UserListWrapper>
       </Wrapper>
     </>
