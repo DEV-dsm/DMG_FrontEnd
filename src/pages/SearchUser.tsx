@@ -25,14 +25,7 @@ const SearchUser = () => {
       <Wrapper>
         <UserListWrapper>
           <HeaderWrapper>
-            <div
-              style={{
-                display: 'inline-flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '10px',
-              }}
-            >
+            <Container>
               <Title>Profiles</Title>
 
               <InputWrapper>
@@ -49,7 +42,7 @@ const SearchUser = () => {
                   onChange={signFormChange}
                 />
 
-                <div style={{ display: 'flex', gap: '5px', height: '70%' }}>
+                <ButtonWrapper>
                   <Btn onClick={showTeacher}>교사</Btn>
                   <Btn
                     onClick={showStudent}
@@ -57,9 +50,9 @@ const SearchUser = () => {
                   >
                     학생
                   </Btn>
-                </div>
+                </ButtonWrapper>
               </InputWrapper>
-            </div>
+            </Container>
           </HeaderWrapper>
 
           <StudentList />
@@ -75,13 +68,27 @@ export default SearchUser;
 const Wrapper = styled.div`
   display: flex;
   width: 30vw;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid #393939;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+  height: 70%;
+`;
+
+const Container = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
 const UserListWrapper = styled.div`
   width: 30vw;
-  border-right: 1px;
-  border-style: solid;
-  border-color: #393939;
+  height: 100%;
 `;
 
 const HeaderWrapper = styled.div`
