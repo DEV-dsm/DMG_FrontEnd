@@ -4,12 +4,13 @@ import { CommonImages } from '../../../assets/common';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import instance from '../../../utils/axios';
+import { StudentListType } from '../../../models/userList';
 
 const StudentList = () => {
   const [userList, setUserList] = useState([]);
 
   const {
-    data: userLists,
+    data: studentUserLists,
     isLoading,
     isError,
   } = useQuery(['getStduentUserLists'], async () => {
@@ -27,10 +28,10 @@ const StudentList = () => {
 
   return (
     <Container>
-      {userLists?.map((value: any, index: number) => (
+      {studentUserLists?.map((value: StudentListType, index: number) => (
         <Wrapper key={index}>
           <LeftWrapper>
-            <Img src={Images.defaultProfile} />
+            <Img src={value.profile || Images.defaultProfile} />
 
             <div>
               <UserName>{value.name}</UserName>
@@ -48,7 +49,7 @@ const StudentList = () => {
 };
 
 const Container = styled.div`
-  padding-left: 30px;
+  padding-left: 15px;
   width: 100%;
   display: flex;
   flex-direction: column;
