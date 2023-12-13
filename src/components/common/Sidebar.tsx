@@ -109,7 +109,7 @@ const SideBarContainer = styled.div`
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
-  padding: 100px 30px 50px 30px;
+  padding: 70px 30px 50px 30px;
   @media screen and (max-width: 1050px) {
     span {
       display: none;
