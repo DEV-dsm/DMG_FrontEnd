@@ -46,7 +46,7 @@ const TeacherList = () => {
 };
 
 const Container = styled.div`
-  padding-left: 15px;
+  padding-left: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
