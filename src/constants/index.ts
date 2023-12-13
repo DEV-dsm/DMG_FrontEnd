@@ -63,26 +63,18 @@ export const UserInfo: IUserInfoDetailType[] = [
     name: 'Number',
     hasIcon: false,
   },
+  {
+    name: 'email',
+    id: 4,
+    placeholder: 'email@dsm.hs.kr',
+    hasIcon: true,
+  },
 ];
 
 export const UserInfoDetail: IUserInfoDetailType[] = [
   {
-    name: 'Password',
-    id: 4,
-    placeholder: 'password',
-    otherplaceholder: 'Check Password',
-    hasIcon: true,
-  },
-  {
-    name: 'email',
-    id: 5,
-    placeholder: 'email@dsm.hs.kr',
-    otherplaceholder: 'Auth Number',
-    hasIcon: true,
-  },
-  {
     name: 'Other',
-    id: 6,
+    id: 5,
     placeholder: 'Major',
     otherplaceholder: 'Github Username',
     hasIcon: false,
