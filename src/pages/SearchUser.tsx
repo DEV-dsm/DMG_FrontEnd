@@ -1,10 +1,13 @@
 import StudentList from '../components/pages/userList/StudentList';
+import TeacherList from '../components/pages/userList/TeacherList';
 import styled from 'styled-components';
 import { useDropdown } from '../components/hooks/useDropdown';
 import Input from '../components/common/Input';
 import { useForm } from '../components/hooks/useForm';
+import { useState } from 'react';
 
 const SearchUser = () => {
+  const [activeButton, setActiveButton] = useState<string>('student');
   const { form: signForm, handleChange: signFormChange } = useForm({
     search: '',
   });
@@ -17,22 +20,20 @@ const SearchUser = () => {
     onChange(index, newValue);
   };
 
-  const showStudent = () => {}; // 학생 버튼을 누르면 학생 리스트 컴포넌트 display: block (기본 값: block)
-  const showTeacher = () => {}; // 교사 버튼을 누르면 교사 리스트 컴포넌트 display: block (기본 값: none)
+  const showStudent = () => {
+    setActiveButton('student');
+  };
+
+  const showTeacher = () => {
+    setActiveButton('teacher');
+  };
 
   return (
     <>
       <Wrapper>
         <UserListWrapper>
           <HeaderWrapper>
-            <div
-              style={{
-                display: 'inline-flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '10px',
-              }}
-            >
+            <Container>
               <Title>Profiles</Title>
 
               <InputWrapper>
@@ -49,21 +50,19 @@ const SearchUser = () => {
                   onChange={signFormChange}
                 />
 
-                <div style={{ display: 'flex', gap: '5px', height: '70%' }}>
-                  <Btn onClick={showTeacher}>교사</Btn>
-                  <Btn
-                    onClick={showStudent}
-                    style={{ backgroundColor: '#393939', color: '#ffffff' }}
-                  >
+                <ButtonWrapper>
+                  <Btn onClick={showTeacher} active={activeButton === 'teacher'}>
+                    교사
+                  </Btn>
+                  <Btn onClick={showStudent} active={activeButton === 'student'}>
                     학생
                   </Btn>
-                </div>
+                </ButtonWrapper>
               </InputWrapper>
-            </div>
+            </Container>
           </HeaderWrapper>
-
-          <StudentList />
-          {/* <TeacherList /> */}
+          {activeButton === 'student' && <StudentList />}
+          {activeButton === 'teacher' && <TeacherList />}
         </UserListWrapper>
       </Wrapper>
     </>
@@ -75,13 +74,27 @@ export default SearchUser;
 const Wrapper = styled.div`
   display: flex;
   width: 30vw;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid #393939;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+  height: 70%;
+`;
+
+const Container = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
 const UserListWrapper = styled.div`
   width: 30vw;
-  border-right: 1px;
-  border-style: solid;
-  border-color: #393939;
+  height: 100%;
 `;
 
 const HeaderWrapper = styled.div`
@@ -114,16 +127,16 @@ const Select = styled.select`
   font-weight: 400;
 `;
 
-const Btn = styled.button`
+const Btn = styled.button<{ active: boolean }>`
   width: 52px;
   height: 100%;
   flex-shrink: 0;
   border-radius: 15px;
   border: 1px solid #393939;
-  background: #f5f5f7;
-
-  color: #393939;
+  background: ${(props) => (props.active ? '#393939' : '#ffffff')};
+  color: ${(props) => (props.active ? '#ffffff' : '#393939')};
   font-family: Noto Sans;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 `;

@@ -1,13 +1,12 @@
-interface ListType {
-  userId: string;
-  userName: string;
-  profile: string;
-}
-
-export interface IStudentListType extends ListType {
+type BaseUserListType = {
+  user_userId: string;
+  qb_userID: string;
   number: number;
-}
-
-export interface ITeacherListType extends ListType {
   subject: string;
-}
+  name: string;
+  profile: string;
+};
+
+export type StudentListType = Omit<BaseUserListType, 'user_userId' | 'subject'>;
+
+export type TeacherListType = Omit<BaseUserListType, 'qb_userID' | 'number'>;
