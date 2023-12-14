@@ -1,86 +1,30 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { Images } from '../../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
 import SubmitBtn from '../../common/InfoButton';
-import { IUserInfoRequestType } from '../../../models/Mypage';
-import instance from '../../../utils/axios';
+import { UserInfoRequestAtom } from '../../../atom/InfoAtom';
+import { useRecoilValue } from 'recoil';
+import useBackgroundImageUpload from '../../hooks/useBackgroundImageUpload';
+import useProfileImageUpload from '../../hooks/useProfileImageUpload';
 
 const StudentInfo = () => {
   const fileInputRef = useRef<any>(null);
   const BackGroundFileInputRef = useRef<any>(null);
+  const {
+    backGrounduploadImg,
+    backGroundpreviewImg,
+    backGroundresponseImg,
+    handleBackGroundImgChange,
+  } = useBackgroundImageUpload();
 
-  const [previewImg, setPreviewImg] = useState<any>(); // 미리보기
-  const [uploadImg, setUploadImg] = useState<File>(); // uproad
-  const [responseImg, setResponseImg] = useState<string>(); // uproad후 서버로받은 이미지
+  const { uploadImg, previewImg, responseImg, handleProfileImgChange, clearImage } =
+    useProfileImageUpload();
 
-  const [backGroundpreviewImg, setBackGroundPreviewImg] = useState<any>();
-  const [backGrounduploadImg, setBackGroundUploadImg] = useState<File>();
-  const [backGroundresponseImg, setBackGroundResponseImg] = useState<string>();
-
-  const [inputs, setInputs] = useState<IUserInfoRequestType>({
-    identify: '',
-    email: '',
-    name: '',
-    major: '',
-    github: '',
-    number: 0,
-    profile: '',
-    background: '',
-  });
+  const requestData = useRecoilValue(UserInfoRequestAtom);
 
   const onClickHandler = () => fileInputRef.current.click();
   const backGroundonClickHandler = () => BackGroundFileInputRef.current.click();
-  const clearImage = () => setPreviewImg(null);
-
-  const proFileImgChange = async (e: any) => {
-    const seletectedImage = e.target.files[0];
-
-    if (seletectedImage) {
-      setUploadImg(seletectedImage);
-
-      const reader: FileReader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setPreviewImg(reader.result);
-        }
-      };
-      reader.readAsDataURL(seletectedImage);
-      try {
-        const formData = new FormData();
-        formData.append('file', seletectedImage);
-        const response = await instance.post('/upload', formData);
-        setResponseImg(response?.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  const BackGroundImgChange = async (e: any) => {
-    const seletectedImage = e.target.files[0];
-
-    if (seletectedImage) {
-      setBackGroundUploadImg(seletectedImage);
-
-      const reader: FileReader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setBackGroundPreviewImg(reader.result);
-        }
-      };
-      reader.readAsDataURL(seletectedImage);
-      try {
-        const formData = new FormData();
-        formData.append('file', seletectedImage);
-        const response = await instance.post('/upload', formData);
-        setBackGroundResponseImg(response?.data);
-        console.log(response?.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
 
   return (
     <>
@@ -95,7 +39,7 @@ const StudentInfo = () => {
         </ImageContainer>
 
         <input
-          onChange={BackGroundImgChange}
+          onChange={(e) => handleBackGroundImgChange(e, Images, backGroundonClickHandler)}
           type="file"
           ref={BackGroundFileInputRef}
           accept="image/*"
@@ -113,7 +57,7 @@ const StudentInfo = () => {
               <ProfileChangeImg onClick={clearImage} src={Images.dustBin} />
             </ProfileSetIcons>
             <input
-              onChange={proFileImgChange}
+              onChange={(e) => handleProfileImgChange(e, Images, onClickHandler)}
               type="file"
               ref={fileInputRef}
               accept="image/*"
@@ -136,7 +80,7 @@ const UserInfoWrapper = styled.div`
   width: 100%;
   align-items: center;
   border-right: 1px solid #393939;
-  overflow: auto;
+  /* overflow: auto; */
   padding: 60px 70px 95px 70px;
 `;
 
@@ -161,8 +105,9 @@ const ImageContainer = styled.div`
 `;
 
 const BlockImg = styled.img`
-  width: 330px;
-  height: 170px;
+  max-height: 190px;
+  width: 100%;
+  height: auto;
 `;
 
 const ProfileContainer = styled.div`
