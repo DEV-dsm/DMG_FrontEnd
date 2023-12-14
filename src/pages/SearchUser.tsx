@@ -102,6 +102,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 const Title = styled.div`
   font-family: Noto Sans;
   font-size: 32px;

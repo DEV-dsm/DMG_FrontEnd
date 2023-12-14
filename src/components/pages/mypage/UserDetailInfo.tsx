@@ -6,7 +6,7 @@ const UserDetailInfo = () => {
   return (
     <>
       <ImageContainer style={{ backgroundImage: `url(${Img})` }}>
-        <ProfileImage src={Images.defaultProfile} alt="" />
+        <ProfileImage src={Images.defaultProfile} />
       </ImageContainer>
       <ProfleInfos>
         <Title>Student</Title>
@@ -81,7 +81,7 @@ const ImageContainer = styled.div`
 
 const ProfileImage = styled.img`
   position: relative;
-  top: 120px;
+  top: 95px;
   width: 33%;
 `;
 

@@ -42,7 +42,7 @@ const DetailInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 7px;
+  gap: 5px;
 `;
 
 export default UserInfoInput;
