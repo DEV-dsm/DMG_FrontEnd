@@ -41,9 +41,10 @@ export const sendEmailAtom = atom<string | null>({
   default: null,
 });
 
-export const userIdAtom = atom<string | null>({
+export const userIdAtom = atom<number>({
   key: 'userIdAtom',
-  default: null,
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
 });
 
 // Token selector

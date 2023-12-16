@@ -6,12 +6,13 @@ import { setToken } from '../../../utils/functions/TokenManager';
 import { LoginInputType } from '../../../models/auth';
 import { userLogin } from '../../../utils/api/auth';
 import { useSetRecoilState } from 'recoil';
-import { TokenAtom } from '../../../atom/authAtom';
+import { TokenAtom, userIdAtom } from '../../../atom/authAtom';
 
 export const useLogin = (inputData: LoginInputType) => {
   const location = useLocation();
   const navigate = useNavigate();
   const setAccessToken = useSetRecoilState(TokenAtom);
+  const setUserId = useSetRecoilState(userIdAtom);
   const from = location?.state?.redirectedFrom || '/mypage';
 
   return useMutation(() => userLogin(inputData), {
@@ -19,6 +20,7 @@ export const useLogin = (inputData: LoginInputType) => {
       toast.success(`로그인에 성공했습니다.`, { duration: 1500 });
       setToken(data.data.access, data.data.refresh);
       setAccessToken(data.data.access);
+      setUserId(data.data.userID);
       navigate(from);
     },
     onError: (error: AxiosError) => {

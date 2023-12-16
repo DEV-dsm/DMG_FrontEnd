@@ -22,6 +22,21 @@ export interface IQuestionInputDataType {
   content: string;
 }
 
+export interface IGetIndividualUserListDataType {
+  userID: number;
+  identify: string;
+  name: string;
+  password: string;
+  email: string;
+  profile: string;
+  background: string;
+  isStudent: true;
+  major: string;
+  github: string;
+  number: string;
+  data: any;
+}
+
 export type LoginInputType = Pick<AuthBaseType, 'identify' | 'password'>;
 
 export type findPWInputType = Pick<AuthBaseType, 'email' | 'authnumber'>;

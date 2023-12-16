@@ -1,22 +1,24 @@
 import styled from 'styled-components';
-import { Images } from '../../../assets/mypage';
-import Img from '../../../assets/mypage/Background.svg';
+import { GetIndividualUserList } from '../../../utils/api/auth/page';
 
 const UserDetailInfo = () => {
+  const { data: individualUserList } = GetIndividualUserList();
   return (
     <>
-      <ImageContainer style={{ backgroundImage: `url(${Img})` }}>
-        <ProfileImage src={Images.defaultProfile} alt="" />
+      <ImageContainer style={{ backgroundImage: `url(${individualUserList?.background})` }}>
+        <ProfileImage src={individualUserList?.profile} />
       </ImageContainer>
       <ProfleInfos>
-        <Title>Student</Title>
+        <Title>{individualUserList?.isStudent && <>Student</>}</Title>
         <Group>
-          <p>이름이름</p>
-          <div>onLine</div>
+          <p>{individualUserList?.name}</p>
+          <p>onLine</p>
         </Group>
-        <Email>juwon2298@dsm.hs.kr</Email>
+        <Email>{individualUserList?.email}</Email>
         <Infos>
-          Front-end <Border /> 2110 <Border /> 23yUJeong
+          {individualUserList?.major} <Border />
+          {individualUserList?.number} <Border />
+          {individualUserList?.github}
         </Infos>
       </ProfleInfos>
     </>
@@ -81,7 +83,7 @@ const ImageContainer = styled.div`
 
 const ProfileImage = styled.img`
   position: relative;
-  top: 120px;
+  top: 95px;
   width: 33%;
 `;
 
