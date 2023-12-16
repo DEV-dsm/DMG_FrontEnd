@@ -11,15 +11,9 @@ import useProfileImageUpload from '../../hooks/useProfileImageUpload';
 const StudentInfo = () => {
   const fileInputRef = useRef<any>(null);
   const BackGroundFileInputRef = useRef<any>(null);
-  const {
-    backGrounduploadImg,
-    backGroundpreviewImg,
-    backGroundresponseImg,
-    handleBackGroundImgChange,
-  } = useBackgroundImageUpload();
 
-  const { uploadImg, previewImg, responseImg, handleProfileImgChange, clearImage } =
-    useProfileImageUpload();
+  const { backGroundpreviewImg, handleBackGroundImgChange } = useBackgroundImageUpload();
+  const { previewImg, handleProfileImgChange, clearImage } = useProfileImageUpload();
 
   const requestData = useRecoilValue(UserInfoRequestAtom);
 
