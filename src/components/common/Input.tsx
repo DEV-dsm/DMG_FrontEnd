@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 
 interface IPropsInputType {
   type: string;
+  id?: string;
   name?: string;
   value?: string;
   placeholder?: string;

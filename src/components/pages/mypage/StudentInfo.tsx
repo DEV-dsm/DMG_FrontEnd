@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Images } from '../../../assets/mypage';
 import UserInfoInput from '../mypage/UserInfoInput';
@@ -7,8 +7,11 @@ import { UserInfoRequestAtom } from '../../../atom/InfoAtom';
 import { useRecoilValue } from 'recoil';
 import useBackgroundImageUpload from '../../hooks/useBackgroundImageUpload';
 import useProfileImageUpload from '../../hooks/useProfileImageUpload';
+import AuthButton from '../../common/AuthButton';
+import ChangePwModal from '../../auth/ChangePwModal';
 
 const StudentInfo = () => {
+  const [isActive, setIsActive] = useState<boolean>(false);
   const fileInputRef = useRef<any>(null);
   const BackGroundFileInputRef = useRef<any>(null);
 
@@ -60,6 +63,13 @@ const StudentInfo = () => {
           </div>
           {/* 프로필 변경  */}
           <UserInfoInput />
+          <AuthButton
+            text="비밀번호 수정하기"
+            color="#E0E0E0"
+            width="65%"
+            onClick={() => setIsActive(true)}
+          />
+          {isActive && <ChangePwModal setIsActive={setIsActive} />}
           <SubmitBtn text="submit" width="50%" />
         </ProfileContainer>
       </UserInfoWrapper>
@@ -75,13 +85,13 @@ const UserInfoWrapper = styled.div`
   align-items: center;
   border-right: 1px solid #393939;
   /* overflow: auto; */
-  padding: 60px 70px 95px 70px;
+  padding: 60px 70px 75px 70px;
 `;
 
 const ProfileSetIcons = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 7px;
+  gap: 5px;
   padding-top: 35px;
 `;
 
@@ -111,7 +121,7 @@ const ProfileContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 50px;
+  gap: 40px;
 `;
 
 const ProfileImg = styled.img`
