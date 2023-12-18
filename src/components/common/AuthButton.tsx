@@ -4,15 +4,17 @@ interface AuthButtonProps {
   text: string;
   onClick?: any;
   width?: string;
+  color?: string;
 }
 
 interface ButtonProps {
   width?: string;
+  color?: string;
 }
 
-const AuthButton = ({ text, onClick, width }: AuthButtonProps) => {
+const AuthButton = ({ text, onClick, width, color }: AuthButtonProps) => {
   return (
-    <Button onClick={onClick} width={width}>
+    <Button onClick={onClick} width={width} color={color}>
       {text}
     </Button>
   );
@@ -22,7 +24,7 @@ const Button = styled.button<ButtonProps>`
   width: ${(props) => props.width || '100%'};
   height: 40px;
   border-radius: 32px;
-  background: #ffffff;
+  background: ${(props) => props.color || '#ffffff'};
   outline: none;
   border: none;
   display: flex;
