@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import CheckImgs from '../../assets/auth/clickCheck.png';
 import { useRecoilValue } from 'recoil';
 import { ChangePWInputsAtom } from '../../atom/authAtom';
-import { useChangePW } from '../../components/hooks/apis/useChangePW';
+import { useFindPW } from '../../components/hooks/apis/useFindPW';
 import toast from 'react-hot-toast';
 
 const ChangePWPage = () => {
   const navigate = useNavigate();
   const inputData = useRecoilValue(ChangePWInputsAtom);
-  const { mutate } = useChangePW(inputData);
+  const { mutate } = useFindPW(inputData);
 
   const ChangePWClick = () => {
     if (inputData.password !== inputData.passwordCheck) {
