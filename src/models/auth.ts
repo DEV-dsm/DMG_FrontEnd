@@ -17,6 +17,11 @@ export interface IChangePWInputType {
   passwordCheck: string;
 }
 
+export interface IChangePwInputModalType {
+  password: string;
+  newPassword: string;
+}
+
 export interface IQuestionInputDataType {
   title: string;
   content: string;
