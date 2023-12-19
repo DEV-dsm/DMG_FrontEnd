@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { GetIndividualUserList } from '../../../utils/api/auth/page';
+import { GetIndividualUser } from '../../../utils/api/auth/page';
 
 const UserDetailInfo = () => {
-  const { data: individualUserList } = GetIndividualUserList();
+  const { data: individualUserList } = GetIndividualUser();
   return (
     <>
       <ImageContainer style={{ backgroundImage: `url(${individualUserList?.background})` }}>
@@ -16,9 +16,18 @@ const UserDetailInfo = () => {
         </Group>
         <Email>{individualUserList?.email}</Email>
         <Infos>
-          {individualUserList?.major} <Border />
-          {individualUserList?.number} <Border />
-          {individualUserList?.github}
+          <div>
+            <p>{individualUserList?.major || '-'}</p>
+            <DetailInfos>Major</DetailInfos>
+          </div>
+          <Border />
+          <div>
+            <p>{individualUserList?.number || '-'}</p> <DetailInfos>Number</DetailInfos>
+          </div>
+          <Border />
+          <div>
+            <p>{individualUserList?.github || '-'}</p> <DetailInfos>Github</DetailInfos>
+          </div>
         </Infos>
       </ProfleInfos>
     </>
@@ -65,7 +74,7 @@ const Border = styled.span`
   width: 1px;
   height: 20px;
   color: black;
-  border: 1px solid black;
+  border: 0.5px solid black;
 `;
 
 const FlexCenter = `
@@ -97,7 +106,23 @@ const ProfleInfos = styled.div`
 
 const Infos = styled.span`
   ${FlexCenter}
+  ${baseTextStyle}
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
   gap: 20px;
+`;
+
+const DetailInfos = styled.p`
+  ${FlexCenter}
+  flex-direction: column;
+  color: #818181;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export default UserDetailInfo;
