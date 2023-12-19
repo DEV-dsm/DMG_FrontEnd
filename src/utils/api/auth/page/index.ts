@@ -8,7 +8,7 @@ export const userQuestion = async (inputsData: IQuestionInputDataType) => {
   return await instance.post('/user/question', inputsData);
 };
 
-export const GetIndividualUserList = () => {
+export const GetIndividualUser = () => {
   const userID = useRecoilValue(userIdAtom);
   const response = async () => {
     const { data } = await instance.get<IGetIndividualUserListDataType>(
