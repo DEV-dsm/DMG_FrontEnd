@@ -83,10 +83,10 @@ const Container = styled.div`
 
 const Title = styled.p`
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-family: Inter;
   font-style: normal;
   font-weight: 700;
   color: #000000;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;

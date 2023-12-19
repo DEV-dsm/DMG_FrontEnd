@@ -31,8 +31,8 @@ const Button = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   font-family: Noto Sans;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   gap: 10px;
   padding: 14px 32px;
 `;
