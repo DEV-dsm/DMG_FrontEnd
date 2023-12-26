@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import SideBar from '../components/common/Sidebar';
 import Inquire from '../pages/Inquire';
-import SearchUser from '../pages/SearchUser';
+import SearchUser from '../pages/SearchUserPage';
 import Messages from '../pages/Messages';
 import MyPage from '../pages/Mypage';
 import LoginPage from '../pages/auth/LoginPage';
