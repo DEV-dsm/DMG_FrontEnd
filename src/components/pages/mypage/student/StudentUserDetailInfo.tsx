@@ -1,18 +1,18 @@
 import styled from 'styled-components';
-import { GetIndividualUser } from '../../../utils/api/auth/page';
+import { GetIndividualUserStudnet } from '../../../../utils/api/auth/page';
 
-const UserDetailInfo = () => {
-  const { data: individualUserList } = GetIndividualUser();
+const StudentUserDetailInfo = () => {
+  const { data: individualUserList } = GetIndividualUserStudnet();
   return (
     <>
       <ImageContainer style={{ backgroundImage: `url(${individualUserList?.background})` }}>
         <ProfileImage src={individualUserList?.profile} />
       </ImageContainer>
       <ProfleInfos>
-        <Title>{individualUserList?.isStudent && <>Student</>}</Title>
+        <Title>{individualUserList?.isStudent ? <>Student</> : null}</Title>
         <Group>
           <p>{individualUserList?.name}</p>
-          <p>onLine</p>
+          <div>onLine</div>
         </Group>
         <Email>{individualUserList?.email}</Email>
         <Infos>
@@ -57,7 +57,7 @@ const Group = styled.div`
     ${baseTextStyle}
     color: #000;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 600;
   }
 `;
@@ -94,7 +94,8 @@ const ProfileImage = styled.img`
   position: relative;
   top: 95px;
   border-radius: 50%;
-  width: 33%;
+  width: 280px;
+  height: 280px;
 `;
 
 const ProfleInfos = styled.div`
@@ -102,6 +103,7 @@ const ProfleInfos = styled.div`
   flex-direction: column;
   gap: 30px;
   margin-top: 100px;
+  padding-bottom: 120px;
 `;
 
 const Infos = styled.span`
@@ -125,4 +127,4 @@ const DetailInfos = styled.p`
   line-height: normal;
 `;
 
-export default UserDetailInfo;
+export default StudentUserDetailInfo;
