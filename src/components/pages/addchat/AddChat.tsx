@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Input from '../../common/Input';
 import { useDropdown } from '../../hooks/useDropdown';
 import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const AddChat = () => {
   const [activeButton, setActiveButton] = useState<string>('student');
@@ -15,7 +15,7 @@ const AddChat = () => {
 
   const { form, onChange } = useDropdown(['학번', '이름']);
 
-  const handleDropdownChange = (index: number, event: any) => {
+  const handleDropdownChange = (index: number, event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value;
     onChange(index, newValue);
   };
@@ -61,8 +61,8 @@ const AddChat = () => {
               </InputWrapper>
             </Container>
           </HeaderWrapper>
-          {activeButton === 'student' && <StudentList />}
-          {activeButton === 'teacher' && <TeacherList />}
+          {activeButton === 'student' ? <StudentList /> : null}
+          {activeButton === 'teacher' ? <TeacherList /> : null}
         </UserListWrapper>
       </Wrapper>
     </>

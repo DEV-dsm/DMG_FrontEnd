@@ -41,12 +41,12 @@ const ChangePWInput = () => {
             onChange={(e) => onChange(e)}
             required
           />
-          {item.name === 'passwordCheck' && (
+          {item.name === 'passwordCheck' ? (
             <Eye
               onClick={() => setIsCheckShowPassword((pre) => !pre)}
               isShowPassword={isCheckShowPassword}
             />
-          )}
+          ) : null}
         </div>
       ))}
     </Container>
