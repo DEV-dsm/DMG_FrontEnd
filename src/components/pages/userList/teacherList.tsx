@@ -1,28 +1,11 @@
 import { styled } from 'styled-components';
 import { Images } from '../../../assets/mypage/index';
 import { CommonImages } from '../../../assets/common';
-import { useQuery } from 'react-query';
-import instance from '../../../utils/axios';
+import { GetTeacherList } from '../../../utils/api/auth/page';
 import { TeacherListType } from '../../../models/userList';
 
 const TeacherList = () => {
-  const {
-    data: teacherUserLists,
-    isError,
-    isLoading,
-  } = useQuery(['getTeacherUserLists'], async () => {
-    const response = await instance.get('/profile/teacher');
-    return response.data.data;
-  });
-
-  if (isLoading) {
-    return <div>isLoading...</div>;
-  }
-
-  if (isError) {
-    return <h3>오류가 발생했습니다.</h3>;
-  }
-
+  const { data: teacherUserLists } = GetTeacherList();
   return (
     <Container>
       {teacherUserLists.map((value: TeacherListType, index: number) => (
