@@ -10,6 +10,7 @@ export interface IUserInfoDetailType {
   id: number;
   placeholder?: string;
   otherplaceholder?: string;
+  theotherplaceholder?: string;
   hasIcon: boolean;
 }
 
