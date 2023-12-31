@@ -7,6 +7,12 @@ export interface BaseUserListType {
   profile: string;
 };
 
+export interface IsearchDataProps {
+  standard: 'name' | 'number';
+  keyword: string;
+  buttonActive: 'student' | 'teacher';
+}
+
 export type StudentListType = Omit<BaseUserListType, 'user_userId' | 'subject'>;
 
 export type TeacherListType = Omit<BaseUserListType, 'qb_userID' | 'number'>;

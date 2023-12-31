@@ -1,37 +1,37 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Images } from '../../../assets/mypage';
-import UserInfoInput from '../mypage/UserInfoInput';
-import SubmitBtn from '../../common/InfoButton';
-import { UserInfoRequestAtom } from '../../../atom/InfoAtom';
+import { Images } from '../../../../assets/mypage';
+import SubmitBtn from '../../../common/InfoButton';
+import { UserInfoRequestAtom } from '../../../../atom/InfoAtom';
 import { useRecoilValue } from 'recoil';
-import useBackgroundImageUpload from '../../hooks/useBackgroundImageUpload';
-import useProfileImageUpload from '../../hooks/useProfileImageUpload';
-import AuthButton from '../../common/AuthButton';
-import ChangePwModal from '../../auth/ChangePwModal';
+import useBackgroundImageUpload from '../../../hooks/useBackgroundImageUpload';
+import useProfileImageUpload from '../../../hooks/useProfileImageUpload';
+import AuthButton from '../../../common/AuthButton';
+import ChangePwModal from '../../../auth/ChangePwModal';
+import TeacherInfoList from './TeacherUserInfo';
 
-const StudentInfo = () => {
+const TeacherInfo = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const fileInputRef = useRef<any>(null);
-  const BackGroundFileInputRef = useRef<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const BackGroundFileInputRef = useRef<HTMLInputElement>(null);
 
   const { backGroundpreviewImg, handleBackGroundImgChange } = useBackgroundImageUpload();
   const { previewImg, handleProfileImgChange, clearImage } = useProfileImageUpload();
 
   const requestData = useRecoilValue(UserInfoRequestAtom);
 
-  const onClickHandler = () => fileInputRef.current.click();
-  const backGroundonClickHandler = () => BackGroundFileInputRef.current.click();
+  const onClickHandler = () => fileInputRef.current?.click();
+  const backGroundonClickHandler = () => BackGroundFileInputRef.current?.click();
 
   return (
     <>
       <UserInfoWrapper>
         {/* 배경 이미지 변경 */}
         <ImageContainer>
-          {backGroundpreviewImg && (
+          {backGroundpreviewImg ? (
             <BlockImg onClick={backGroundonClickHandler} src={backGroundpreviewImg} />
-          )}
-          {!backGroundpreviewImg && <BlockImg src={Images.Background} />}
+          ) : null}
+          {!backGroundpreviewImg ? <BlockImg src={Images.Background} /> : null}
           <FileChangeImg onClick={backGroundonClickHandler} src={Images.whitePencil} />
         </ImageContainer>
 
@@ -42,12 +42,13 @@ const StudentInfo = () => {
           accept="image/*"
           style={{ display: 'none' }}
         />
+
         {/* 배경 이미지 변경 */}
         {/* 프로필 변경  */}
         <ProfileContainer>
           <div>
-            {previewImg && <ProfileImg onClick={onClickHandler} src={previewImg} />}
-            {!previewImg && <ProfileImg src={Images.defaultProfile} />}
+            {previewImg ? <ProfileImg onClick={onClickHandler} src={previewImg} /> : null}
+            {!previewImg ? <ProfileImg src={Images.defaultProfile} /> : null}
             <ProfileSetIcons>
               <ProfileChangeImg onClick={onClickHandler} src={Images.BackblackPencil} />
               <ProfileChangeImg onClick={clearImage} src={Images.dustBin} />
@@ -61,14 +62,14 @@ const StudentInfo = () => {
             />
           </div>
           {/* 프로필 변경  */}
-          <UserInfoInput />
+          <TeacherInfoList />
           <AuthButton
             text="비밀번호 수정하기"
             color="#E0E0E0"
             width="65%"
             onClick={() => setIsActive(true)}
           />
-          {isActive && <ChangePwModal setIsActive={setIsActive} />}
+          {isActive ? <ChangePwModal setIsActive={setIsActive} /> : null}
           <SubmitBtn text="submit" width="50%" />
         </ProfileContainer>
       </UserInfoWrapper>
@@ -138,4 +139,4 @@ const ProfileChangeImg = styled.img`
   width: 25px;
 `;
 
-export default StudentInfo;
+export default TeacherInfo;

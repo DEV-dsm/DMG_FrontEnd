@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Message from './Message';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Header } from '../components/pages/chatting/Header';
+import { Header } from '../components/pages/chatting/header';
 import { ChatBodyArea } from '../components/pages/chatting/ChatBodyArea';
-import { InputBlock } from '../components/pages/chatting/InputBlock';
+import { InputBlock } from '../components/pages/chatting/inputBlock';
 import { useGetChatRoomInfo } from '../utils/api/chat';
 import { InfoBody } from '../components/pages/chatting/InfoBody';
-import { ModifyBody } from '../components/pages/chatting/ModifyBody';
 
 interface propsType {
   is?: boolean;

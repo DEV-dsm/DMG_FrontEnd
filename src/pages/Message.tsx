@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { useForm } from '../components/hooks/useForm';
 import { CommonImages } from '../assets/common';
-import Input from '../components/pages/message/Input';
+import Input from '../components/pages/message/input';
 import { useGetChatRoomList } from '../utils/api/chat';
-import { MessageRow } from '../components/pages/message/MessageRow';
+import { MessageRow } from '../components/pages/message/MesssageRow';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 interface propsType {
   display?: boolean | undefined;

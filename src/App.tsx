@@ -8,8 +8,8 @@ import { RecoilRoot } from 'recoil';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 0,
-      staleTime: 1000,
+      retry: false,
+      staleTime: 30000,
       refetchInterval: 0,
       refetchOnWindowFocus: false,
     },

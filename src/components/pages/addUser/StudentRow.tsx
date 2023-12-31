@@ -24,8 +24,11 @@ export const StudentRow = ({ data, checkBoxOnClick }: propsType) => {
       <CheckBox
         check={check}
         onClick={() => {
-          if (!check) setCheck(true);
-          else setCheck(false);
+          if (!check) {
+            setCheck(true);
+          } else {
+            setCheck(false);
+          }
           checkBoxOnClick && checkBoxOnClick(data.qb_userID);
         }}
       />

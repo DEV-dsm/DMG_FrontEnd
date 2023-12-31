@@ -1,5 +1,5 @@
 import React from 'react';
-import AddChat from '../components/pages/addchat/AddChat';
+import AddChat from '../components/pages/addchat/addChat';
 
 const AddChatPage = () => {
   return <AddChat />;

@@ -1,31 +1,34 @@
 import StudentList from '../userList/StudentList';
-import TeacherList from '../userList/TeacherList';
+import TeacherList from '../userList/teacherList';
 import styled from 'styled-components';
 import { useDropdown } from '../../hooks/useDropdown';
 import Input from '../../common/Input';
-import { useForm } from '../../hooks/useForm';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { SearchUsers } from '../../../utils/api/auth/page';
+import { useMutation } from 'react-query';
 
 const SearchUser = () => {
   const [activeButton, setActiveButton] = useState<string>('student');
-  const { form: signForm, handleChange: signFormChange } = useForm({
-    search: '',
-  });
-  const { search } = signForm;
+  const [userKeyword, setSUserKeyword] = useState<string>('');
+  const [userStandard, setUserStandard] = useState<'name' | 'number'>('name');
+  const [userActive, setUserActive] = useState<'student' | 'teacher'>('student');
 
   const { form, onChange } = useDropdown(['학번', '이름']);
+  const { mutate } = SearchUsers(userStandard, userKeyword, userActive);
 
-  const handleDropdownChange = (index: number, event: any) => {
+  const handleDropdownChange = (index: number, event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value;
     onChange(index, newValue);
   };
 
-  const showStudent = () => {
-    setActiveButton('student');
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      mutate();
+    }
   };
 
-  const showTeacher = () => {
-    setActiveButton('teacher');
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    handleDropdownChange(0, e);
   };
 
   return (
@@ -37,7 +40,7 @@ const SearchUser = () => {
               <Title>Profiles</Title>
 
               <InputWrapper>
-                <Select value={form[0]} onChange={(e) => handleDropdownChange(0, e)}>
+                <Select value={form[0]} onChange={handleChange}>
                   <option value="학번">학번</option>
                   <option value="이름">이름</option>
                 </Select>
@@ -45,24 +48,31 @@ const SearchUser = () => {
                 <Input
                   type="text"
                   name="search"
-                  value={search}
+                  value={userKeyword}
                   placeholder="Search"
-                  onChange={signFormChange}
+                  onChange={(e) => setSUserKeyword(e.target.value)}
+                  onKeyDown={onKeyDown}
                 />
 
                 <ButtonWrapper>
-                  <Btn onClick={showTeacher} active={activeButton === 'teacher'}>
+                  <Btn
+                    onClick={() => setActiveButton('teacher')}
+                    active={activeButton === 'teacher'}
+                  >
                     교사
                   </Btn>
-                  <Btn onClick={showStudent} active={activeButton === 'student'}>
+                  <Btn
+                    onClick={() => setActiveButton('student')}
+                    active={activeButton === 'student'}
+                  >
                     학생
                   </Btn>
                 </ButtonWrapper>
               </InputWrapper>
             </Container>
           </HeaderWrapper>
-          {activeButton === 'student' && <StudentList />}
-          {activeButton === 'teacher' && <TeacherList />}
+          {activeButton === 'student' ? <StudentList /> : null}
+          {activeButton === 'teacher' ? <TeacherList /> : null}
         </UserListWrapper>
       </Wrapper>
     </>

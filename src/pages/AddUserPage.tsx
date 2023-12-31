@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { styled } from 'styled-components';
 import Input from '../components/common/Input';
@@ -6,7 +6,6 @@ import { useDropdown } from '../components/hooks/useDropdown';
 import { useForm } from '../components/hooks/useForm';
 import instance from '../utils/axios';
 import ChattingPage from './ChattingPage';
-import SearchUserPage from './SearchUserPage';
 import { StudentListType, TeacherListType } from '../models/userList';
 import { StudentRow } from '../components/pages/addUser/StudentRow';
 import { TeacherRow } from '../components/pages/addUser/TeacherRow';
@@ -27,19 +26,12 @@ export default function AddUserPage() {
 
   const { groupID } = useParams<{ groupID: string }>();
 
-  const {
-    data: studentListData,
-    isLoading: studentListLoading,
-    isError: studentListError,
-  } = useQuery(['getStduentUserLists'], async () => {
+  const { data: studentListData } = useQuery(['getStduentUserLists'], async () => {
     const response = await instance.get('/profile/student');
     return response.data.data;
   });
-  const {
-    data: teacherListData,
-    isLoading: teacherListLoading,
-    isError: teacherListError,
-  } = useQuery(['getTeacherUserLists'], async () => {
+
+  const { data: teacherListData } = useQuery(['getTeacherUserLists'], async () => {
     const response = await instance.get('/profile/teacher');
     return response.data.data;
   });

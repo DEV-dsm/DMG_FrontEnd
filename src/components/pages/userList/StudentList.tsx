@@ -2,49 +2,52 @@ import styled from 'styled-components';
 import { Images } from '../../../assets/mypage/index';
 import { CommonImages } from '../../../assets/common';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
 import instance from '../../../utils/axios';
 import { StudentListType } from '../../../models/userList';
+import { GetStudentList } from '../../../utils/api/auth/page';
 
 const StudentList = () => {
-  const [userList, setUserList] = useState([]);
+  const [clickedIndex, setClickedIndex] = useState<number>(-1);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const {
-    data: studentUserLists,
-    isLoading,
-    isError,
-  } = useQuery(['getStduentUserLists'], async () => {
-    const response = await instance.get('/profile/student');
-    return response.data.data;
-  });
+  const handleItemClick = async (index: number) => {
+    setClickedIndex(index === clickedIndex ? -1 : index);
+    const selectedUserId = studentUserLists[index]?.qb_userID;
+    try {
+      const userID = studentUserLists.qb_userID;
+      const response = await instance.get(`/profile/student/${userID}`);
+      setSelectedUser(response.data?.data);
+    } catch (e) {
+      console.log(e);
+      setSelectedUser(null);
+    }
+  };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error...</div>;
-  }
+  const { data: studentUserLists } = GetStudentList();
 
   return (
-    <Container>
-      {studentUserLists?.map((value: StudentListType, index: number) => (
-        <Wrapper key={index}>
-          <LeftWrapper>
-            <Img src={value.profile || Images.defaultProfile} />
-
-            <div>
-              <UserName>{value.name}</UserName>
-              <Number>{value.number}</Number>
-            </div>
-          </LeftWrapper>
-
-          <Btn>
-            <Img src={CommonImages.logo1} style={{ width: '40px' }} />
-          </Btn>
-        </Wrapper>
-      ))}
-    </Container>
+    <>
+      <Container>
+        {studentUserLists?.map((value: StudentListType, index: number) => (
+          <Wrapper
+            key={index}
+            onClick={() => handleItemClick(index)}
+            isActive={index === clickedIndex}
+          >
+            <LeftWrapper>
+              <Img src={value.profile ?? Images.defaultProfile} />
+              <div>
+                <UserName>{value.name}</UserName>
+                <Number>{value.number}</Number>
+              </div>
+            </LeftWrapper>
+            <Btn>
+              <Img src={CommonImages.logo1} style={{ width: '40px' }} />
+            </Btn>
+          </Wrapper>
+        ))}
+      </Container>
+    </>
   );
 };
 
@@ -55,7 +58,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isActive: boolean }>`
   display: inline-flex;
   justify-content: space-between;
   padding: 15px 25px 10px 15px;
@@ -65,6 +68,12 @@ const Wrapper = styled.div`
     border-radius: 20px 0px 0px 20px;
     background: #ececef;
   }
+  ${(props) =>
+    props.isActive &&
+    `
+    border-radius: 20px 0px 0px 20px;
+    background: #ececef;
+  `}
 `;
 
 const LeftWrapper = styled.div`
@@ -93,6 +102,11 @@ const Number = styled.div`
 
 const Btn = styled.button`
   background-color: transparent;
+`;
+
+const DetailInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default StudentList;

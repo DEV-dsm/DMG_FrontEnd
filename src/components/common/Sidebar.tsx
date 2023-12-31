@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { toast } from 'react-hot-toast';
+import { useQueryClient } from 'react-query';
 
 import { menus, Logout } from '../../constants';
 import { IMenuType } from '../../models/Mypage';
@@ -12,6 +13,7 @@ import { removeToken } from '../../utils/functions/TokenManager';
 const SideBar = () => {
   const navigate = useNavigate();
   const setInput = useSetRecoilState(loginInputsAtom);
+  const queryClient = useQueryClient();
 
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
@@ -35,6 +37,7 @@ const SideBar = () => {
       password: '',
     });
     toast.success(`로그아웃 되었습니다.`, { duration: 1500 });
+    queryClient.clear();
   };
 
   return (
@@ -109,7 +112,7 @@ const SideBarContainer = styled.div`
   align-items: center;
   border-right: 1px solid #393939;
   justify-content: space-between;
-  padding: 70px 30px 50px 30px;
+  padding: 60px 30px 50px 30px;
   @media screen and (max-width: 1050px) {
     span {
       display: none;

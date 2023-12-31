@@ -1,32 +1,43 @@
 import styled from 'styled-components';
-import { GetIndividualUser } from '../../../utils/api/auth/page';
+import { GetIndividualUserTeacher } from '../../../../utils/api/auth/page';
+import { Images } from '../../../../assets/mypage';
 
-const UserDetailInfo = () => {
-  const { data: individualUserList } = GetIndividualUser();
+const TeacherUserDetailInfo = () => {
+  const { data: individualUserList } = GetIndividualUserTeacher();
   return (
     <>
-      <ImageContainer style={{ backgroundImage: `url(${individualUserList?.background})` }}>
-        <ProfileImage src={individualUserList?.profile} />
+      <ImageContainer
+        style={{
+          backgroundImage: `url(${individualUserList?.background || `${Images.Background}`})`,
+        }}
+      >
+        <ProfileImage
+          src={
+            individualUserList?.profile !== '기본 프로필 사진 링크'
+              ? individualUserList?.profile
+              : Images.defaultProfile
+          }
+        />
       </ImageContainer>
       <ProfleInfos>
-        <Title>{individualUserList?.isStudent && <>Student</>}</Title>
+        <Title>{individualUserList?.isStudent ? <p>Student</p> : <p>Teacher</p>}</Title>
         <Group>
           <p>{individualUserList?.name}</p>
-          <p>onLine</p>
+          <div>onLine</div>
         </Group>
         <Email>{individualUserList?.email}</Email>
         <Infos>
           <div>
-            <p>{individualUserList?.major || '-'}</p>
-            <DetailInfos>Major</DetailInfos>
+            <p>{individualUserList?.subject || '-'}</p>
+            <DetailInfos>Subject</DetailInfos>
           </div>
           <Border />
           <div>
-            <p>{individualUserList?.number || '-'}</p> <DetailInfos>Number</DetailInfos>
+            <p>{individualUserList?.location || '-'}</p> <DetailInfos>Location</DetailInfos>
           </div>
           <Border />
           <div>
-            <p>{individualUserList?.github || '-'}</p> <DetailInfos>Github</DetailInfos>
+            <p>{individualUserList?.duty || '-'}</p> <DetailInfos>Duty</DetailInfos>
           </div>
         </Infos>
       </ProfleInfos>
@@ -57,7 +68,7 @@ const Group = styled.div`
     ${baseTextStyle}
     color: #000;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 600;
   }
 `;
@@ -94,7 +105,8 @@ const ProfileImage = styled.img`
   position: relative;
   top: 95px;
   border-radius: 50%;
-  width: 33%;
+  width: 280px;
+  height: 280px;
 `;
 
 const ProfleInfos = styled.div`
@@ -102,6 +114,7 @@ const ProfleInfos = styled.div`
   flex-direction: column;
   gap: 30px;
   margin-top: 100px;
+  padding-bottom: 120px;
 `;
 
 const Infos = styled.span`
@@ -125,4 +138,4 @@ const DetailInfos = styled.p`
   line-height: normal;
 `;
 
-export default UserDetailInfo;
+export default TeacherUserDetailInfo;

@@ -1,15 +1,17 @@
 import { styled } from 'styled-components';
-import StudentInfo from '../components/pages/mypage/StudentInfo';
-import UserDetailInfo from '../components/pages/mypage/UserDetailInfo';
+import StudentInfo from '../components/pages/mypage/student/StudentInfo';
+import TeacherInfo from '../components/pages/mypage/teacher/TeacherInfo';
+import StudentUserDetailInfo from '../components/pages/mypage/student/StudentUserDetailInfo';
+import { GetIndividualUserStudnet } from '../utils/api/auth/page';
+import TeacherUserDetailInfo from '../components/pages/mypage/teacher/TeacherUserDetailInfo';
 
 const MyPage = () => {
+  const { data } = GetIndividualUserStudnet();
   return (
     <Wrapper>
-      <UserInfoWrapper>
-        <StudentInfo />
-      </UserInfoWrapper>
+      <UserInfoWrapper>{data?.isStudent ? <StudentInfo /> : <TeacherInfo />}</UserInfoWrapper>
       <UserContainer>
-        <UserDetailInfo />
+        {data?.isStudent ? <StudentUserDetailInfo /> : <TeacherUserDetailInfo />}
       </UserContainer>
     </Wrapper>
   );

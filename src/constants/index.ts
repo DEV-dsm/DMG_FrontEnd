@@ -71,6 +71,38 @@ export const UserInfo: IUserInfoDetailType[] = [
   },
 ];
 
+export const TeacherInfo: IUserInfoDetailType[] = [
+  {
+    name: 'Identify',
+    id: 1,
+    placeholder: 'Identity',
+    hasIcon: false,
+  },
+  {
+    placeholder: 'Name',
+    id: 2,
+    name: 'Name',
+    hasIcon: false,
+  },
+  {
+    name: 'email',
+    id: 3,
+    placeholder: 'email@dsm.hs.kr',
+    hasIcon: false,
+  },
+];
+
+export const TeacherInfoDetail: IUserInfoDetailType[] = [
+  {
+    name: 'Other',
+    id: 5,
+    placeholder: 'Location',
+    otherplaceholder: 'Subject',
+    theotherplaceholder: 'Duty',
+    hasIcon: false,
+  },
+];
+
 export const UserInfoDetail: IUserInfoDetailType[] = [
   {
     name: 'Other',

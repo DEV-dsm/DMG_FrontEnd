@@ -108,8 +108,6 @@ export const useOutChatRoom = (groupID: string) => {
  * @returns 성공 시
  */
 export const useChangeChatRoomInfo = (groupID: string, groupName: string, groupProfile: string) => {
-  const navigate = useNavigate();
-
   return useMutation(
     async () =>
       instance.patch(`${path}/info`, {

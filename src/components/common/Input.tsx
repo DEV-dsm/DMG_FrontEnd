@@ -8,6 +8,8 @@ interface IPropsInputType {
   value?: string;
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  onKeyDown?: any;
 }
 
 const Input = ({ ...props }: IPropsInputType) => {
