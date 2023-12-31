@@ -32,7 +32,6 @@ const MainRouter = () => {
         <Route path="/message/:groupID/addUser" element={<AddUserPage />} />
         <Route path="/addChat" element={<AddChat />} />
       </Route>
-      {/* </Route> */}
     </Routes>
   );
 };

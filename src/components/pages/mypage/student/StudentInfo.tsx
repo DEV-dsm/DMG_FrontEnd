@@ -42,7 +42,6 @@ const StudentInfo = () => {
           accept="image/*"
           style={{ display: 'none' }}
         />
-
         {/* 배경 이미지 변경 */}
         {/* 프로필 변경  */}
         <ProfileContainer>

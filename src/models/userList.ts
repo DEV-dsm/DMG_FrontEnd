@@ -1,4 +1,4 @@
-type BaseUserListType = {
+export interface BaseUserListType {
   user_userId: string;
   qb_userID: number;
   number: number;
