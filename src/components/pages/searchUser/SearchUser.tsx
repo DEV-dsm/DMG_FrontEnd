@@ -1,5 +1,5 @@
 import StudentList from '../userList/StudentList';
-import TeacherList from '../userList/TeacherList';
+import TeacherList from '../userList/teacherList';
 import styled from 'styled-components';
 import { useDropdown } from '../../hooks/useDropdown';
 import Input from '../../common/Input';
