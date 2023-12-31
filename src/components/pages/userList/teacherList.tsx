@@ -8,7 +8,7 @@ const TeacherList = () => {
   const { data: teacherUserLists } = GetTeacherList();
   return (
     <Container>
-      {teacherUserLists.map((value: TeacherListType, index: number) => (
+      {teacherUserLists?.map((value: TeacherListType, index: number) => (
         <Wrapper key={index}>
           <LeftWrapper>
             <Img src={Images.defaultProfile} />
