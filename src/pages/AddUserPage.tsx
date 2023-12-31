@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { styled } from 'styled-components';
 import Input from '../components/common/Input';
@@ -108,7 +108,7 @@ export default function AddUserPage() {
             <>
               <ListWrapper>
                 {teacherListData?.map((v: TeacherListType, i: number) => (
-                  <TeacherRow key={i} data={v}></TeacherRow>
+                  <TeacherRow key={i} data={v} checkBoxOnClick={CheckBoxClick} />
                 ))}
               </ListWrapper>
             </>

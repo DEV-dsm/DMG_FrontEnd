@@ -10,6 +10,7 @@ interface propsType {
 
 export const StudentRow = ({ data, checkBoxOnClick }: propsType) => {
   const [check, setCheck] = useState(false);
+  
   return (
     <Wrapper>
       <LeftWrapper>

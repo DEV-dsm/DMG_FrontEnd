@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from 'react-query';
+import { MutateOptions, useMutation, useQuery } from 'react-query';
 import instance from '../../axios';
 import { messageListDefaultType } from '../../../models/MessageList';
 import { chatRoomInfoDefaultType } from '../../../models/ChatRoomInfo';
@@ -130,6 +130,120 @@ export const useChangeChatRoomInfo = (groupID: string, groupName: string, groupP
               break;
             case 404:
               toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+          }
+        } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });
+      },
+    },
+  );
+};
+
+/**
+ * 새로운 관리자 추가
+ * @param groupID
+ * @param userID
+ * @returns 성공 시
+ */
+export const useNewManager = () => {
+  return useMutation(
+    async ({ groupID, userID }: { groupID: string; userID: number }) => {
+      const queryString = groupID && userID ? `?groupID=${groupID}&userID=${userID}` : '';
+      await instance.patch(`${path}/manage${queryString}`);
+    },
+    {
+      onSuccess: () => {
+        toast.success(`새로운 관리자 추가가 성공했습니다.`, { duration: 1500 });
+      },
+      onError: (err: AxiosError) => {
+        if (err.response) {
+          switch (err.response.status) {
+            case 401:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 403:
+              toast.error('관리자만 새로운 관리자를 추가할 수 있습니다.', { duration: 1500 });
+              break;
+            case 404:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 409:
+              toast.error('해당 멤버는 이미 관리자입니다.', { duration: 1500 });
+              break;
+          }
+        } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });
+      },
+    },
+  );
+};
+
+/**
+ * 멤버 강제퇴장
+ * @param groupID
+ * @param userID
+ * @returns 성공 시
+ */
+export const useOutMember = () => {
+  return useMutation(
+    async ({ groupID, userID }: { groupID: string; userID: number }) => {
+      const queryString = groupID && userID ? `?groupID=${groupID}&userID=${userID}` : '';
+      await instance.delete(`${path}/getOut${queryString}`);
+    },
+    {
+      onSuccess: () => {
+        // toast.success(`멤버 강제퇴장이 성공했습니다.`, { duration: 1500 });
+      },
+      onError: (err: AxiosError) => {
+        if (err.response) {
+          switch (err.response.status) {
+            case 401:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 403:
+              toast.error('관리자만 멤버 강제퇴장할 수 있습니다.', { duration: 1500 });
+              break;
+            case 404:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 409:
+              toast.error('본인과 관리자는 강제퇴장할 수 없습니다.', { duration: 1500 });
+              break;
+          }
+        } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });
+      },
+    },
+  );
+};
+
+/**
+ * 관리자 해제
+ * @param groupID
+ * @param userID
+ * @returns 성공 시
+ */
+export const useOutManager = () => {
+  return useMutation(
+    async ({ groupID, userID }: { groupID: string; userID: number }) => {
+      const queryString = groupID && userID ? `?groupID=${groupID}&userID=${userID}` : '';
+      await instance.patch(`${path}/manage/dismiss${queryString}`);
+    },
+    {
+      onSuccess: () => {
+        // toast.success(`멤버 강제퇴장이 성공했습니다.`, { duration: 1500 });
+      },
+      onError: (err: AxiosError) => {
+        if (err.response) {
+          switch (err.response.status) {
+            case 401:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 403:
+              toast.error('관리자만 관리자 해제할 수 있습니다.', { duration: 1500 });
+              break;
+            case 404:
+              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+              break;
+            case 409:
+              toast.error('채팅방에는 한 명 이상의 관리자가 필요합니다.', { duration: 1500 });
               break;
           }
         } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });

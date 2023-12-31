@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Images } from '../../../assets/mypage';
 import { TeacherListType } from '../../../models/userList';
 
 interface propsType {
   data: TeacherListType;
+  checkBoxOnClick: (userId: number) => void;
 }
 
-export const TeacherRow = ({ data }: propsType) => {
+export const TeacherRow = ({ data, checkBoxOnClick }: propsType) => {
+  const [check, setCheck] = useState(false);
+
   return (
     <Wrapper>
       <LeftWrapper>
@@ -18,9 +22,17 @@ export const TeacherRow = ({ data }: propsType) => {
         </div>
       </LeftWrapper>
 
-      {/* <Btn>
-        <Img src={CommonImages.logo1} style={{ width: '40px' }} />
-      </Btn> */}
+      <CheckBox
+        check={check}
+        onClick={() => {
+          if (!check) {
+            setCheck(true);
+          } else {
+            setCheck(false);
+          }
+          checkBoxOnClick && checkBoxOnClick(data.user_userID);
+        }}
+      />
     </Wrapper>
   );
 };
@@ -59,4 +71,13 @@ const Number = styled.div`
   font-size: 18px;
   font-weight: 400;
   color: #393939;
+`;
+
+const CheckBox = styled.button<{
+  check: boolean;
+}>`
+  width: 24px;
+  height: 24px;
+  background: ${(props) => (props.check ? '#393939' : '#FFFFFF')};
+  border: ${(props) => (props.check ? 'none' : `1px solid #393939`)};
 `;

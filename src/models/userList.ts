@@ -1,5 +1,5 @@
 export interface BaseUserListType {
-  user_userId: string;
+  user_userID: number;
   qb_userID: number;
   number: number;
   subject: string;
