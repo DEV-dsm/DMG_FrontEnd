@@ -9,9 +9,9 @@ interface IPropsInputType {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const MessageInput = ({ ...props }: IPropsInputType) => {
+export default function Input({ ...props }: IPropsInputType) {
   return <InputContainer {...props} />;
-};
+}
 
 const InputContainer = styled.input`
   width: 100%;
@@ -27,5 +27,3 @@ const InputContainer = styled.input`
     font-weight: 400;
   }
 `;
-
-export default MessageInput;

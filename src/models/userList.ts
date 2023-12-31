@@ -1,6 +1,6 @@
 type BaseUserListType = {
   user_userId: string;
-  qb_userID: string;
+  qb_userID: number;
   number: number;
   subject: string;
   name: string;
