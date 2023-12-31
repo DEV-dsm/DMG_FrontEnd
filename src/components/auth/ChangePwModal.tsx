@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { IChangePwInputModalType } from '../../models/auth';
 import Input from '../common/Input';
 import InfoButton from '../common/InfoButton';
-import { useChangePw } from '../hooks/apis/useChangePW';
+import { useChangePw } from '../hooks/apis/useChangePw';
 
 interface ChangePwModalProps {
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
