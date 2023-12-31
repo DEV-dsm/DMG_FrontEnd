@@ -1,38 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ChattingImages } from '../../../assets/chatting';
 import { useForm } from '../../hooks/useForm';
 
-const InputBlock = () => {
+interface propsType {
+  display: boolean;
+}
+
+export const InputBlock = ({ display }: propsType) => {
   const { form: signForm, handleChange: signFormChange } = useForm({
     text: '',
   });
   const { text } = signForm;
 
   return (
-    <>
-      <Container>
-        <InputWrapper>
-          <Input
-            type="text"
-            name="text"
-            value={text}
-            onChange={signFormChange}
-            placeholder="메시지를 입력해 주세요."
-          />
+    <Container display={display}>
+      <InputWrapper>
+        <Input
+          type="text"
+          name="text"
+          value={text}
+          onChange={signFormChange}
+          placeholder="메시지를 입력해 주세요."
+        />
 
-          <Btn onClick={() => {}}>
-            <Img src={ChattingImages.fileUpload} />
-          </Btn>
-        </InputWrapper>
-      </Container>
-    </>
+        <Btn onClick={() => {}}>
+          <Img src={ChattingImages.fileUpload} />
+        </Btn>
+      </InputWrapper>
+    </Container>
   );
 };
 
-export default InputBlock;
-
-const Container = styled.div`
+const Container = styled.div<{ display: boolean }>`
+  display: ${({ display }) => (display ? 'block' : 'none')};
   padding: 16px 30px;
   width: 100%;
 `;
