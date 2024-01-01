@@ -4,6 +4,7 @@ import { IsearchDataProps } from '../../../../models/userList';
 import instance from '../../../axios';
 import { userIdAtom } from '../../../../atom/authAtom';
 import { useMutation, useQuery } from 'react-query';
+import toast from 'react-hot-toast';
 
 export const userQuestion = async (inputsData: IQuestionInputDataType) => {
   return await instance.post('/user/question', inputsData);
@@ -41,18 +42,27 @@ export const userChangePwData = async (password: string, newPassword: string) =>
 };
 
 export const SearchUsers = (
-  standard: 'name' | 'number',
+  standard: string,
   keyword: string,
   buttonActive: 'student' | 'teacher',
+  setSearchedUsers: React.Dispatch<React.SetStateAction<IsearchDataProps[]>>, // 상태 업데이트 함수를 인수로 추가
 ) => {
   const response = async () => {
     const buttonValue = buttonActive === 'student' ? 'true' : 'false';
-    return await instance.post<IsearchDataProps>(`/profile/search/${buttonValue}`, {
+    return await instance.post(`/profile/search/${buttonValue}`, {
       standard: standard,
       keyword: keyword,
     });
   };
-  return useMutation(response);
+  return useMutation(response, {
+    onSuccess: (data) => {
+      setSearchedUsers(data.data.data);
+      toast.success('유저 검색이 성공적으로 완료되었습니다.');
+    },
+    onError: () => {
+      toast.error('검색 중 오류가 발생했습니다.');
+    },
+  });
 };
 
 export const GetTeacherList = () => {
