@@ -9,7 +9,6 @@ import Error from '../pages/ErrorPage';
 import ProtectedRoute from './ProctedRoute';
 import ChangePWPage from '../pages/auth/ChangePWpage';
 import ChattingPage from '../pages/ChattingPage';
-import AddChat from '../pages/AddChatPage';
 import MessagePage from '../pages/Message';
 import AddUserPage from '../pages/AddUserPage';
 
@@ -30,7 +29,7 @@ const MainRouter = () => {
         <Route path="/searchuser" element={<SearchUser />} />
         <Route path="/message/:groupID" element={<ChattingPage />} />
         <Route path="/message/:groupID/addUser" element={<AddUserPage />} />
-        <Route path="/addChat" element={<AddChat />} />
+        <Route path="/addChat" element={<AddUserPage />} />
       </Route>
     </Routes>
   );

@@ -5,16 +5,19 @@ import { useDropdown } from '../../hooks/useDropdown';
 import Input from '../../common/Input';
 import React, { useState } from 'react';
 import { SearchUsers } from '../../../utils/api/auth/page';
-import { useMutation } from 'react-query';
+import toast from 'react-hot-toast';
+import { IsearchDataProps } from '../../../models/userList';
 
 const SearchUser = () => {
-  const [activeButton, setActiveButton] = useState<string>('student');
-  const [userKeyword, setSUserKeyword] = useState<string>('');
-  const [userStandard, setUserStandard] = useState<'name' | 'number'>('name');
+  const [activeButton, setActiveButton] = useState<string>('student'); // button 학생 or 교사
+  const [searchedUsers, setSearchedUsers] = useState<IsearchDataProps[]>([]); // 검색된 유저 정보를 저장할 상태
+
+  const [userKeyword, setUserKeyword] = useState<string>('');
+  const [userStandard, setUserStandard] = useState<string>('');
   const [userActive, setUserActive] = useState<'student' | 'teacher'>('student');
 
   const { form, onChange } = useDropdown(['학번', '이름']);
-  const { mutate } = SearchUsers(userStandard, userKeyword, userActive);
+  const { mutate } = SearchUsers(userStandard, userKeyword, userActive, setSearchedUsers);
 
   const handleDropdownChange = (index: number, event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value;
@@ -23,12 +26,32 @@ const SearchUser = () => {
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      mutate();
+      console.log(userStandard, userKeyword, userActive);
+      handleSearch();
     }
+  };
+
+  const handleSearch = async () => {
+    if (userKeyword.trim() === '') {
+      toast.error('유저를 입력해주세요.');
+      return;
+    }
+    mutate();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     handleDropdownChange(0, e);
+    setUserStandard(e.target.value);
+  };
+
+  const handleStudentClick = () => {
+    setActiveButton('student');
+    setUserActive('student');
+  };
+
+  const handleTeacherClick = () => {
+    setActiveButton('teacher');
+    setUserActive('teacher');
   };
 
   return (
@@ -41,38 +64,41 @@ const SearchUser = () => {
 
               <InputWrapper>
                 <Select value={form[0]} onChange={handleChange}>
-                  <option value="학번">학번</option>
-                  <option value="이름">이름</option>
+                  {activeButton === 'teacher' ? (
+                    <option value="name">이름</option>
+                  ) : (
+                    <>
+                      <option value="number">학번</option>
+                      <option value="name">이름</option>
+                    </>
+                  )}
                 </Select>
 
                 <Input
-                  type="text"
                   name="search"
                   value={userKeyword}
                   placeholder="Search"
-                  onChange={(e) => setSUserKeyword(e.target.value)}
+                  onChange={(e) => setUserKeyword(e.target.value)}
                   onKeyDown={onKeyDown}
                 />
 
                 <ButtonWrapper>
-                  <Btn
-                    onClick={() => setActiveButton('teacher')}
-                    active={activeButton === 'teacher'}
-                  >
+                  <Btn onClick={handleTeacherClick} active={activeButton === 'teacher'}>
                     교사
                   </Btn>
-                  <Btn
-                    onClick={() => setActiveButton('student')}
-                    active={activeButton === 'student'}
-                  >
+                  <Btn onClick={handleStudentClick} active={activeButton === 'student'}>
                     학생
                   </Btn>
                 </ButtonWrapper>
               </InputWrapper>
             </Container>
           </HeaderWrapper>
-          {activeButton === 'student' ? <StudentList /> : null}
-          {activeButton === 'teacher' ? <TeacherList /> : null}
+          {activeButton === 'student' ? (
+            <StudentList onSearchUsers={searchedUsers} onKeyword={userKeyword} />
+          ) : null}
+          {activeButton === 'teacher' ? (
+            <TeacherList onSearchUsers={searchedUsers} onKeyword={userKeyword} />
+          ) : null}
         </UserListWrapper>
       </Wrapper>
     </>

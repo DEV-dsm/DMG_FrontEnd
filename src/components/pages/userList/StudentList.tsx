@@ -5,17 +5,25 @@ import { useState } from 'react';
 import instance from '../../../utils/axios';
 import { StudentListType } from '../../../models/userList';
 import { GetStudentList } from '../../../utils/api/auth/page';
+import { IsearchResponseDataProps } from '../../../models/userList';
 
-const StudentList = () => {
+interface IProps {
+  onSearchUsers: IsearchResponseDataProps['data'];
+  onKeyword: string;
+}
+
+const StudentList = ({ onSearchUsers, onKeyword }: IProps) => {
   const [clickedIndex, setClickedIndex] = useState<number>(-1);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleItemClick = async (index: number) => {
     setClickedIndex(index === clickedIndex ? -1 : index);
-    const selectedUserId = studentUserLists[index]?.qb_userID;
+    const selectedUserId =
+      onSearchUsers?.length > 0
+        ? onSearchUsers[index]?.user_userID
+        : studentUserLists[index]?.qb_userID;
     try {
-      const userID = studentUserLists.qb_userID;
-      const response = await instance.get(`/profile/student/${userID}`);
+      const response = await instance.get(`/profile/student/${selectedUserId}`);
       setSelectedUser(response.data?.data);
     } catch (e) {
       console.log(e);
@@ -28,24 +36,43 @@ const StudentList = () => {
   return (
     <>
       <Container>
-        {studentUserLists?.map((value: StudentListType, index: number) => (
-          <Wrapper
-            key={index}
-            onClick={() => handleItemClick(index)}
-            isActive={index === clickedIndex}
-          >
-            <LeftWrapper>
-              <Img src={value.profile ?? Images.defaultProfile} />
-              <div>
-                <UserName>{value.name}</UserName>
-                <Number>{value.number}</Number>
-              </div>
-            </LeftWrapper>
-            <Btn>
-              <Img src={CommonImages.logo1} style={{ width: '40px' }} />
-            </Btn>
-          </Wrapper>
-        ))}
+        {onKeyword.trim() !== ''
+          ? onSearchUsers.map((value: any, index: number) => (
+              <Wrapper
+                key={index}
+                onClick={() => handleItemClick(index)}
+                isActive={index === clickedIndex}
+              >
+                <LeftWrapper>
+                  <Img src={value.profile ?? Images.defaultProfile} />
+                  <div>
+                    <UserName>{value.name}</UserName>
+                    <Number>{value.number}</Number>
+                  </div>
+                </LeftWrapper>
+                <Btn>
+                  <Img src={CommonImages.logo1} style={{ width: '40px' }} />
+                </Btn>
+              </Wrapper>
+            ))
+          : studentUserLists?.map((value: StudentListType, index: number) => (
+              <Wrapper
+                key={index}
+                onClick={() => handleItemClick(index)}
+                isActive={index === clickedIndex}
+              >
+                <LeftWrapper>
+                  <Img src={value.profile ?? Images.defaultProfile} />
+                  <div>
+                    <UserName>{value.name}</UserName>
+                    <Number>{value.number}</Number>
+                  </div>
+                </LeftWrapper>
+                <Btn>
+                  <Img src={CommonImages.logo1} style={{ width: '40px' }} />
+                </Btn>
+              </Wrapper>
+            ))}
       </Container>
     </>
   );
@@ -102,11 +129,6 @@ const Number = styled.div`
 
 const Btn = styled.button`
   background-color: transparent;
-`;
-
-const DetailInfo = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export default StudentList;

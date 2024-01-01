@@ -5,12 +5,24 @@ export interface BaseUserListType {
   subject: string;
   name: string;
   profile: string;
-};
+}
 
 export interface IsearchDataProps {
-  standard: 'name' | 'number';
-  keyword: string;
-  buttonActive: 'student' | 'teacher';
+  user_userID: number;
+  name: string;
+  profile: string | null;
+  number: string;
+}
+
+export interface IsearchResponseDataProps {
+  data: {
+    user_userID: number;
+    name: string;
+    profile: string | null;
+    number: string;
+  }[];
+  statusCode: number;
+  statusMsg: string;
 }
 
 export type StudentListType = Omit<BaseUserListType, 'user_userId' | 'subject'>;

@@ -14,7 +14,6 @@ export const MessageRow = ({ width = '100%', data, i, onClick }: propsType) => {
     <Container width={width} key={i} onClick={onClick}>
       <LeftWrapper>
         <Img src={data.profile ? data.profile : CommonImages.logo1} />
-
         <div>
           <UserName>{data?.name}</UserName>
           <Body>{data?.body}</Body>
@@ -30,7 +29,7 @@ const Container = styled.div<{
   width: ${({ width }) => width};
   display: inline-flex;
   justify-content: space-between;
-  padding: 15px 30px 15px 20px;
+  padding: 15px 25px 10px 15px;
   align-items: center;
 
   &:hover {
