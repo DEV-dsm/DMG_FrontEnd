@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 import { GetIndividualUserStudnet } from '../../../../utils/api/auth/page';
+import { Images } from '../../../../assets/mypage';
 
 const StudentUserDetailInfo = () => {
   const { data: individualUserList } = GetIndividualUserStudnet();
   return (
     <>
-      <ImageContainer style={{ backgroundImage: `url(${individualUserList?.background})` }}>
-        <ProfileImage src={individualUserList?.profile} />
+      <ImageContainer
+        style={{
+          backgroundImage: `url(${individualUserList?.background || `${Images.Background}`})`,
+        }}
+      >
+        <ProfileImage
+          src={
+            individualUserList?.profile !== '기본 프로필 사진 링크'
+              ? individualUserList?.profile
+              : Images.defaultProfile
+          }
+        />
       </ImageContainer>
       <ProfleInfos>
         <Title>{individualUserList?.isStudent ? <>Student</> : null}</Title>
