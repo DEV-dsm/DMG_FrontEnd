@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { ChangeEvent } from 'react';
 
 interface IPropsInputType {
-  type: string;
+  type?: string;
   id?: string;
   name?: string;
   value?: string;
