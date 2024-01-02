@@ -7,10 +7,7 @@ import {
 } from '../../../models/auth';
 
 export const userLogin = async (inputsData: LoginInputType) => {
-  const response = await instance.post('/user/login', {
-    identify: inputsData.identify,
-    password: inputsData.password,
-  });
+  const response = await instance.post('/user/login', inputsData);
   return response;
 };
 
