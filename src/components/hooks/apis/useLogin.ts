@@ -16,7 +16,8 @@ export const useLogin = (inputData: LoginInputType) => {
   const from = location?.state?.redirectedFrom || '/mypage';
 
   return useMutation(() => userLogin(inputData), {
-    onSuccess: ({ data }) => {
+    onSuccess: (response) => {
+      const { data } = response;
       toast.success(`로그인에 성공했습니다.`, { duration: 1500 });
       setToken(data.data.access, data.data.refresh);
       setAccessToken(data.data.access);
@@ -24,12 +25,20 @@ export const useLogin = (inputData: LoginInputType) => {
       navigate(from);
     },
     onError: (error: AxiosError) => {
-      switch (error.response?.status) {
-        case 404:
-          toast.error(`존재하지 않는 유저입니다.`, { duration: 1500 });
-          break;
-        case 409:
-          toast.error(`비밀번호가 일치하지 않습니다.`, { duration: 1500 });
+      console.log(error.request);
+      if (error.response) {
+        switch (error.response.status) {
+          case 404:
+            toast.error(`존재하지 않는 유저입니다.`, { duration: 1500 });
+            break;
+          case 409:
+            toast.error(`비밀번호가 일치하지 않습니다.`, { duration: 1500 });
+            break;
+          default:
+            toast.error(`오류가 발생하였습니다`);
+        }
+      } else {
+        toast.error(`네트워크 오류가 발생하였습니다`);
       }
     },
   });

@@ -22,15 +22,16 @@ const MainRouter = () => {
       <Route path="ChangePW" element={<ChangePWPage />} />
 
       {/* 유저 전용 */}
-      {/* <Route element={<ProtectedRoute />}> */}
-      <Route element={<SideBar />}>
-        <Route path="/inquire" element={<Inquire />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/message" element={<MessagePage />} />
-        <Route path="/searchuser" element={<SearchUser />} />
-        <Route path="/message/:groupID" element={<ChattingPage />} />
-        <Route path="/message/:groupID/addUser" element={<AddUserPage />} />
-        <Route path="/addChat" element={<AddChatPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<SideBar />}>
+          <Route path="/inquire" element={<Inquire />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/message" element={<MessagePage />} />
+          <Route path="/searchuser" element={<SearchUser />} />
+          <Route path="/message/:groupID" element={<ChattingPage />} />
+          <Route path="/message/:groupID/addUser" element={<AddUserPage />} />
+          <Route path="/addChat" element={<AddChatPage />} />
+        </Route>
       </Route>
     </Routes>
   );

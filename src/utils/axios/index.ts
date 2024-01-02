@@ -47,10 +47,7 @@ instance.interceptors.response.use(
       originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
       return axios(originalRequest);
     }
-    if (error) {
-      console.log(error.response);
-      console.log('TokenExpiredError');
-    }
+    return Promise.reject(error);
   },
 );
 

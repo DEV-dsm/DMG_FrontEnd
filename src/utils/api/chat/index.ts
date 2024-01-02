@@ -269,19 +269,19 @@ export const useCreateChatRoom = (name: string, member: number[]) => {
         toast.success(`채팅방 생성을 성공했습니다.`, { duration: 1500 });
       },
       onError: (err: AxiosError) => {
-        if (err.response) {
-          switch (err.response.status) {
-            case 401:
-              toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
-              break;
-            case 404:
-              toast.error('존재하지 않는 유저입니다.', { duration: 1500 });
-              break;
-            case 409:
-              toast.error('자신은 선택할 수 없습니다.', { duration: 1500 });
-              break;
-          }
-        } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });
+        // if (err.response) {
+        //   switch (err.response.status) {
+        //     case 401:
+        //       toast.error('개발자에게 문의해 주세요.', { duration: 1500 });
+        //       break;
+        //     case 404:
+        //       toast.error('존재하지 않는 유저입니다.', { duration: 1500 });
+        //       break;
+        //     case 409:
+        //       toast.error('자신은 선택할 수 없습니다.', { duration: 1500 });
+        //       break;
+        //   }
+        // } else toast.error('네트워크 연결 상태를 확인해 주세요.', { duration: 1500 });
       },
     },
   );
