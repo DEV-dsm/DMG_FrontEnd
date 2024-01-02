@@ -72,6 +72,7 @@ const Container = styled.div<{ display: boolean | undefined }>`
 const Wrapper = styled.div`
   padding-top: 100px;
   width: 100%;
+  height: 100%;
 `;
 
 const Header = styled.div`
@@ -95,7 +96,7 @@ const Img = styled.img`
 `;
 
 const MessageListWrapper = styled.div`
-  padding-left: 30px;
+  padding-left: 15px;
   width: 100%;
   display: flex;
   flex-direction: column;
