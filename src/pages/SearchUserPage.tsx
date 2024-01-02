@@ -1,8 +1,11 @@
-import React from 'react';
 import SearchUser from '../components/pages/searchUser/SearchUser';
 
 const SearchUserPage = () => {
-  return <SearchUser />;
+  return (
+    <>
+      <SearchUser />
+    </>
+  );
 };
 
 export default SearchUserPage;
