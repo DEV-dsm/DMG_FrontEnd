@@ -11,11 +11,11 @@ import { useLogin } from '../../components/hooks/apis/useLogin';
 const LoginPage = () => {
   const navigate = useNavigate();
   const inputsData = useRecoilValue(loginInputsAtom);
-  const loginMutation = useLogin(inputsData);
+  const { mutate } = useLogin(inputsData);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    loginMutation.mutate();
+    mutate();
   };
 
   return (

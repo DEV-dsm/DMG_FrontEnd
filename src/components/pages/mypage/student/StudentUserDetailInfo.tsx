@@ -13,9 +13,7 @@ const StudentUserDetailInfo = () => {
       >
         <ProfileImage
           src={
-            individualUserList?.profile !== '기본 프로필 사진 링크'
-              ? individualUserList?.profile
-              : Images.defaultProfile
+            individualUserList?.profile !== '' ? individualUserList?.profile : Images.defaultProfile
           }
         />
       </ImageContainer>
