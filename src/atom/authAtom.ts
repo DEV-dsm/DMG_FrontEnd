@@ -52,7 +52,6 @@ export const userIdAtom = atom<number>({
 export const TokenAtom = atom({
   key: 'TokenAtom',
   default: undefined,
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const isLoginSelector = selector({
