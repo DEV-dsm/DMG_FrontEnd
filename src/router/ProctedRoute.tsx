@@ -1,23 +1,25 @@
-import { useRecoilValue } from 'recoil';
-import { isLoginSelector } from '../atom/authAtom';
 import { Outlet, Navigate, useLocation } from 'react-router';
 import { useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
+import { getToken } from '../utils/functions/TokenManager';
 
 const ProtectedRoute = () => {
-  const isLogin = useRecoilValue(isLoginSelector);
+  const token = getToken().accessToken;
   const currentLocation = useLocation();
-  const isLoginRef = useRef<boolean | null>(null);
+  const isRendering = useRef<boolean>(true);
 
   useEffect(() => {
-    const isLogined = isLoginRef.current !== null && !isLoginRef.current && !isLogin;
-    if (isLogined) {
+    if (isRendering.current) {
+      isRendering.current = false;
+      return;
+    }
+
+    if (!token) {
       toast.error('로그인이 필요합니다.', { duration: 2000 });
     }
-    isLoginRef.current = isLogin;
-  }, [isLogin]);
+  }, [token]);
 
-  return isLogin ? (
+  return token ? (
     <Outlet />
   ) : (
     <Navigate to="/" replace state={{ redirecredFrom: currentLocation }} />
