@@ -11,17 +11,25 @@ const StudentUserDetailInfo = () => {
           backgroundImage: `url(${individualUserList?.background || `${Images.Background}`})`,
         }}
       >
-        <ProfileImage
-          src={
-            individualUserList?.profile !== '' ? individualUserList?.profile : Images.defaultProfile
-          }
-        />
+        <ProfileImage src={individualUserList?.profile || Images.defaultProfile} />
       </ImageContainer>
       <ProfleInfos>
         <Title>{individualUserList?.isStudent ? <>Student</> : null}</Title>
         <Group>
-          <p>{individualUserList?.name}</p>
-          <div>onLine</div>
+          <p>{individualUserList.name}</p>
+          <OnLineContainer>
+            {individualUserList?.isOnline ? (
+              <>
+                <img src={Images.GreenCircle} alt="Online" />
+                <p style={{ color: '#27AE62' }}>ONLINE</p>
+              </>
+            ) : (
+              <>
+                <img src={Images.RedCircle} alt="Offline" />
+                <p style={{ color: '#D92B35' }}>OFFLINE</p>
+              </>
+            )}
+          </OnLineContainer>
         </Group>
         <Email>{individualUserList?.email}</Email>
         <Infos>
@@ -55,6 +63,12 @@ const Title = styled.p`
   text-align: center;
   font-size: 32px;
   font-weight: 400;
+`;
+
+const OnLineContainer = styled.div`
+  display: flex;
+  gap: 7px;
+  padding-top: 7px;
 `;
 
 const Group = styled.div`
