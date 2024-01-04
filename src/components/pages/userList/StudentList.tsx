@@ -1,38 +1,31 @@
 import styled from 'styled-components';
 import { Images } from '../../../assets/mypage/index';
 import { CommonImages } from '../../../assets/common';
-import { useState } from 'react';
-import instance from '../../../utils/axios';
-import { StudentListType } from '../../../models/userList';
-import { GetStudentList } from '../../../utils/api/auth/page';
+import { useEffect } from 'react';
+import { IsearchUserDataTypeDTO, StudentListType } from '../../../models/userList';
 import { IsearchResponseDataProps } from '../../../models/userList';
 
 interface IProps {
   onSearchUsers: IsearchResponseDataProps['data'];
   onKeyword: string;
+  clickedIndex: number;
+  setClickedIndex: React.Dispatch<React.SetStateAction<number>>;
+  selectedUser: IsearchUserDataTypeDTO[];
+  handleItemClick: (index: number) => void;
+  studentUserLists: any;
 }
 
-const StudentList = ({ onSearchUsers, onKeyword }: IProps) => {
-  const [clickedIndex, setClickedIndex] = useState<number>(-1);
-  const [selectedUser, setSelectedUser] = useState(null);
-
-  const handleItemClick = async (index: number) => {
-    setClickedIndex(index === clickedIndex ? -1 : index);
-    const selectedUserId =
-      onSearchUsers?.length > 0
-        ? onSearchUsers[index]?.user_userID
-        : studentUserLists[index]?.qb_userID;
-    try {
-      const response = await instance.get(`/profile/student/${selectedUserId}`);
-      setSelectedUser(response.data?.data);
-    } catch (e) {
-      console.log(e);
-      setSelectedUser(null);
-    }
-  };
-
-  const { data: studentUserLists } = GetStudentList();
-
+const StudentList = ({
+  onSearchUsers,
+  onKeyword,
+  handleItemClick,
+  clickedIndex,
+  studentUserLists,
+  selectedUser,
+}: IProps) => {
+  useEffect(() => {
+    console.log(selectedUser);
+  }, [selectedUser]);
   return (
     <>
       <Container>
@@ -111,6 +104,7 @@ const LeftWrapper = styled.div`
 
 const Img = styled.img`
   width: 50px;
+  border-radius: 50%;
 `;
 
 const UserName = styled.div`
