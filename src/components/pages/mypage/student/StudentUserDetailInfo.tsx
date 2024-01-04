@@ -16,7 +16,7 @@ const StudentUserDetailInfo = () => {
       <ProfleInfos>
         <Title>{individualUserList?.isStudent ? <>Student</> : null}</Title>
         <Group>
-          <p>{individualUserList.name}</p>
+          <p>{individualUserList?.name}</p>
           <OnLineContainer>
             {individualUserList?.isOnline ? (
               <>
