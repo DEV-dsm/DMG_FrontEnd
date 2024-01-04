@@ -25,6 +25,21 @@ export interface IsearchResponseDataProps {
   statusMsg: string;
 }
 
+export interface IsearchUserDataTypeDTO {
+  userID: number;
+  identify: string | number;
+  name: string;
+  password: string;
+  email: string;
+  profile: string;
+  background: string;
+  isStudent: true;
+  major: string;
+  github: string;
+  number: number | string;
+  isOnline: true;
+}
+
 export type StudentListType = Omit<BaseUserListType, 'user_userId' | 'subject'>;
 
 export type TeacherListType = Omit<BaseUserListType, 'qb_userID' | 'number'>;
