@@ -15,7 +15,19 @@ const SearchUserInfo = ({ selectedUser }: any) => {
         <Title>{selectedUser?.isStudent ? <>Student</> : null}</Title>
         <Group>
           <p>{selectedUser?.name}</p>
-          <div>onLine</div>
+          <OnLineContainer>
+            {selectedUser?.isOnline ? (
+              <>
+                <img src={Images.GreenCircle} alt="Online" />
+                <p style={{ color: '#27AE62' }}>ONLINE</p>
+              </>
+            ) : (
+              <>
+                <img src={Images.RedCircle} alt="Offline" />
+                <p style={{ color: '#D92B35' }}>OFFLINE</p>
+              </>
+            )}
+          </OnLineContainer>
         </Group>
         <Email>{selectedUser?.email}</Email>
         <Infos>
@@ -36,6 +48,12 @@ const SearchUserInfo = ({ selectedUser }: any) => {
     </>
   );
 };
+
+const OnLineContainer = styled.div`
+  display: flex;
+  gap: 7px;
+  padding-top: 7px;
+`;
 
 const baseTextStyle = `
   font-family: 'Noto Sans';

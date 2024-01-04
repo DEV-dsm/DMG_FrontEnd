@@ -11,17 +11,25 @@ const TeacherUserDetailInfo = () => {
           backgroundImage: `url(${individualUserList?.background || `${Images.Background}`})`,
         }}
       >
-        <ProfileImage
-          src={
-            individualUserList?.profile !== '' ? individualUserList?.profile : Images.defaultProfile
-          }
-        />
+        <ProfileImage src={individualUserList?.profile || Images.defaultProfile} />
       </ImageContainer>
       <ProfleInfos>
         <Title>{individualUserList?.isStudent ? <p>Student</p> : <p>Teacher</p>}</Title>
         <Group>
-          <p>{individualUserList?.name}</p>
-          <div>onLine</div>
+          <p>{individualUserList.name}</p>
+          <OnLineContainer>
+            {individualUserList?.isOnline ? (
+              <>
+                <img src={Images.GreenCircle} alt="Online" />
+                <p style={{ color: '#27AE62' }}>ONLINE</p>
+              </>
+            ) : (
+              <>
+                <img src={Images.RedCircle} alt="Offline" />
+                <p style={{ color: '#D92B35' }}>OFFLINE</p>
+              </>
+            )}
+          </OnLineContainer>
         </Group>
         <Email>{individualUserList?.email}</Email>
         <Infos>
@@ -42,6 +50,12 @@ const TeacherUserDetailInfo = () => {
     </>
   );
 };
+
+const OnLineContainer = styled.div`
+  display: flex;
+  gap: 7px;
+  padding-top: 7px;
+`;
 
 const baseTextStyle = `
   font-family: 'Noto Sans';
