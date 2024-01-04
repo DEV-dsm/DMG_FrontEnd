@@ -6,11 +6,27 @@ import Input from '../../common/Input';
 import React, { useState } from 'react';
 import { SearchUsers } from '../../../utils/api/auth/page';
 import toast from 'react-hot-toast';
-import { IsearchDataProps } from '../../../models/userList';
+import { IsearchDataProps, IsearchUserDataTypeDTO } from '../../../models/userList';
+import { useRecoilState } from 'recoil';
+import { searchedUsersState } from '../../../atom/ListAtom';
 
-const SearchUser = () => {
+interface SearchUserPropsType {
+  clickedIndex: number;
+  setClickedIndex: React.Dispatch<React.SetStateAction<number>>;
+  selectedUser: IsearchUserDataTypeDTO[];
+  handleItemClick: (index: number) => void;
+  studentUserLists: any;
+}
+
+const SearchUser = ({
+  clickedIndex,
+  setClickedIndex,
+  selectedUser,
+  handleItemClick,
+  studentUserLists,
+}: SearchUserPropsType) => {
   const [activeButton, setActiveButton] = useState<string>('student'); // button 학생 or 교사
-  const [searchedUsers, setSearchedUsers] = useState<IsearchDataProps[]>([]); // 검색된 유저 정보를 저장할 상태
+  const [searchedUsers, setSearchedUsers] = useRecoilState<IsearchDataProps[]>(searchedUsersState); // 검색된 유저 정보를 저장할 상태
 
   const [userKeyword, setUserKeyword] = useState<string>('');
   const [userStandard, setUserStandard] = useState<string>('');
@@ -94,7 +110,15 @@ const SearchUser = () => {
             </Container>
           </HeaderWrapper>
           {activeButton === 'student' ? (
-            <StudentList onSearchUsers={searchedUsers} onKeyword={userKeyword} />
+            <StudentList
+              onSearchUsers={searchedUsers}
+              onKeyword={userKeyword}
+              clickedIndex={clickedIndex}
+              selectedUser={selectedUser}
+              setClickedIndex={setClickedIndex}
+              handleItemClick={handleItemClick}
+              studentUserLists={studentUserLists}
+            />
           ) : null}
           {activeButton === 'teacher' ? (
             <TeacherList onSearchUsers={searchedUsers} onKeyword={userKeyword} />
