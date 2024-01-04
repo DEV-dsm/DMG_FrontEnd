@@ -10,6 +10,8 @@ import whitePencil from './pencil2 11.svg';
 import WhiteCheck from './WhiteCheck.svg';
 import GrrenCheck from './GreenCheck.png';
 import Background from './Background.svg';
+import RedCircle from './RedCircle.svg';
+import GreenCircle from './GreenCircle.svg';
 
 export const Images = {
   blackBeforeCheck,
@@ -24,4 +26,6 @@ export const Images = {
   WhiteCheck,
   GrrenCheck,
   Background,
+  RedCircle,
+  GreenCircle,
 };
